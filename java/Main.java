@@ -1,4 +1,4 @@
-package BeltLineApplication;
+package BeltLineApplication.java;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("UserLogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/UserLogin.fxml"));
         primaryStage.setTitle("BeltLine");
         Scene rootScene = new Scene(root, 280, 215);
         primaryStage.setScene(rootScene);
@@ -19,25 +19,25 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
         //setting all scenes based on document
-        Parent registerNavigation = FXMLLoader.load(getClass().getResource("RegisterNavigation.fxml"));
+        Parent registerNavigation = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterNavigation.fxml"));
         Scene registerNavigationScene = new Scene(registerNavigation, 250, 290);
 
-        Parent registerUser = FXMLLoader.load(getClass().getResource("RegisterUser.fxml"));
+        Parent registerUser = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterUser.fxml"));
         Scene registerUserScene = new Scene(registerUser, 600, 400);
 
-        Parent registerVisitorOnly = FXMLLoader.load(getClass().getResource("RegisterVisitorOnly.fxml"));
+        Parent registerVisitorOnly = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterVisitorOnly.fxml"));
         Scene registerVisitorOnlyScene = new Scene(registerVisitorOnly, 600, 400);
 
-        Parent registerEmployeeOnly = FXMLLoader.load(getClass().getResource("RegisterEmployeeOnly.fxml"));
+        Parent registerEmployeeOnly = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterEmployeeOnly.fxml"));
         Scene registerEmployeeOnlyScene = new Scene(registerEmployeeOnly, 600, 500);
 
-        Parent registerEmployeeVisitor = FXMLLoader.load(getClass().getResource("RegisterEmployeeVisitor.fxml"));
+        Parent registerEmployeeVisitor = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterEmployeeVisitor.fxml"));
         Scene registerEmployeeVisitorScene = new Scene(registerEmployeeVisitor, 600, 500);
 
-        Parent userFunctionality = FXMLLoader.load(getClass().getResource("userFunctionality.fxml"));
+        Parent userFunctionality = FXMLLoader.load(getClass().getResource("resources/fxml/userFunctionality.fxml"));
         Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
 
-        Parent userTakeTransit = FXMLLoader.load(getClass().getResource("userTakeTransit.fxml"));
+        Parent userTakeTransit = FXMLLoader.load(getClass().getResource("resources/fxml/userTakeTransit.fxml"));
         Scene userTakeTransitScene = new Scene(userTakeTransit, 600, 450);
 
         //User Login Functionality
