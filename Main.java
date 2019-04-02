@@ -1,4 +1,4 @@
-package BeltLineApplication.java;
+package BeltLineApplication;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(rootScene);
         primaryStage.show();
         primaryStage.setResizable(false);
+        //primaryStage.centerOnScreen();
 
         //setting all scenes based on document
         Parent registerNavigation = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterNavigation.fxml"));
