@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
 
 <AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -34,11 +36,73 @@
         <Label layoutX="300.0" layoutY="126.0" text="User Type" />
         <Button id="back" layoutX="124.0" layoutY="429.0" minWidth="100.0" mnemonicParsing="false" text="Back" />
         <Button id="register" layoutX="412.0" layoutY="429.0" minWidth="100.0" mnemonicParsing="false" text="Register" />
-        <ChoiceBox id="userType" layoutX="411.0" layoutY="122.0" prefWidth="150.0" />
+        <ChoiceBox id="userType" layoutX="411.0" layoutY="122.0" prefWidth="150.0" value="Manager">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Manager" />
+                    <String fx:value="Staff" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
         <PasswordField id="password" layoutX="124.0" layoutY="173.0" />
         <PasswordField id="confirmPassword" layoutX="412.0" layoutY="173.0" />
         <TextField id="city" layoutX="124.0" layoutY="264.0" prefWidth="100.0" />
-        <ChoiceBox id="state" layoutX="318.0" layoutY="264.0" prefWidth="50.0" />
+        <ChoiceBox id="state" layoutX="318.0" layoutY="264.0" prefWidth="50.0" value="--" stylesheets="@../css/style.css">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="AL" />
+                <String fx:value="AK" />
+                <String fx:value="AZ" />
+                <String fx:value="AR" />
+                <String fx:value="CA" />
+                <String fx:value="CO" />
+                <String fx:value="CT" />
+                <String fx:value="DE" />
+                <String fx:value="FL" />
+                <String fx:value="GA" />
+                <String fx:value="HI" />
+                <String fx:value="ID" />
+                <String fx:value="IL" />
+                <String fx:value="IN" />
+                <String fx:value="IA" />
+                <String fx:value="KS" />
+                <String fx:value="KY" />
+                <String fx:value="LA" />
+                <String fx:value="ME" />
+                <String fx:value="MD" />
+                <String fx:value="MA" />
+                <String fx:value="MI" />
+                <String fx:value="MN" />
+                <String fx:value="MS" />
+                <String fx:value="MO" />
+                <String fx:value="MT" />
+                <String fx:value="NE" />
+                <String fx:value="NV" />
+                <String fx:value="NH" />
+                <String fx:value="NJ" />
+                <String fx:value="NM" />
+                <String fx:value="NY" />
+                <String fx:value="NC" />
+                <String fx:value="ND" />
+                <String fx:value="OH" />
+                <String fx:value="OK" />
+                <String fx:value="OR" />
+                <String fx:value="PA" />
+                <String fx:value="RI" />
+                <String fx:value="SC" />
+                <String fx:value="SD" />
+                <String fx:value="TN" />
+                <String fx:value="TX" />
+                <String fx:value="UT" />
+                <String fx:value="VT" />
+                <String fx:value="VA" />
+                <String fx:value="WA" />
+                <String fx:value="WV" />
+                <String fx:value="WI" />
+                <String fx:value="WY" />
+            </FXCollections>
+        </items>
+        </ChoiceBox>
         <TextField id="zipcode" layoutX="461.0" layoutY="264.0" prefWidth="100.0" />
     </children>
 </AnchorPane>
