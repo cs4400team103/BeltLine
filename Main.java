@@ -17,7 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(rootScene);
         primaryStage.show();
         primaryStage.setResizable(false);
-        //primaryStage.centerOnScreen();
+        primaryStage.centerOnScreen();
 
         //setting all scenes based on document
         Parent registerNavigation = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterNavigation.fxml"));
@@ -84,6 +84,18 @@ public class Main extends Application {
         //User Functionality Back
         Button backUserFunctionality = (Button) userFunctionality.lookup("#back");
         backUserFunctionality.setOnAction(e-> primaryStage.setScene(rootScene));
+
+        //Register Visitor
+        Button backVisitorFunctionality = (Button) registerVisitorOnly.lookup("#back");
+        backVisitorFunctionality.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
+
+        //Register Employee
+        Button backEmployeeFunctionality = (Button) registerEmployeeOnly.lookup("#back");
+        backEmployeeFunctionality.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
+
+        //Register EmployeeVisitor
+        Button backEmployeeVisitorFunctionality = (Button) registerEmployeeVisitor.lookup("#back");
+        backEmployeeVisitorFunctionality.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
     }
 
 
