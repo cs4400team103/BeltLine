@@ -1,4 +1,4 @@
-CREATE DATABASE BeltLine;
+CREATE DATABASE if NOT EXISTS BeltLine;
 use BeltLine;
 
 CREATE TABLE if NOT EXISTS User (
@@ -72,12 +72,12 @@ CREATE TABLE if NOT EXISTS Site(
 	OpenEveryday varchar(1) NOT NULL ,
 	ManagerUsername varchar(50) NOT NULL,
 	PRIMARY KEY (SName),
-	FOREIGN KEY (ManagerUsername) REFERENCES Manager (ManagerUsername)
+	FOREIGN KEY (ManagerUsername) REFERENCES Manager (Username)
         ON DELETE RESTRICT
         ON UPDATE CASCADE
     );
 
-CREATE TABLE Event(
+CREATE TABLE if NOT EXISTS Event(
     EName varchar(50) NOT NULL,
     StartDate datetime NOT NULL,
     SName varchar(50) NOT NULL,
@@ -92,21 +92,21 @@ CREATE TABLE Event(
         ON UPDATE CASCADE
     );
 
-CREATE TABLE AssignTo(
+CREATE TABLE if NOT EXISTS AssignTo(
     StaffUsername varchar(50)  NOT NULL,
     EName varchar(50) NOT NULL,
     StartDate datetime NOT NULL,
     SiteName varchar(50) NOT NULL,
     PRIMARY KEY (EName, StaffUsername, StartDate, SiteName),
-    FOREIGN KEY (EName, StartDate, SiteName) REFERENCES Event (EName, StartDate, SiteName)
+    FOREIGN KEY (EName, StartDate, SiteName) REFERENCES Event (EName, StartDate, SName)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     FOREIGN KEY (StaffUsername) REFERENCES Staff (username)
         ON UPDATE CASCADE
-        ON DELETE CASCADE,
+        ON DELETE CASCADE
     );
 
-CREATE TABLE Transit(
+CREATE TABLE if NOT EXISTS Transit(
 	Type varchar(100) NOT NULL,
 	Route varchar(100) NOT NULL,
 	Price decimal(9,2),
@@ -118,36 +118,36 @@ CREATE TABLE if NOT EXISTS Connect(
     Route varchar(50) NOT NULL,
     Type varchar(50) NOT NULL,
     PRIMARY KEY (SName, Type, Route),
-    FOREIGN KEY (SName) REFERENCES Site (SName),
-        ON DELETE CASCADE,
+    FOREIGN KEY (SName) REFERENCES Site (SName)
+        ON DELETE CASCADE
         ON UPDATE CASCADE,
-    FOREIGN KEY (Route, Type) REFERENCES Transit (Route, Type),
-        ON DELETE CASCADE,
-        ON UPDATE CASCADE,
+    FOREIGN KEY (Type, Route) REFERENCES Transit (Type, Route) /* Issue here */
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
     );
 
-Create TABLE Take(
+Create TABLE if NOT EXISTS Take(
     Username varchar(50) NOT NULL,
     Route varchar(50) NOT NULL,
     Type varchar(50) NOT NULL,
     Date datetime NOT NULL,
-    PRIMARY KEY (Username, Date, Type, Route)
-    FOREIGN KEY (Route, Type) REFERENCES Transit (Route, Type)
+    PRIMARY KEY (Username, Date, Type, Route),
+    FOREIGN KEY (Type, Route) REFERENCES Transit (Type, Route)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
     FOREIGN KEY (Username) REFERENCES User (Username)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     );
 
-CREATE TABLE VisitSite (
+CREATE TABLE if NOT EXISTS VisitSite (
     Username varchar(50)  NOT NULL,
     SName varchar(50) NOT NULL,
     VisitSiteDate datetime NOT NULL,
     PRIMARY KEY (Username, SName, VisitSiteDate),
     FOREIGN KEY (Username) REFERENCES User(Username)
         ON UPDATE CASCADE
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
     FOREIGN KEY (SName) REFERENCES Site(SName)
     ON UPDATE CASCADE
     ON DELETE CASCADE
