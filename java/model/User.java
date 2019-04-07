@@ -4,6 +4,7 @@ public class User {
     //initialization of variables
     private String username;
     private String password;
+    private String status;
     private String fname;
     private String lname;
 
@@ -24,7 +25,16 @@ public class User {
     }
 
     /**
+     * Get method for password
+     * @return String status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
      * Get method for fname
+     *
      * @return String fname
      */
     public String getFname() {
@@ -53,6 +63,14 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * Set method for password
+     * @param status a String
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**
