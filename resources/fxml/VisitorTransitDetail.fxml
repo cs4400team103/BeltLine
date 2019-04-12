@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!--A comment to attempt to commit-->
+
+<AnchorPane prefHeight="429.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="207.0" layoutY="14.0" text="Transit Detail">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Label layoutX="23.0" layoutY="73.0" text="Site" />
+        <ChoiceBox layoutX="384.0" layoutY="69.0" prefHeight="25.0" prefWidth="150.0" />
+        <Label layoutX="182.0" layoutY="387.0" text="Transit Date" />
+        <TextField layoutX="259.0" layoutY="383.0" prefHeight="25.0" prefWidth="80.0" />
+        <TableView layoutX="55.0" layoutY="110.0" prefHeight="256.0" prefWidth="437.0">
+            <columns>
+                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Route" />
+                <TableColumn editable="false" prefWidth="130.0000228881836" text="Transport Type" />
+                <TableColumn editable="false" prefWidth="75.0" text="Price" />
+                <TableColumn prefWidth="154.66668701171875" text="# Connected Sites" />
+            </columns>
+        </TableView>
+        <Button layoutX="55.0" layoutY="383.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
+        <Label layoutX="300.0" layoutY="73.0" text="Transport Type" />
+      <Button layoutX="419.0" layoutY="383.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Log Transit" />
+    </children>
+</AnchorPane>

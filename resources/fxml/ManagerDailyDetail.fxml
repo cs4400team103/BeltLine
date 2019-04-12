@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!--A comment to attempt to commit-->
+
+<AnchorPane prefHeight="484.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="256.0" layoutY="14.0" text="Daily Detail">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Button layoutX="279.0" layoutY="444.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
+        <TableView layoutX="26.0" layoutY="74.0" prefHeight="355.0" prefWidth="576.0">
+            <columns>
+                <TableColumn prefWidth="141.19997787475586" text="Event Name" />
+                <TableColumn prefWidth="147.20005798339844" text="Staff Names" />
+                <TableColumn minWidth="5.99993896484375" prefWidth="120.0" text="Total Visits" />
+                <TableColumn prefWidth="166.800048828125" text="Total Revenue ($)" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

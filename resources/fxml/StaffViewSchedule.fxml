@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!--A comment to attempt to commit-->
+
+<AnchorPane prefHeight="559.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="226.0" layoutY="14.0" text="View Schedule">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Label layoutX="39.0" layoutY="73.0" text="Event Name" />
+        <Label layoutX="341.0" layoutY="113.0" text="End Date" />
+        <Button layoutX="39.0" layoutY="156.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Filter" />
+        <TableView layoutX="43.0" layoutY="198.0" prefHeight="302.0" prefWidth="512.0">
+            <columns>
+                <TableColumn editable="false" prefWidth="136.79992294311523" sortable="false" text="Event Name" />
+                <TableColumn editable="false" minWidth="6.0" prefWidth="132.40003967285156" text="Site Name" />
+            <TableColumn prefWidth="86.79998779296875" text="Start Date" />
+            <TableColumn prefWidth="82.4000244140625" text="End Date" />
+            <TableColumn prefWidth="72.0" text="Staff Count" />
+            </columns>
+        </TableView>
+        <Button layoutX="265.0" layoutY="512.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
+        <Label layoutX="288.0" layoutY="73.0" text="Decription Keyword" />
+        <TextField layoutX="104.0" layoutY="69.0" />
+        <TextField layoutX="406.0" layoutY="69.0" />
+        <Label layoutX="39.0" layoutY="113.0" text="Start Date" />
+        <TextField layoutX="104.0" layoutY="109.0" />
+        <TextField layoutX="406.0" layoutY="109.0" />
+      <Button layoutX="475.0" layoutY="156.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="View Event" />
+    </children>
+</AnchorPane>
