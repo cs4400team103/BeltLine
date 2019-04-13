@@ -1,6 +1,7 @@
 package BeltLineApplication.java.database;
 
 import java.sql.*;
+import javax.sql.rowset.*;
 
 //The Connector class allows connection to the MYSQL database.
 // We can write simple queries here that will allow users to insert
@@ -53,11 +54,15 @@ public class Connector {
     public static ResultSet dbExecuteQuery(String query) throws SQLException, ClassNotFoundException {
         Statement statement = null;
         ResultSet rs = null;
+        CachedRowSet crs = null;
 
         try {
             connect();
             statement = con.createStatement();
             rs = statement.executeQuery(query);
+
+            crs = RowSetProvider.newFactory().createCachedRowSet();
+            crs.populate(rs);
         } catch (SQLException e) {
             System.out.println("Your error: " + e);
             throw e;
@@ -70,7 +75,7 @@ public class Connector {
             }
             disconnect();
         }
-        return null;
+        return crs;
     }
 
     public static void dbExecuteUpdate(String query) throws SQLException, ClassNotFoundException {
