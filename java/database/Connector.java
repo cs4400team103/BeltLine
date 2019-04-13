@@ -30,7 +30,7 @@ public class Connector {
         }
     }
 
-    public static void disconect() throws SQLException {
+    public static void disconnect() throws SQLException {
         try {
             if (con != null && !con.isClosed()) {
                 con.close();
@@ -38,5 +38,37 @@ public class Connector {
         } catch (Exception e) {
             System.out.println("Failed to disconnect" + e);
         }
+    }
+
+    /**
+     * This dbExecuteQuery only makes sure the query does not have an error
+     *
+     * @param query a String
+     * @return ResultSet from the query
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
+    public static ResultSet dbExecuteQuery(String query) throws SQLException, ClassNotFoundException {
+        Statement statement = null;
+        ResultSet rs = null;
+
+        try {
+            connect();
+            statement = con.createStatement();
+            rs = statement.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Your error: " + e);
+            throw e;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            disconnect();
+        }
+        return null;
     }
 }
