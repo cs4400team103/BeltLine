@@ -7,19 +7,19 @@ public class AssignTo {
     private String siteName;
 
     public String getStaffUsername(){
-        return StaffUsername;
+        return staffUsername;
     }
 
     public String getEName(){
-        return EName;
+        return eName;
     }
 
     public String getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
     public String getSiteName() {
-        return SiteName;
+        return siteName;
     }
 
     public void setStaffUsername(String staffUsername) {

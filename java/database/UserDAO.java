@@ -13,12 +13,9 @@ public class UserDAO {
      */
     public static void registerUser(String username, String password, String fname, String lname) throws SQLException {
         String query =
-                "BEGIN\n" +
-                        "INSERT INTO user\n" +
-                        "(USERNAME, PASSWORD, STATUS, FNAME, LNAME)\n" +
-                        "VALUES\n"
-                        + "'" + username + "','" + password + "','" + "Pending" + "','" + fname + "', '" + lname + "',);\n" +
-                        "END;";
+                        "INSERT INTO user" +
+                        "VALUES ('" + username + "','" + password + "','" + "Pending" + "','" + fname + "', '" +
+                                lname + "',);";
         try {
             Connector.dbExecuteUpdate(query);
         } catch (Exception e) {
@@ -28,16 +25,13 @@ public class UserDAO {
 
     /**
      * Login a User
-    */
-    private static boolean loginUser(String username, String password) throws SQLException, ClassNotFoundException {
+     */
+    public static boolean loginUser(String username, String password) throws SQLException, ClassNotFoundException {
         String query =
-                "BEGIN\n" +
-                        "Select * from user\n" +
-                        "where username = " + "'" + username +  "','" + password + "';" +
-                        "END;";
+                "select * from user where username = '" + username + "' and password = '" + password + "';";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
-            return rs != null;
+            return (rs != null);
         } catch (SQLException e) {
             System.out.println("Something is wrong with your SQL: " + e);
             throw e;
