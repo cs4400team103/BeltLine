@@ -23,16 +23,12 @@ public class Login {
 
     @FXML
     private Label email;
-
     @FXML
     private Label password;
-
     @FXML
     private TextField emailText;
-
     @FXML
     private PasswordField passwordText;
-
     @FXML
     private Button login;
     @FXML
@@ -40,7 +36,7 @@ public class Login {
 
     private Alert errorAlert = new Alert(AlertType.ERROR);
 
-    public void login(ActionEvent event) throws Exception {
+    public void login() throws Exception {
 
         Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
         Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
