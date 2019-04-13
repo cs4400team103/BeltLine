@@ -12,8 +12,11 @@ import java.sql.SQLException;
 
 public class Main extends Application {
 
+    public static Stage pstage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        pstage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/UserLogin.fxml"));
         primaryStage.setTitle("BeltLine");
         Scene rootScene = new Scene(root, 280, 215);
@@ -38,11 +41,9 @@ public class Main extends Application {
         Parent registerEmployeeVisitor = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterEmployeeVisitor.fxml"));
         Scene registerEmployeeVisitorScene = new Scene(registerEmployeeVisitor, 600, 500);
 
-        Parent userFunctionality = FXMLLoader.load(getClass().getResource("resources/fxml/userFunctionality.fxml"));
+        Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
         Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
 
-        Parent userTakeTransit = FXMLLoader.load(getClass().getResource("resources/fxml/userTakeTransit.fxml"));
-        Scene userTakeTransitScene = new Scene(userTakeTransit, 600, 450);
 
         //User Login Functionality
         //User Login to Register Navigation
@@ -79,11 +80,6 @@ public class Main extends Application {
         Button registerRegisterUser = (Button) registerUser.lookup("#register");
         registerRegisterUser.setOnAction(e-> primaryStage.setScene(userFunctionalityScene));
 
-        //User Functionality
-        //User to Take Transit
-        Button takeTransitUserFunct = (Button) userFunctionality.lookup("#takeTransit");
-        takeTransitUserFunct.setOnAction(e-> primaryStage.setScene(userTakeTransitScene));
-
         //User Functionality Back
         Button backUserFunctionality = (Button) userFunctionality.lookup("#back");
         backUserFunctionality.setOnAction(e-> primaryStage.setScene(rootScene));
@@ -99,6 +95,7 @@ public class Main extends Application {
         //Register EmployeeVisitor
         Button backEmployeeVisitorFunctionality = (Button) registerEmployeeVisitor.lookup("#back");
         backEmployeeVisitorFunctionality.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
+
     }
 
 
@@ -108,6 +105,7 @@ public class Main extends Application {
 
         launch(args);
     }
+
 
     private static void insertSQL() throws SQLException {
         try {

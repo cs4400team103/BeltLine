@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="userLoginAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.Login">
    <children>
       <Label prefHeight="53.0" prefWidth="280.0" text="Atlanta BeltLine Login" AnchorPane.leftAnchor="25.0">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" text="Email" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="75.0" />
-      <TextField id="email" promptText="email" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="73.0" />
-      <PasswordField id="password" promptText="password" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="120.0" />
-      <Label text="Password" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="123.0" />
-      <Button id="login" minWidth="70.0" mnemonicParsing="false" text="Login" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="170.0" />
-      <Button id="register" layoutX="189.0" layoutY="170.0" minWidth="70.0" mnemonicParsing="false" text="Register" AnchorPane.leftAnchor="189.0" AnchorPane.topAnchor="170.0" />
+      <Label fx:id="email" contentDisplay="TOP" text="Email" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="75.0" />
+      <TextField fx:id="emailText" promptText="email" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="73.0" />
+      <PasswordField fx:id="passwordText" promptText="password" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="120.0" />
+      <Label text="Password" fx:id="password" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="123.0" />
+      <Button fx:id="login" minWidth="70.0" mnemonicParsing="false" text="Login" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="170.0" onAction="#login" />
+      <Button fx:id="register" layoutX="189.0" layoutY="170.0" minWidth="70.0" mnemonicParsing="false" text="Register" AnchorPane.leftAnchor="189.0" AnchorPane.topAnchor="170.0" />
    </children>
 </AnchorPane>
