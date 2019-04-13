@@ -1,11 +1,14 @@
 package BeltLineApplication;
 
+import BeltLineApplication.java.database.Connector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+
+import java.sql.SQLException;
 
 public class Main extends Application {
 
@@ -99,7 +102,20 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        //inserting data
+        //insertSQL();
+
         launch(args);
+    }
+
+    private static void insertSQL() throws SQLException {
+        try {
+            String sql="INSERT INTO Employee "+
+                    "VALUES ('james.smith', 'jsmith123', 'Approved', 'James', 'Smith')";
+            Connector.dbExecuteUpdate(sql);
+        } catch (ClassNotFoundException e) {
+            System.out.println("User already created: " + e);
+        }
     }
 }
