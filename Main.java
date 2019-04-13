@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 
 import java.sql.SQLException;
 
@@ -24,78 +23,6 @@ public class Main extends Application {
         primaryStage.show();
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
-
-        //setting all scenes based on document
-        Parent registerNavigation = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterNavigation.fxml"));
-        Scene registerNavigationScene = new Scene(registerNavigation, 250, 290);
-
-        Parent registerUser = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterUser.fxml"));
-        Scene registerUserScene = new Scene(registerUser, 600, 400);
-
-        Parent registerVisitorOnly = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterVisitorOnly.fxml"));
-        Scene registerVisitorOnlyScene = new Scene(registerVisitorOnly, 600, 400);
-
-        Parent registerEmployeeOnly = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterEmployeeOnly.fxml"));
-        Scene registerEmployeeOnlyScene = new Scene(registerEmployeeOnly, 600, 500);
-
-        Parent registerEmployeeVisitor = FXMLLoader.load(getClass().getResource("resources/fxml/RegisterEmployeeVisitor.fxml"));
-        Scene registerEmployeeVisitorScene = new Scene(registerEmployeeVisitor, 600, 500);
-
-        Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
-        Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
-
-
-        //User Login Functionality
-        //User Login to Register Navigation
-        Button register = (Button) root.lookup("#register");
-        register.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
-
-        //Register Navigation Functionality
-        //Register Navigation to User Only
-        Button userOnly = (Button) registerNavigation.lookup("#userOnly");
-        userOnly.setOnAction(e-> primaryStage.setScene(registerUserScene));
-
-        //Register Navigation to Visitor Only
-        Button visitorOnly = (Button) registerNavigation.lookup("#visitorOnly");
-        visitorOnly.setOnAction(e-> primaryStage.setScene(registerVisitorOnlyScene));
-
-        //Register Navigation to Employee Only
-        Button employeeOnly = (Button) registerNavigation.lookup("#employeeOnly");
-        employeeOnly.setOnAction(e-> primaryStage.setScene(registerEmployeeOnlyScene));
-
-        //Register Navigation to Employee-Visitor Only
-        Button employeeVisitor = (Button) registerNavigation.lookup("#employeeVisitor");
-        employeeVisitor.setOnAction(e-> primaryStage.setScene(registerEmployeeVisitorScene));
-
-        //Register Navigation back to User Login
-        Button backRegisterNavigation = (Button) registerNavigation.lookup("#back");
-        backRegisterNavigation.setOnAction(e-> primaryStage.setScene(rootScene));
-
-        //Register User
-        //back to Register Navigation
-        Button backRegisterUser = (Button) registerUser.lookup("#back");
-        backRegisterUser.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
-
-        //Register to User Functionality
-        Button registerRegisterUser = (Button) registerUser.lookup("#register");
-        registerRegisterUser.setOnAction(e-> primaryStage.setScene(userFunctionalityScene));
-
-        //User Functionality Back
-        Button backUserFunctionality = (Button) userFunctionality.lookup("#back");
-        backUserFunctionality.setOnAction(e-> primaryStage.setScene(rootScene));
-
-        //Register Visitor
-        Button backVisitorFunctionality = (Button) registerVisitorOnly.lookup("#back");
-        backVisitorFunctionality.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
-
-        //Register Employee
-        Button backEmployeeFunctionality = (Button) registerEmployeeOnly.lookup("#back");
-        backEmployeeFunctionality.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
-
-        //Register EmployeeVisitor
-        Button backEmployeeVisitorFunctionality = (Button) registerEmployeeVisitor.lookup("#back");
-        backEmployeeVisitorFunctionality.setOnAction(e-> primaryStage.setScene(registerNavigationScene));
-
     }
 
 
