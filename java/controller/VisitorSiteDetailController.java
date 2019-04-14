@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class VisitorSiteDetail {
+public class VisitorSiteDetailController {
     @FXML
     Button back;
     @FXML

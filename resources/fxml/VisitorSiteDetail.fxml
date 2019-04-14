@@ -8,7 +8,7 @@
 
 <!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="250.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorSiteDetail">
+<AnchorPane prefHeight="250.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorSiteDetailController">
     <children>
         <Label layoutX="223.0" layoutY="14.0" text="Site Detail">
             <font>
