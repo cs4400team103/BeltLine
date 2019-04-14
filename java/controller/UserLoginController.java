@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 
-public class Login {
+public class UserLoginController {
 
     @FXML
     private Label email;
@@ -35,12 +35,11 @@ public class Login {
         Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
         Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
 
-
         if (UserDAO.loginUser(emailText.getText(), passwordText.getText())) {
             //go to next page
             Main.pstage.setScene(userFunctionalityScene);
         } else {
-            errorAlert.setTitle("User Login");
+            errorAlert.setTitle("User UserLoginController");
             errorAlert.setHeaderText("Username and password do not match");
             errorAlert.setContentText("Please try again or register as a new user");
             errorAlert.showAndWait();
