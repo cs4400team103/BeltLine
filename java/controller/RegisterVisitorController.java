@@ -1,7 +1,7 @@
 package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
-import BeltLineApplication.java.database.UserDAO;
+import BeltLineApplication.java.database.VisitorDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
-public class RegisterUserController {
+public class RegisterVisitorController {
 
     @FXML
     private AnchorPane anchorPane;
@@ -33,16 +33,16 @@ public class RegisterUserController {
     private Alert errorAlert = new Alert(AlertType.ERROR);
     private Button remove = new Button("remove");
 
-    public void registerUser() throws Exception {
-        Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
-        Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
+    public void registerVisitor() throws Exception {
+        Parent visitorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/VisitorFunctionalityOnly.fxml"));
+        Scene visitorFunctionalityScene = new Scene(visitorFunctionality, 250, 350);
 
         //None of the fields can be empty
         if (!username.getText().isEmpty() || !password.getText().isEmpty() || !confirmPassword.getText().isEmpty() || !fname.getText().isEmpty() || !lname.getText().isEmpty() || !emailTextField.getText().isEmpty()) {
             //password must equal password
             if (password.getText().equals(confirmPassword.getText())) {
-                UserDAO.registerUser(username.getText(), password.getText(), fname.getText(), lname.getText());
-                Main.pstage.setScene(userFunctionalityScene);
+                VisitorDAO.registerVisitor(username.getText(), password.getText(), fname.getText(), lname.getText());
+                Main.pstage.setScene(visitorFunctionalityScene);
             } else {
                 errorAlert.setTitle("Password Fail");
                 errorAlert.setHeaderText("Passwords do not match");
