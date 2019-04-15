@@ -20,4 +20,18 @@ public class TransitDAO {
     public static ResultSet filter(String site, String type) throws SQLException{
         return null;
     }
+
+    /**
+     * Create transit
+     */
+    public static void createTransit(String type, String route, int price) throws SQLException {
+        String query =
+                "INSERT INTO site" +
+                        "VALUES ('" + type + "','" + route + "','" + price + "');";
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with create site query" + e);
+        }
+    }
 }
