@@ -24,7 +24,7 @@ public class TransitDAO {
     /**
      * Create transit
      */
-    public static void createTransit(String type, String route, int price) throws SQLException {
+    public static void createTransit(String type, String route, double price) throws SQLException {
         String query =
                 "INSERT INTO site" +
                         "VALUES ('" + type + "','" + route + "','" + price + "');";
