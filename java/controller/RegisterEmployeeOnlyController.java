@@ -48,26 +48,29 @@ public class RegisterEmployeeOnlyController {
     private Button remove = new Button("remove");
 
     public void registerEmployee() throws Exception {
-        Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
-        Scene rootScene = new Scene(administratorFunctionality, 350, 250);
-
         //None of the fields can be empty
-        if (!username.getText().isEmpty() || !password.getText().isEmpty() || !confirmPassword.getText().isEmpty() || !fname.getText().isEmpty() || !lname.getText().isEmpty() || !emailTextField.getText().isEmpty()) {
-            //password must equal password
+        if (!username.getText().isEmpty() || !password.getText().isEmpty() || !confirmPassword.getText().isEmpty() || !fname.getText().isEmpty() || !lname.getText().isEmpty() || !emailTextField.getText().isEmpty() || !userType.getSelectionModel().isEmpty()) {
+            //password must equal confirm password
             if (password.getText().equals(confirmPassword.getText())) {
                 //Employee will be a user and an employee
                 UserDAO.registerUser(username.getText(), password.getText(), fname.getText(), lname.getText());
                 EmployeeDAO.registerEmployee(username.getText(), phone.getText(), address.getText(), city.getText(), state.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(zipcode.getText()));
 
+                //if user is created as manager, add to manager table and go to next scene
                 if (userType.getSelectionModel().getSelectedItem().toString().equals("Manager")) {
                     ManagerDAO.registerManager(username.getText());
+                    Parent managerFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
+                    Scene rootScene = new Scene(managerFunctionality, 350, 250);
+                    Main.pstage.setScene(rootScene);
                 }
 
+                //if user is created as staff, add to staff table and go to next scene
                 if (userType.getSelectionModel().getSelectedItem().toString().equals("Staff")) {
                     StaffDAO.registerStaff(username.getText());
+                    Parent staffFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/StaffFunctionality.fxml"));
+                    Scene rootScene = new Scene(staffFunctionality, 350, 250);
+                    Main.pstage.setScene(rootScene);
                 }
-
-                Main.pstage.setScene(rootScene);
             } else {
                 errorAlert.setTitle("Password Fail");
                 errorAlert.setHeaderText("Passwords do not match");

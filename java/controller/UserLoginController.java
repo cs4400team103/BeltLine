@@ -32,6 +32,7 @@ public class UserLoginController {
 
     public void login() throws Exception {
 
+        //TODO: Need to check for other logins...
         Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
         Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
 

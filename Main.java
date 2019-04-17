@@ -36,7 +36,7 @@ public class Main extends Application {
 
     private static void insertSQL() throws SQLException {
         try {
-            String sql="INSERT INTO Employee "+
+            String sql="INSERT INTO USER "+
                     "VALUES ('james.smith', 'jsmith123', 'Approved', 'James', 'Smith')";
             Connector.dbExecuteUpdate(sql);
         } catch (ClassNotFoundException e) {
