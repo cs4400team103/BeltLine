@@ -19,9 +19,9 @@ public class AdministratorCreateTransitController {
 
     //TODO: Fix choicebox stuff;
     public void create() throws SQLException {
-        if (!route.getText().isEmpty() ||  !price.getText().isEmpty() || !type.getText().isEmpty()) {
+        if (!route.getText().isEmpty() ||  !price.getText().isEmpty() || !type.getSelectionModel().isEmpty()) {
             try {
-                TransitDAO.createTransit(route.getText(), type.getText(), Integer.parseInt(price.getText()));
+                TransitDAO.createTransit(route.getText(), type.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(price.getText()));
             }
             catch(SQLException e) {
                 System.out.println("Issue with SQL");

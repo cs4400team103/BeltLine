@@ -10,23 +10,23 @@
 
 <!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="244.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="245.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="161.0" layoutY="27.0" text="Edit Site">
+        <Label layoutX="161.0" layoutY="14.0" text="Edit Site">
             <font>
                 <Font size="23.0" />
             </font>
         </Label>
-        <Label layoutX="44.0" layoutY="74.0" text="Name" />
+        <Label layoutX="38.0" layoutY="74.0" text="Name" />
         <Label layoutX="38.0" layoutY="120.0" text="Address" />
         <TextField layoutX="95.0" layoutY="70.0" prefHeight="25.0" prefWidth="131.0" />
-        <Button layoutX="38.0" layoutY="204.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
+        <Button layoutX="38.0" layoutY="204.0" mnemonicParsing="false" prefWidth="100.0" text="Back" />
         <Label layoutX="242.0" layoutY="74.0" text="Zipcode" />
       <TextField layoutX="297.0" layoutY="70.0" prefHeight="25.0" prefWidth="70.0" />
       <Label layoutX="39.0" layoutY="165.0" text="Manger" />
       <TextField layoutX="97.0" layoutY="116.0" prefHeight="25.0" prefWidth="268.0" />
       <CheckBox layoutX="263.0" layoutY="165.0" mnemonicParsing="false" text="Open Everday" />
       <ChoiceBox layoutX="97.0" layoutY="161.0" prefWidth="150.0" />
-      <Button layoutX="297.0" layoutY="204.0" mnemonicParsing="false" prefWidth="70.0" text="Update" />
+      <Button layoutX="267.0" layoutY="204.0" mnemonicParsing="false" prefWidth="100.0" text="Update" />
     </children>
 </AnchorPane>
