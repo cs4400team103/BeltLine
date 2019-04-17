@@ -25,7 +25,7 @@
       <TextField id="zipcode" fx:id="zipcode" layoutX="297.0" layoutY="70.0" prefHeight="25.0" prefWidth="70.0" />
       <Label layoutX="39.0" layoutY="165.0" text="Manger" />
       <TextField id="address" fx:id="address" layoutX="97.0" layoutY="116.0" prefHeight="25.0" prefWidth="268.0" />
-      <CheckBox id="openEveryday" fx:id="openEverday" layoutX="263.0" layoutY="165.0" mnemonicParsing="false" text="Open Everyday" />
+      <CheckBox id="openEveryday" fx:id="openEveryday" layoutX="263.0" layoutY="165.0" mnemonicParsing="false" text="Open Everyday" />
       <ChoiceBox id="manager" fx:id="manager" layoutX="97.0" layoutY="161.0" prefWidth="150.0" />
       <Button id="update" layoutX="267.0" layoutY="204.0" mnemonicParsing="false" onAction="#update" prefWidth="100.0" text="Update" />
     </children>

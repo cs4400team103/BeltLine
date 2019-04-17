@@ -21,7 +21,7 @@ public class AdministratorEditSiteController {
     @FXML
     private ChoiceBox manager;
     @FXML
-    private CheckBox openEverday;
+    private CheckBox openEveryday;
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     public void back() throws Exception {
@@ -35,7 +35,7 @@ public class AdministratorEditSiteController {
         if (!name.getText().isEmpty() || !address.getText().isEmpty() || !zipcode.getText().isEmpty() || !manager.getSelectionModel().isEmpty()) {
             //try to update the site
             try {
-                SiteDAO.updateSite(name.getText(), address.getText(), Integer.parseInt(zipcode.getText()), openEverday.isSelected(), manager.getSelectionModel().getSelectedItem().toString());
+                SiteDAO.updateSite(name.getText(), address.getText(), Integer.parseInt(zipcode.getText()), openEveryday.isSelected(), manager.getSelectionModel().getSelectedItem().toString());
             } catch (Exception e) {
                 System.out.println("Issue with SQL" + e);
                 throw e;

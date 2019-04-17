@@ -1,5 +1,7 @@
 package BeltLineApplication.java.database;
 
+import javafx.scene.control.ListView;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -33,5 +35,26 @@ public class TransitDAO {
         } catch (Exception e) {
             System.out.println("Error with create site query" + e);
         }
+    }
+
+    public static void updateTransit(String route, double price, ListView<String> connectedSites) {
+        String updateTransit =
+                "update" + "');";
+        try {
+            Connector.dbExecuteUpdate(updateTransit);
+        } catch (Exception e) {
+            System.out.println("Error with create site query" + e);
+        }
+
+        for (int i=0; i < connectedSites.getSelectionModel().getSelectedItems().size(); i++) {
+            String updateConnector =
+                    "update" + "');";
+            try {
+                Connector.dbExecuteUpdate(updateConnector);
+            } catch (Exception e) {
+                System.out.println("Error with updating the connector query" + e);
+            }
+        }
+
     }
 }
