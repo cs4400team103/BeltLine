@@ -24,4 +24,15 @@ public class ManagerDAO {
         }
         return list;
     }
+
+    public static void registerManager(String username) {
+        String query =
+                "INSERT INTO manager" +
+                        "VALUES ('" + username + "');";
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with Register Employee Query" + e);
+        }
+    }
 }

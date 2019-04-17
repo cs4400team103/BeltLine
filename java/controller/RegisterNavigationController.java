@@ -23,13 +23,13 @@ public class RegisterNavigationController {
 
     public void employeeOnly() throws Exception {
         Parent registerEmployee = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterEmployeeOnly.fxml"));
-        Scene registerEmployeeScene = new Scene(registerEmployee, 600, 450);
+        Scene registerEmployeeScene = new Scene(registerEmployee, 600, 500);
         Main.pstage.setScene(registerEmployeeScene);
     }
 
     public void employeeVisitor() throws Exception {
         Parent registerEmployeeVisitor = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterEmployeeVisitor.fxml"));
-        Scene registerEmployeeVisitorScene = new Scene(registerEmployeeVisitor, 600, 450);
+        Scene registerEmployeeVisitorScene = new Scene(registerEmployeeVisitor, 600, 500);
         Main.pstage.setScene(registerEmployeeVisitorScene);
     }
 
