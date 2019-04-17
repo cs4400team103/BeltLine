@@ -17,4 +17,14 @@ public class SiteDAO {
             System.out.println("Error with create site query" + e);
         }
     }
+
+    public static void updateSite(String sname, String address, int zipcode, Boolean openEverday, String managerUsername) {
+        String query = "UPDATE";
+
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with create site query" + e);
+        }
+    }
 }

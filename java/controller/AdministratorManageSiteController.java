@@ -19,13 +19,16 @@ public class AdministratorManageSiteController {
     }
 
     public void delete() {
-        //deletes row
+        //TODO: delete row from database
     }
 
     public void edit() throws Exception {
         Parent administratorEditSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorEditSite.fxml"));
-        Scene rootScene = new Scene(administratorEditSite, 600, 450);
+        Scene rootScene = new Scene(administratorEditSite, 405, 245);
         Main.pstage.setScene(rootScene);
+
+        //TODO: get selected value, get selected value items and transport them into the edit site page
+        // with text.setText("");...
     }
 
     public void create() throws Exception {
