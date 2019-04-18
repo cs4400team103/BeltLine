@@ -11,26 +11,26 @@
 
 <!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="377.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="377.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.AdministratorCreateTransitController">
     <children>
-        <Label layoutX="194.0" layoutY="14.0" text="Edit Transit">
+        <Label layoutX="180.0" layoutY="14.0" text="Create Transit">
             <font>
                 <Font size="23.0" />
             </font>
         </Label>
         <Label layoutX="18.0" layoutY="74.0" text="Transport Type" />
-        <Label layoutX="18.0" layoutY="193.0" text="Conected Sites" />
-        <Button layoutX="73.0" layoutY="335.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
+        <Label layoutX="18.0" layoutY="193.0" text="Connected Sites" />
+        <Button layoutX="109.0" layoutY="335.0" mnemonicParsing="false" prefWidth="100.0" text="Back" />
         <Label layoutX="291.0" layoutY="74.0" text="Route" />
-        <TextField layoutX="325.0" layoutY="70.0" prefHeight="25.0" prefWidth="49.0" />
-        <Button layoutX="362.0" layoutY="335.0" mnemonicParsing="false" prefWidth="70.0" text="Create" />
-        <TextField layoutX="441.0" layoutY="70.0" prefHeight="25.0" prefWidth="32.0" />
+        <TextField fx:id="route" layoutX="325.0" layoutY="70.0" prefHeight="25.0" prefWidth="49.0" />
+        <Button layoutX="374.0" layoutY="335.0" mnemonicParsing="false" prefWidth="100.0" text="Create" />
+        <TextField fx:id="price" layoutX="441.0" layoutY="70.0" prefHeight="25.0" prefWidth="32.0" />
         <Label layoutX="397.0" layoutY="74.0" text="Price($)" />
-        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="150.0" layoutY="111.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.rightAnchor="151.0">
+        <ScrollPane fx:id="connectedSites" fitToHeight="true" fitToWidth="true" layoutX="109.0" layoutY="115.0" prefHeight="190.0" prefWidth="363.0" AnchorPane.rightAnchor="28.666666666666686">
             <content>
-                <ScrollBar orientation="VERTICAL" translateX="186.0" />
+                <ScrollBar orientation="VERTICAL" translateX="347.0" />
             </content>
         </ScrollPane>
-      <ChoiceBox layoutX="108.0" layoutY="70.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="transportType" layoutX="108.0" layoutY="70.0" prefWidth="150.0" />
     </children>
 </AnchorPane>
