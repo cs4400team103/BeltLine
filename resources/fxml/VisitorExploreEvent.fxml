@@ -12,41 +12,49 @@
 
 <!--A comment to attempt to commit-->
 
+<<<<<<< HEAD
+<AnchorPane prefHeight="650.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorExploreEvent">
+=======
 <AnchorPane prefHeight="645.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> c6270e2e9b13010830d5cee90932c2585a61b39e
     <children>
-        <Label layoutX="316.0" layoutY="14.0" text="Explore Site">
+        <Label layoutX="316.0" layoutY="14.0" text="Explore Event">
             <font>
                 <Font size="23.0" />
             </font>
         </Label>
         <Label layoutX="39.0" layoutY="73.0" text="Name" />
-        <Label layoutX="421.0" layoutY="134.0" text="End Date" />
-        <Button layoutX="44.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Filter" />
+        <Label layoutX="415.0" layoutY="121.0" text="End Date" />
+        <Button fx:id="filter" layoutX="44.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Filter" onAction="#filter" />
         <TableView layoutX="44.0" layoutY="285.0" prefHeight="302.0" prefWidth="640.0">
             <columns>
-                <TableColumn editable="false" minWidth="6.0" prefWidth="174.39997100830078" text="Site Name" />
-                <TableColumn prefWidth="160.80001831054688" text="Event Count" />
-                <TableColumn prefWidth="134.39999389648438" text="Total Visits" />
-            <TableColumn prefWidth="169.20001220703125" text="My Visits" />
+                <TableColumn editable="false" minWidth="6.0" prefWidth="155.20001602172852" text="Event Name" />
+                <TableColumn prefWidth="167.19996643066406" text="Site Name" />
+                <TableColumn prefWidth="72.79998779296875" text="Ticket Price" />
+                <TableColumn prefWidth="110.800048828125" text="Tickets Remaining" />
+            <TableColumn prefWidth="72.4000244140625" text="Total Visits" />
+            <TableColumn prefWidth="60.39996337890625" text="My Visits" />
             </columns>
         </TableView>
-        <Button layoutX="358.0" layoutY="603.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
-        <Label layoutX="366.0" layoutY="73.0" text="Open Everyday" />
-        <Label layoutX="38.0" layoutY="134.0" text="Start Date" />
-        <TextField layoutX="106.0" layoutY="130.0" />
-        <TextField layoutX="499.0" layoutY="130.0" />
-        <Button layoutX="584.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Transit Detail" />
-      <CheckBox layoutX="316.0" layoutY="239.0" mnemonicParsing="false" text="Include Visited" />
-      <Label layoutX="38.0" layoutY="187.0" text="Total Visits Range" />
-      <Label layoutX="345.0" layoutY="187.0" text="Event Count Range" />
-      <TextField layoutX="138.0" layoutY="183.0" prefHeight="25.0" prefWidth="42.0" />
-      <TextField layoutX="211.0" layoutY="183.0" prefHeight="25.0" prefWidth="42.0" />
-      <TextField layoutX="507.0" layoutY="183.0" prefHeight="25.0" prefWidth="42.0" />
-      <TextField layoutX="604.0" layoutY="183.0" prefHeight="25.0" prefWidth="42.0" />
-      <Label layoutX="188.0" layoutY="187.0" text="--" />
-      <Label layoutX="569.0" layoutY="187.0" text="--" />
-      <ChoiceBox layoutX="103.0" layoutY="69.0" prefHeight="25.0" prefWidth="201.0" />
-      <ChoiceBox layoutX="460.0" layoutY="69.0" prefHeight="25.0" prefWidth="201.0" />
-      <Button layoutX="488.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Site Detail" />
+        <Button fx:id="back" layoutX="358.0" layoutY="603.0" mnemonicParsing="false" prefWidth="70.0" text="Back" onAction="#back"/>
+        <Label layoutX="341.0" layoutY="73.0" text="Description Keyword" />
+        <Label layoutX="38.0" layoutY="121.0" text="Start Date" />
+        <TextField layoutX="106.0" layoutY="117.0" />
+        <TextField layoutX="498.0" layoutY="117.0" />
+        <CheckBox fx:id="includeVisited" layoutX="205.0" layoutY="252.0" mnemonicParsing="false" text="Include Visited" onAction="#includeVisited" />
+        <Label layoutX="38.0" layoutY="208.0" text="Total Visits Range" />
+        <Label layoutX="380.0" layoutY="208.0" text="Ticket Price Range" />
+        <TextField layoutX="138.0" layoutY="204.0" prefHeight="25.0" prefWidth="42.0" />
+        <TextField layoutX="213.0" layoutY="204.0" prefHeight="25.0" prefWidth="42.0" />
+        <TextField layoutX="504.0" layoutY="204.0" prefHeight="25.0" prefWidth="42.0" />
+        <TextField layoutX="604.0" layoutY="204.0" prefHeight="25.0" prefWidth="42.0" />
+        <Label layoutX="194.0" layoutY="207.0" text="--" />
+        <Label layoutX="568.0" layoutY="208.0" text="--" />
+        <Button fx:id="eventDetail" layoutX="604.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Event Detail" onAction="#eventDetail"/>
+      <TextField layoutX="85.0" layoutY="69.0" prefHeight="25.0" prefWidth="227.0" />
+      <TextField layoutX="470.0" layoutY="69.0" prefHeight="25.0" prefWidth="227.0" />
+      <CheckBox fx:id="includeSoldOut" layoutX="415.0" layoutY="252.0" mnemonicParsing="false" text="Include Sold Out" onAction="#includeSoldOut"/>
+      <Label layoutX="37.0" layoutY="160.0" text="Site Name" />
+        <ChoiceBox layoutX="103.0" layoutY="156.0" prefHeight="25.0" prefWidth="359.0" />
     </children>
 </AnchorPane>

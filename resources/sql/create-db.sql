@@ -1,3 +1,7 @@
+-- noinspection SqlDialectInspectionForFile
+
+-- noinspection SqlNoDataSourceInspectionForFile
+
 CREATE DATABASE if NOT EXISTS BeltLine;
 use BeltLine;
 

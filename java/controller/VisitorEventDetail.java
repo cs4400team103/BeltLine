@@ -7,21 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class VisitorVisitHistoryController {
+public class VisitorEventDetail {
     @FXML
-    Button filter;
+    Button logVisit;
     @FXML
     Button back;
 
-    public void filter() throws Exception {
-        //filter
+    public void logVisit() throws Exception {
+        //logVisit
     }
 
     public void back() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/VisitorFunctionalityOnly.fxml"));
-        Scene rootScene = new Scene(root, 250, 350);
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VisitorExploreSite.fxml"));
+        Scene rootScene = new Scene(root, 725, 650);
         Main.pstage.setScene(rootScene);
     }
-
-
 }
