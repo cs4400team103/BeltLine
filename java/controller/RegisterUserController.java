@@ -9,29 +9,37 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import BeltLineApplication.java.TextFieldLimit;
 
 public class RegisterUserController {
 
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private TextField fname;
+    private TextFieldLimit fname;
     @FXML
-    private TextField lname;
+    private TextFieldLimit lname;
     @FXML
-    private TextField username;
+    private TextFieldLimit username;
     @FXML
     private PasswordField password;
     @FXML
     private PasswordField confirmPassword;
     @FXML
-    private TextField emailTextField;
+    private TextFieldLimit emailTextField;
     @FXML
     private Button add;
     private int counter;
 
     private Alert errorAlert = new Alert(AlertType.ERROR);
     private Button remove = new Button("remove");
+
+    public void initialize() {
+        //set limit on textFields
+        fname.setMaxLength(50);
+        lname.setMaxLength(50);
+        username.setMaxLength(50);
+    }
 
     public void registerUser() throws Exception {
         Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
