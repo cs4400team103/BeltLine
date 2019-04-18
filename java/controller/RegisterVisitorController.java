@@ -33,7 +33,7 @@ public class RegisterVisitorController {
     private Alert errorAlert = new Alert(AlertType.ERROR);
     private Button remove = new Button("remove");
 
-    public void registerVisitor() throws Exception {
+    public void register() throws Exception {
         Parent visitorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/VisitorFunctionalityOnly.fxml"));
         Scene visitorFunctionalityScene = new Scene(visitorFunctionality, 250, 350);
 
