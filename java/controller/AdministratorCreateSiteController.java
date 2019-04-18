@@ -5,7 +5,7 @@ import BeltLineApplication.java.database.SiteDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import BeltLineApplication.java.TextFieldLimit;
+import BeltLineApplication.java.limiter.TextFieldLimit;
 
 import java.sql.SQLException;
 

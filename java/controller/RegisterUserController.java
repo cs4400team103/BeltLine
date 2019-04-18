@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import BeltLineApplication.java.TextFieldLimit;
+import BeltLineApplication.java.limiter.TextFieldLimit;
 
 public class RegisterUserController {
 
