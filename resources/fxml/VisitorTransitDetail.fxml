@@ -11,7 +11,7 @@
 
 <!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="429.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorTransitDetail">
     <children>
         <Label layoutX="207.0" layoutY="14.0" text="Transit Detail">
             <font>
@@ -30,8 +30,8 @@
                 <TableColumn prefWidth="154.66668701171875" text="# Connected Sites" />
             </columns>
         </TableView>
-        <Button layoutX="55.0" layoutY="383.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
+        <Button fx:id="back" layoutX="55.0" layoutY="383.0" mnemonicParsing="false" prefWidth="70.0" text="Back" onAction="#back" />
         <Label layoutX="300.0" layoutY="73.0" text="Transport Type" />
-      <Button layoutX="419.0" layoutY="383.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Log Transit" />
+      <Button fx:id="logTransit" layoutX="419.0" layoutY="383.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Log Transit" onAction="#logTransit" />
     </children>
 </AnchorPane>

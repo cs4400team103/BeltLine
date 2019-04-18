@@ -7,20 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class VisitorSiteDetail {
+public class VisitorTransitDetail {
     @FXML
     Button back;
     @FXML
-    Button logVisit;
+    Button logTransit;
 
     public void back() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/VisitorExploreSite.fxml"));
-        Scene rootScene = new Scene(root, 250, 550);
+        Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/VisitorFunctionalityOnly.fxml"));
+        Scene rootScene = new Scene(root, 250, 350);
         Main.pstage.setScene(rootScene);
     }
 
-    public void logVisit() throws Exception {
-        //log visit
+    public void logTransit() throws Exception {
+        //log transit
     }
-
 }
