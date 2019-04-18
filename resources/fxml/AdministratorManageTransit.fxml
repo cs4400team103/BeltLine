@@ -11,35 +11,35 @@
 
 <!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="513.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="475.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.AdministratorManageTransitController">
     <children>
-        <Label layoutX="239.0" layoutY="14.0" text="Manage Transit">
+        <Label layoutX="195.0" layoutY="14.0" text="Manage Transit">
             <font>
                 <Font size="23.0" />
             </font>
         </Label>
         <Label layoutX="41.0" layoutY="117.0" text="Contain Site" />
-        <ChoiceBox layoutX="142.0" layoutY="69.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="transportType" layoutX="142.0" layoutY="69.0" prefWidth="150.0" />
         <Label layoutX="41.0" layoutY="73.0" text="Transport Type" />
-        <ChoiceBox layoutX="142.0" layoutY="113.0" prefHeight="25.0" prefWidth="150.0" />
-        <Button layoutX="73.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Filter" />
+        <ChoiceBox fx:id="containSite" layoutX="142.0" layoutY="113.0" prefHeight="25.0" prefWidth="150.0" />
+        <Button layoutX="41.0" layoutY="175.0" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="100.0" text="Filter" />
         <Label layoutX="328.0" layoutY="117.0" text="Price Range" />
-        <TextField layoutX="406.0" layoutY="113.0" prefWidth="30.0" />
-        <TextField layoutX="481.0" layoutY="112.0" prefWidth="30.0" />
+        <TextField fx:id="minRange" layoutX="406.0" layoutY="113.0" prefWidth="30.0" />
+        <TextField fx:id="maxRange" layoutX="481.0" layoutY="112.0" prefWidth="30.0" />
         <Label layoutX="454.0" layoutY="116.0" text="--" />
-        <TableView layoutX="70.0" layoutY="220.0" prefHeight="200.0" prefWidth="437.0">
+        <TableView fx:id="transitTable" layoutX="41.0" layoutY="220.0" prefHeight="200.0" prefWidth="475.0">
             <columns>
-                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Route" />
-                <TableColumn editable="false" prefWidth="130.0000228881836" text="Transport Type" />
-                <TableColumn editable="false" prefWidth="75.0" text="Price" />
-                <TableColumn prefWidth="154.66668701171875" text="# Connected Sites" />
+                <TableColumn fx:id="routeCol" editable="false" prefWidth="132.00000381469727" sortable="false" text="Route" />
+                <TableColumn fx:id="transporTypeCol" editable="false" prefWidth="136.66664123535156" text="Transport Type" />
+                <TableColumn fx:id="priceCol" editable="false" prefWidth="82.6666259765625" text="Price" />
+                <TableColumn fx:id="connectedSitesCol" prefWidth="124.00003051757812" text="# Connected Sites" />
             </columns>
         </TableView>
-        <Button layoutX="70.0" layoutY="436.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
-        <Button layoutX="334.0" layoutY="175.0" mnemonicParsing="false" text="Create" />
+        <Button layoutX="229.0" layoutY="434.0" mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Back" />
+        <Button layoutX="166.0" layoutY="175.0" mnemonicParsing="false" onAction="#create" prefWidth="100.0" text="Create" />
       <Label layoutX="328.0" layoutY="73.0" text="Route" />
-      <TextField layoutX="409.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" />
-      <Button layoutX="396.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-      <Button layoutX="456.0" layoutY="175.0" mnemonicParsing="false" text="Delete" />
+      <TextField fx:id="route" layoutX="409.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" />
+      <Button layoutX="291.0" layoutY="175.0" mnemonicParsing="false" onAction="#edit" prefHeight="25.0" prefWidth="100.0" text="Edit" />
+      <Button layoutX="414.0" layoutY="175.0" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="Delete" />
     </children>
 </AnchorPane>
