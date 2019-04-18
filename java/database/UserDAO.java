@@ -1,9 +1,6 @@
 package BeltLineApplication.java.database;
 
-import BeltLineApplication.java.database.Connector;
 import BeltLineApplication.java.model.User;
-
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -24,8 +21,9 @@ public class UserDAO {
     }
 
     /**
-     * Login a User
+     * UserLoginController a User
      */
+    //TODO: Make sure that string is email and not username! thanks :-)
     public static boolean loginUser(String username, String password) throws SQLException, ClassNotFoundException {
         String query =
                 "select * from user where username = '" + username + "' and password = '" + password + "';";
