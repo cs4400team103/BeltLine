@@ -11,31 +11,34 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="BeltLineApplication.java.controller.VisitorVisitHistoryController">
-   <children>
-      <Label layoutX="239.0" layoutY="14.0" text="Visit History">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
-      <Label layoutX="37.0" layoutY="65.0" text="Event" />
-      <TextField id="event" layoutX="113.0" layoutY="61.0" />
-      <Label layoutX="327.0" layoutY="65.0" text="Site" />
-      <ChoiceBox id="site" layoutX="403.0" layoutY="61.0" prefWidth="150.0" />
-      <Label layoutX="37.0" layoutY="109.0" text="Start Date" />
-      <DatePicker id="startDate" layoutX="113.0" layoutY="105.0" prefWidth="150.0" />
-      <Label layoutX="323.0" layoutY="109.0" text="End Date" />
-      <DatePicker id="endDate" layoutX="403.0" layoutY="104.0" prefWidth="150.0" />
-      <Button fx:id="filter" layoutX="247.0" layoutY="146.0" minWidth="100.0" mnemonicParsing="false" text="Filter" onAction="#filter" />
-      <TableView id="table" layoutX="37.0" layoutY="188.0" prefHeight="200.0" prefWidth="520.0">
-        <columns>
-          <TableColumn prefWidth="99.33333969116211" text="Date" />
-          <TableColumn prefWidth="119.99998474121094" text="Event" />
-            <TableColumn prefWidth="173.33331298828125" text="Site" />
-            <TableColumn prefWidth="126.66665649414062" text="Price" />
-        </columns>
-      </TableView>
-      <Button fx:id="back" layoutX="250.0" layoutY="410.0" minWidth="100.0" mnemonicParsing="false" text="Back" onAction="#back"/>
-   </children>
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="BeltLineApplication.java.controller.VisitorVisitHistoryController">
+    <children>
+        <Label layoutX="239.0" layoutY="14.0" text="Visit History">
+            <font>
+                <Font size="23.0"/>
+            </font>
+        </Label>
+        <Label layoutX="37.0" layoutY="65.0" text="Event"/>
+        <TextField id="event" layoutX="113.0" layoutY="61.0"/>
+        <Label layoutX="327.0" layoutY="65.0" text="Site"/>
+        <ChoiceBox id="site" layoutX="403.0" layoutY="61.0" prefWidth="150.0"/>
+        <Label layoutX="37.0" layoutY="109.0" text="Start Date"/>
+        <DatePicker id="startDate" layoutX="113.0" layoutY="105.0" prefWidth="150.0"/>
+        <Label layoutX="323.0" layoutY="109.0" text="End Date"/>
+        <DatePicker id="endDate" layoutX="403.0" layoutY="104.0" prefWidth="150.0"/>
+        <Button fx:id="filter" layoutX="247.0" layoutY="146.0" minWidth="100.0" mnemonicParsing="false" text="Filter"
+                onAction="#filter"/>
+        <TableView id="table" layoutX="37.0" layoutY="188.0" prefHeight="200.0" prefWidth="520.0">
+            <columns>
+                <TableColumn prefWidth="99.33333969116211" text="Date"/>
+                <TableColumn prefWidth="119.99998474121094" text="Event"/>
+                <TableColumn prefWidth="173.33331298828125" text="Site"/>
+                <TableColumn prefWidth="126.66665649414062" text="Price"/>
+            </columns>
+        </TableView>
+        <Button fx:id="back" layoutX="250.0" layoutY="410.0" minWidth="100.0" mnemonicParsing="false" text="Back"
+                onAction="#back"/>
+    </children>
 </AnchorPane>

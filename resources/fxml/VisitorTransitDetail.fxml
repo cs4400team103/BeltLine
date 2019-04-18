@@ -11,27 +11,31 @@
 
 <!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorTransitDetail">
+<AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="BeltLineApplication.java.controller.VisitorTransitDetail">
     <children>
         <Label layoutX="207.0" layoutY="14.0" text="Transit Detail">
             <font>
-                <Font size="23.0" />
+                <Font size="23.0"/>
             </font>
         </Label>
-        <Label layoutX="23.0" layoutY="73.0" text="Site" />
-        <ChoiceBox layoutX="384.0" layoutY="69.0" prefHeight="25.0" prefWidth="150.0" />
-        <Label layoutX="182.0" layoutY="387.0" text="Transit Date" />
-        <TextField layoutX="259.0" layoutY="383.0" prefHeight="25.0" prefWidth="80.0" />
+        <Label layoutX="23.0" layoutY="73.0" text="Site"/>
+        <ChoiceBox layoutX="384.0" layoutY="69.0" prefHeight="25.0" prefWidth="150.0"/>
+        <Label layoutX="182.0" layoutY="387.0" text="Transit Date"/>
+        <TextField layoutX="259.0" layoutY="383.0" prefHeight="25.0" prefWidth="80.0"/>
         <TableView layoutX="55.0" layoutY="110.0" prefHeight="256.0" prefWidth="437.0">
             <columns>
-                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Route" />
-                <TableColumn editable="false" prefWidth="130.0000228881836" text="Transport Type" />
-                <TableColumn editable="false" prefWidth="75.0" text="Price" />
-                <TableColumn prefWidth="154.66668701171875" text="# Connected Sites" />
+                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Route"/>
+                <TableColumn editable="false" prefWidth="130.0000228881836" text="Transport Type"/>
+                <TableColumn editable="false" prefWidth="75.0" text="Price"/>
+                <TableColumn prefWidth="154.66668701171875" text="# Connected Sites"/>
             </columns>
         </TableView>
-        <Button fx:id="back" layoutX="55.0" layoutY="383.0" mnemonicParsing="false" prefWidth="70.0" text="Back" onAction="#back" />
-        <Label layoutX="300.0" layoutY="73.0" text="Transport Type" />
-      <Button fx:id="logTransit" layoutX="419.0" layoutY="383.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Log Transit" onAction="#logTransit" />
+        <Button fx:id="back" layoutX="55.0" layoutY="383.0" mnemonicParsing="false" prefWidth="70.0" text="Back"
+                onAction="#back"/>
+        <Label layoutX="300.0" layoutY="73.0" text="Transport Type"/>
+        <Button fx:id="logTransit" layoutX="419.0" layoutY="383.0" mnemonicParsing="false" prefHeight="25.0"
+                prefWidth="80.0" text="Log Transit" onAction="#logTransit"/>
     </children>
 </AnchorPane>
