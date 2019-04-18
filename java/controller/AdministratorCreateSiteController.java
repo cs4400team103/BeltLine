@@ -2,41 +2,57 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.java.database.ManagerDAO;
 import BeltLineApplication.java.database.SiteDAO;
-import BeltLineApplication.java.model.Manager;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import BeltLineApplication.java.TextFieldLimit;
 
 import java.sql.SQLException;
 
 public class AdministratorCreateSiteController {
     @FXML
-    private ComboBox<String> managerChoiceCombo;
-    //Need to configure ChoiceBox
+    private ChoiceBox<String> managerChoiceCombo;
     @FXML
-    private TextField nameTextField;
+    private TextFieldLimit nameTextField;
     @FXML
-    private TextField zipcodeTextField;
+    private TextFieldLimit zipcodeTextField;
     @FXML
-    private TextField addressTextField;
+    private TextFieldLimit addressTextField;
     @FXML
     private CheckBox everyday;
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-    public void getManagerList() throws SQLException, ClassNotFoundException {
+    /**
+     * Method will start when Administrator Create Site scene.
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void initialize() throws SQLException, ClassNotFoundException {
         ObservableList<String> list = ManagerDAO.getManagerList();
         managerChoiceCombo.setItems(list);
+
+        //set limit on textFields
+        nameTextField.setMaxLength(50);
+        zipcodeTextField.setMaxLength(5);
+        addressTextField.setMaxLength(50);
     }
 
-    public void create() throws Exception {
-        if (!nameTextField.getText().isEmpty() ||  !zipcodeTextField.getText().isEmpty() || !managerChoiceCombo.getSelectionModel().getSelectedItem().isEmpty()) {
-            SiteDAO.createSite(nameTextField.getText(), addressTextField.getText(), Integer.parseInt(zipcodeTextField.getText()), everyday.isSelected(), managerChoiceCombo.getSelectionModel().getSelectedItem());
-            alert.setTitle("Created Site");
-            alert.setHeaderText(null);
-            alert.setContentText("Success! Site has been created successfully!");
+    /**
+     * Create method refers to the create button
+     * This method will create a new site when invoked
+     */
+    public void create() {
+        if (!nameTextField.getText().isEmpty() || !zipcodeTextField.getText().isEmpty() || !managerChoiceCombo.getSelectionModel().getSelectedItem().isEmpty()) {
+            try {
+                SiteDAO.createSite(nameTextField.getText(), addressTextField.getText(), Integer.parseInt(zipcodeTextField.getText()), everyday.isSelected(), managerChoiceCombo.getSelectionModel().getSelectedItem());
+            } catch (SQLException e) {
+                System.out.println("Error with creating a new site: " + e);
+            } finally {
+                alert.setTitle("Created Site");
+                alert.setHeaderText(null);
+                alert.setContentText("Success! Site has been created successfully!");
+            }
         }
     }
 }
