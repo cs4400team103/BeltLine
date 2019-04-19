@@ -3,6 +3,7 @@ package BeltLineApplication.java.controller;
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.SiteDAO;
 import BeltLineApplication.java.database.TransitDAO;
+import BeltLineApplication.java.limiter.TextFieldLimit;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,19 +14,23 @@ public class AdministratorEditTransitController {
     @FXML
     private Label TransportType;
     @FXML
-    private TextField route;
+    private TextFieldLimit route;
     @FXML
-    private TextField price;
+    private TextFieldLimit price;
     @FXML
     private ListView<String> connectedSites;
 
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
+    public void initialize() {
+        //set the text
+        TransportType.setText(TransitDAO.getTransportType());
+        route.setText(TransitDAO.getRouteText());
+        price.setText(Double.toString(TransitDAO.getPriceText()));
 
-    public void back() throws Exception {
-        Parent administratorManageTransit = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorManageTransit.fxml"));
-        Scene rootScene = new Scene(administratorManageTransit, 650, 450);
-        Main.pstage.setScene(rootScene);
+        //adjust max length
+        route.setMaxLength(100);
+        price.setMaxLength(9);
     }
 
     public void update() {
@@ -42,5 +47,11 @@ public class AdministratorEditTransitController {
             alert.setHeaderText(null);
             alert.setContentText("Success! Site has been updated Successfully!");
         }
+    }
+
+    public void back() throws Exception {
+        Parent administratorManageTransit = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorManageTransit.fxml"));
+        Scene rootScene = new Scene(administratorManageTransit, 650, 450);
+        Main.pstage.setScene(rootScene);
     }
 }

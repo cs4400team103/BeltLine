@@ -11,6 +11,7 @@
 <!--A comment to attempt to commit-->
 
 <?import javafx.scene.control.ListView?>
+<?import BeltLineApplication.java.limiter.TextFieldLimit?>
 <AnchorPane prefHeight="377.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="BeltLineApplication.java.controller.AdministratorEditTransitController">
@@ -26,10 +27,10 @@
         <Button fx:id="back" layoutX="122.0" layoutY="335.0" mnemonicParsing="false" onAction="#back" prefWidth="100.0"
                 text="Back"/>
         <Label layoutX="247.0" layoutY="74.0" text="Route"/>
-        <TextField fx:id="route" layoutX="286.0" layoutY="70.0" prefHeight="25.0" prefWidth="49.0"/>
+        <TextFieldLimit fx:id="route" layoutX="286.0" layoutY="70.0" prefHeight="25.0" prefWidth="49.0"/>
         <Button fx:id="update" layoutX="373.0" layoutY="335.0" mnemonicParsing="false" onAction="#update"
                 prefWidth="100.0" text="Update"/>
-        <TextField fx:id="price" layoutX="441.0" layoutY="70.0" prefHeight="25.0" prefWidth="32.0"/>
+        <TextFieldLimit fx:id="price" layoutX="441.0" layoutY="70.0" prefHeight="25.0" prefWidth="32.0"/>
         <Label layoutX="397.0" layoutY="74.0" text="Price($)"/>
         <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="132.0" layoutY="110.0" prefHeight="200.0"
                     prefWidth="350.0" AnchorPane.rightAnchor="19.0">

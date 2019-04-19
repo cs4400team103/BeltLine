@@ -10,6 +10,7 @@
 
 <?import BeltLineApplication.java.limiter.TextFieldLimit?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
 <AnchorPane prefHeight="377.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="BeltLineApplication.java.controller.AdministratorCreateTransitController">
@@ -30,11 +31,11 @@
         <ScrollPane fx:id="connectedSitesScroll" fitToHeight="true" fitToWidth="true" layoutX="109.0" layoutY="115.0"
                     prefHeight="190.0" prefWidth="363.0" AnchorPane.rightAnchor="28.666666666666686">
             <content>
-                <ComboBox fx:id="connectedSites">
-                </ComboBox>
+                <ListView fx:id="connectedSites">
+                </ListView>
                 <ScrollBar orientation="VERTICAL" translateX="347.0"/>
             </content>
         </ScrollPane>
-        <ChoiceBox fx:id="transportType" layoutX="108.0" layoutY="70.0" prefWidth="150.0"/>
+        <ChoiceBox fx:id="type" layoutX="108.0" layoutY="70.0" prefWidth="150.0"/>
     </children>
 </AnchorPane>
