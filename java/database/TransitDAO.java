@@ -3,7 +3,6 @@ package BeltLineApplication.java.database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -156,26 +155,14 @@ public class TransitDAO {
      *
      * @param route
      * @param price
-     * @param connectedSites
      */
-    public static void updateTransit(String route, double price, ListView<String> connectedSites) {
+    public static void updateTransit(String type, String route, double price) {
         String updateTransit =
                 "update" + "');";
         try {
             Connector.dbExecuteUpdate(updateTransit);
         } catch (Exception e) {
-            System.out.println("Error with create site query" + e);
+            System.out.println("Error with update transit query" + e);
         }
-
-        for (int i = 0; i < connectedSites.getSelectionModel().getSelectedItems().size(); i++) {
-            String updateConnector =
-                    "update" + "');";
-            try {
-                Connector.dbExecuteUpdate(updateConnector);
-            } catch (Exception e) {
-                System.out.println("Error with updating the connector query" + e);
-            }
-        }
-
     }
 }
