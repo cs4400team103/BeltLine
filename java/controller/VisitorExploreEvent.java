@@ -1,6 +1,4 @@
 package BeltLineApplication.java.controller;
-
-
 import BeltLineApplication.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

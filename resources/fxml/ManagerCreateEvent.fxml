@@ -9,44 +9,49 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="548.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="548.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.ManagerCreateEvent">
     <children>
         <Label layoutX="171.0" layoutY="14.0" text="Create Event">
             <font>
-                <Font size="23.0" />
+                <Font size="23.0"/>
             </font>
         </Label>
-        <Label layoutX="18.0" layoutY="74.0" text="Name" />
-        <Label layoutX="18.0" layoutY="242.0" text="Assign Staff" />
-        <Button layoutX="45.0" layoutY="497.0" mnemonicParsing="false" prefWidth="70.0" text="Back" />
-        <Label layoutX="18.0" layoutY="111.0" text="Start Date" />
-        <Label layoutX="335.0" layoutY="146.0" text="Price ($)" />
-        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="150.0" layoutY="191.0" prefHeight="111.0" prefWidth="292.0" AnchorPane.rightAnchor="59.0">
+        <Label layoutX="18.0" layoutY="74.0" text="Name"/>
+        <Label layoutX="18.0" layoutY="242.0" text="Assign Staff"/>
+        <Button fx:id="back" layoutX="45.0" layoutY="497.0" mnemonicParsing="false" prefWidth="70.0" text="Back"
+                onAction="#back"/>
+        <Label layoutX="18.0" layoutY="111.0" text="Start Date"/>
+        <Label layoutX="335.0" layoutY="146.0" text="Price ($)"/>
+        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="150.0" layoutY="191.0" prefHeight="111.0"
+                    prefWidth="292.0" AnchorPane.rightAnchor="59.0">
             <content>
-                <ScrollBar orientation="VERTICAL" translateX="277.0" />
+                <ScrollBar orientation="VERTICAL" translateX="277.0"/>
             </content>
         </ScrollPane>
-        <Label layoutX="266.0" layoutY="111.0" text="End Date" />
-        <Label layoutX="18.0" layoutY="146.0" text="Minimum Staff Required" />
-        <Label layoutX="227.0" layoutY="146.0" text="Capacity" />
-        <Label layoutX="20.0" layoutY="413.0" text="Description" />
+        <Label layoutX="266.0" layoutY="111.0" text="End Date"/>
+        <Label layoutX="18.0" layoutY="146.0" text="Minimum Staff Required"/>
+        <Label layoutX="227.0" layoutY="146.0" text="Capacity"/>
+        <Label layoutX="20.0" layoutY="413.0" text="Description"/>
         <ScrollPane layoutX="150.0" layoutY="316.0" prefHeight="150.0" prefWidth="292.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="290.0">
                     <children>
-                        <TextArea layoutX="-1.0" prefHeight="150.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea layoutX="-1.0" prefHeight="150.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0"
+                                  AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-18.0"
+                                  AnchorPane.topAnchor="0.0"/>
                     </children>
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button layoutX="372.0" layoutY="497.0" mnemonicParsing="false" prefWidth="70.0" text="Create" />
-      <TextField layoutX="71.0" layoutY="70.0" prefHeight="25.0" prefWidth="393.0" />
-      <TextField layoutX="386.0" layoutY="142.0" prefHeight="25.0" prefWidth="78.0" />
-      <TextField layoutX="75.0" layoutY="107.0" />
-      <TextField layoutX="317.0" layoutY="107.0" />
-      <TextField layoutX="280.0" layoutY="142.0" prefHeight="25.0" prefWidth="32.0" />
-      <TextField layoutX="162.0" layoutY="142.0" prefHeight="25.0" prefWidth="32.0" />
+        <Button fx:id="createEvent" layoutX="372.0" layoutY="497.0" mnemonicParsing="false" prefWidth="70.0"
+                text="Create" onAction="#createEvent"/>
+        <TextField layoutX="71.0" layoutY="70.0" prefHeight="25.0" prefWidth="393.0"/>
+        <TextField layoutX="386.0" layoutY="142.0" prefHeight="25.0" prefWidth="78.0"/>
+        <TextField layoutX="75.0" layoutY="107.0"/>
+        <TextField layoutX="317.0" layoutY="107.0"/>
+        <TextField layoutX="280.0" layoutY="142.0" prefHeight="25.0" prefWidth="32.0"/>
+        <TextField layoutX="162.0" layoutY="142.0" prefHeight="25.0" prefWidth="32.0"/>
     </children>
 </AnchorPane>

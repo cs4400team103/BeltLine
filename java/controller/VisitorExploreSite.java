@@ -21,23 +21,30 @@ public class VisitorExploreSite {
     CheckBox includeVisited;
 
     public void filter() throws Exception{
-
+        //filter
     }
 
     public void back() throws Exception {
-
+        //need to add back to all employee hybrid users
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VisitorFunctionalityOnly.fxml"));
+        Scene rootScene = new Scene(root, 250, 350);
+        Main.pstage.setScene(rootScene);
     }
 
-    public void siteDetail() {
-
+    public void siteDetail() throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VisitorSiteDetail.fxml"));
+        Scene rootScene = new Scene(root, 550, 250);
+        Main.pstage.setScene(rootScene);
     }
 
     public void transitDetail() throws Exception {
-
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VisitorTransitDetail.fxml"));
+        Scene rootScene = new Scene(root, 550, 450);
+        Main.pstage.setScene(rootScene);
     }
 
     public void includeVisited() throws Exception {
-
+        //include visited
     }
 
 }
