@@ -1,5 +1,6 @@
 package BeltLineApplication.java.database;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 
 import java.sql.ResultSet;
@@ -28,13 +29,21 @@ public class TransitDAO {
      */
     public static void createTransit(String type, String route, double price) throws SQLException {
         String query =
-                "INSERT INTO site" +
+                "INSERT INTO transit" +
                         "VALUES ('" + type + "','" + route + "','" + price + "');";
         try {
             Connector.dbExecuteUpdate(query);
         } catch (Exception e) {
             System.out.println("Error with create site query" + e);
         }
+    }
+
+    public static void connect(String sname, String route, String type) {
+        //TODO: must update route and type
+    }
+
+    public static ObservableList<String> getConnectedSites() {
+        return null;
     }
 
     public static void updateTransit(String route, double price, ListView<String> connectedSites) {
