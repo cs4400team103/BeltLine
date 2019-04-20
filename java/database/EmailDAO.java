@@ -19,4 +19,16 @@ public class EmailDAO {
         }
         return username;
     }
+
+    public static void registerEmail(String username, String email) {
+        String query =
+                "INSERT INTO email" +
+                        "(Username, Email)" +
+                        "VALUES ('" + username + "','" + email + "');";
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with Register Email Query" + e);
+        }
+    }
 }

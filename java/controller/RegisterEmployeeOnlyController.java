@@ -5,6 +5,10 @@ import BeltLineApplication.java.database.EmployeeDAO;
 import BeltLineApplication.java.database.ManagerDAO;
 import BeltLineApplication.java.database.StaffDAO;
 import BeltLineApplication.java.database.UserDAO;
+import BeltLineApplication.java.limiter.PasswordFieldLimit;
+import BeltLineApplication.java.limiter.TextFieldLimit;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,60 +21,77 @@ public class RegisterEmployeeOnlyController {
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private TextField fname;
+    private TextFieldLimit fname;
     @FXML
-    private TextField lname;
+    private TextFieldLimit lname;
     @FXML
-    private TextField username;
+    private TextFieldLimit username;
     @FXML
-    private PasswordField password;
+    private PasswordFieldLimit password;
     @FXML
-    private PasswordField confirmPassword;
+    private PasswordFieldLimit confirmPassword;
     @FXML
-    private TextField emailTextField;
+    private TextFieldLimit emailTextField;
     @FXML
-    private TextField phone;
+    private TextFieldLimit phone;
     @FXML
-    private TextField address;
+    private TextFieldLimit address;
     @FXML
-    private TextField city;
+    private TextFieldLimit city;
     @FXML
     private ChoiceBox state;
     @FXML
     private ChoiceBox userType;
     @FXML
-    private TextField zipcode;
+    private TextFieldLimit zipcode;
     @FXML
     private Button add;
     private int counter;
 
     private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
     private Button remove = new Button("remove");
+    private Label email = new Label();
+    private ObservableList<Button> buttons = FXCollections.observableArrayList();
+    private ObservableList<Label> labels = FXCollections.observableArrayList();
+
+    public void initialize() {
+        //set limit on textFields
+        fname.setMaxLength(5);
+        lname.setMaxLength(50);
+        username.setMaxLength(50);
+        emailTextField.setMaxLength(50);
+        password.setMaxLength(50);
+        confirmPassword.setMaxLength(50);
+        phone.setMaxLength(10);
+        address.setMaxLength(50);
+        city.setMaxLength(50);
+        zipcode.setMaxLength(5);
+
+        buttons.add(add);
+    }
 
     public void registerEmployee() throws Exception {
         //None of the fields can be empty
         if (!username.getText().isEmpty() || !password.getText().isEmpty() || !confirmPassword.getText().isEmpty() || !fname.getText().isEmpty() || !lname.getText().isEmpty() || !emailTextField.getText().isEmpty() || !userType.getSelectionModel().isEmpty()) {
             //password must equal confirm password
-            if (password.getText().equals(confirmPassword.getText())) {
+            if (password.getText().equals(confirmPassword.getText()) && password.getText().length() > 7) {
                 //Employee will be a user and an employee
                 UserDAO.registerUser(username.getText(), password.getText(), fname.getText(), lname.getText());
                 EmployeeDAO.registerEmployee(username.getText(), phone.getText(), address.getText(), city.getText(), state.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(zipcode.getText()));
 
                 //if user is created as manager, add to manager table and go to next scene
-                if (userType.getSelectionModel().getSelectedItem().toString().equals("Manager")) {
+                if (userType.getSelectionModel().getSelectedItem().equals("Manager") || userType.getSelectionModel().isEmpty()) {
                     ManagerDAO.registerManager(username.getText());
-                    Parent managerFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
-                    Scene rootScene = new Scene(managerFunctionality, 350, 250);
-                    Main.pstage.setScene(rootScene);
                 }
 
                 //if user is created as staff, add to staff table and go to next scene
-                if (userType.getSelectionModel().getSelectedItem().toString().equals("Staff")) {
+                if (userType.getSelectionModel().getSelectedItem().equals("Staff")) {
                     StaffDAO.registerStaff(username.getText());
-                    Parent staffFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/StaffFunctionality.fxml"));
-                    Scene rootScene = new Scene(staffFunctionality, 350, 250);
-                    Main.pstage.setScene(rootScene);
                 }
+
+                Parent login = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userLogin.fxml"));
+                Scene rootScene = new Scene(login, 280, 215);
+                Main.pstage.setScene(rootScene);
             } else {
                 errorAlert.setTitle("Password Fail");
                 errorAlert.setHeaderText("Passwords do not match");
@@ -89,5 +110,69 @@ public class RegisterEmployeeOnlyController {
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterNavigation.fxml"));
         Scene rootScene = new Scene(root, 250, 300);
         Main.pstage.setScene(rootScene);
+    }
+
+    /**
+     * add email / set to label
+     */
+    public void addEmail() {
+        email.setStyle("-fx-layoutY: " + emailTextField.getLayoutY());
+        email.setStyle("-fx-locationX: " + emailTextField.getLayoutX());
+
+        int num = getCounter();
+
+        if (num < 3) {
+            //adjust the remove button
+            remove = new Button("Remove");
+            email = new Label(emailTextField.getText());
+            String numStr = "" + num;
+
+            remove.setId(numStr);
+            email.setId(numStr);
+
+            remove.setStyle("-fx-pref-width: " + 100);
+            num++;
+            setCounter(num);
+            remove.setOnAction(e -> removeEmail());
+            remove.setLayoutX(add.getLayoutX());
+            remove.setLayoutY(add.getLayoutY());
+            add.setLayoutY(add.getLayoutY() + 33);
+
+            //adjust new label / field
+            emailTextField.setLayoutY(add.getLayoutY());
+            email.setLayoutY(remove.getLayoutY() + 3);
+            email.setLayoutX(emailTextField.getLayoutX());
+            emailTextField.setText("");
+            anchorPane.getChildren().addAll(email, remove);
+            buttons.add(remove);
+            labels.add(email);
+        }
+    }
+
+    /**
+     * removes email from the email list
+     */
+    public void removeEmail() {
+        if (getCounter() >= 0) {
+            anchorPane.getChildren().remove(buttons.remove(getCounter()));
+            anchorPane.getChildren().remove(labels.remove(getCounter()-1));
+            setCounter(getCounter()-1);
+        }
+    }
+
+    /**
+     * counter for the emails
+     * @return
+     */
+    public int getCounter() {
+        return this.counter;
+    }
+
+    /**
+     * setter for the counter
+     * @param c
+     */
+    public void setCounter(int c) {
+        this.counter = c;
     }
 }

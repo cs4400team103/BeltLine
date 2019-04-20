@@ -11,8 +11,9 @@ public class UserDAO {
     public static void registerUser(String username, String password, String fname, String lname) throws SQLException {
         String query =
                 "INSERT INTO user" +
+                        "(Username, Password, Status, FirstName, LastName)" +
                         "VALUES ('" + username + "','" + password + "','" + "Pending" + "','" + fname + "', '" +
-                        lname + "',);";
+                        lname + "');";
         try {
             Connector.dbExecuteUpdate(query);
         } catch (Exception e) {
