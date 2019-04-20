@@ -27,4 +27,6 @@ public class SiteDAO {
             System.out.println("Error with create site query" + e);
         }
     }
+
+    public static
 }
