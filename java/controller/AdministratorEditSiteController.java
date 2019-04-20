@@ -24,6 +24,10 @@ public class AdministratorEditSiteController {
     private CheckBox openEveryday;
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
+    public void initialize() {
+
+    }
+
     public void back() throws Exception {
         Parent administratorManageSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorManageSite.fxml"));
         Scene rootScene = new Scene(administratorManageSite, 350, 250);

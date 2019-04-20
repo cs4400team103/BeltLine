@@ -13,9 +13,15 @@ public class AdministratorManageSiteController {
     }
 
     public void back() throws Exception {
-        Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
-        Scene rootScene = new Scene(administratorFunctionality, 350, 250);
-        Main.pstage.setScene(rootScene);
+        if (UserLoginController.getUserType().equals("Administrator")) {
+            Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
+            Scene rootScene = new Scene(administratorFunctionality, 350, 250);
+            Main.pstage.setScene(rootScene);
+        } else {
+            Parent administratorVisitorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorVisitorFunctionality.fxml"));
+            Scene rootScene = new Scene(administratorVisitorFunctionality, 350, 250);
+            Main.pstage.setScene(rootScene);
+        }
     }
 
     public void delete() {
