@@ -2,7 +2,6 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.EmailDAO;
-import BeltLineApplication.java.database.ManagerDAO;
 import BeltLineApplication.java.database.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +49,6 @@ public class UserLoginController {
     }
 
     public void login() throws Exception {
-
         if (!emailText.getText().isEmpty() || !passwordText.getText().isEmpty()) {
             //fist get username from email.
             String username = EmailDAO.getUsername(email.getText());
@@ -115,6 +113,10 @@ public class UserLoginController {
         }
     }
 
+    /**
+     * goes to register page
+     * @throws Exception
+     */
     public void register() throws Exception {
         Parent registerNavigation = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterNavigation.fxml"));
         Scene registerNavigationScene = new Scene(registerNavigation, 250, 300);

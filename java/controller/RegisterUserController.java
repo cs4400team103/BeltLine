@@ -2,6 +2,8 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.UserDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,24 +35,30 @@ public class RegisterUserController {
 
     private Alert errorAlert = new Alert(AlertType.ERROR);
     private Button remove = new Button("remove");
+    private Label email = new Label();
+    private ObservableList<Button> buttons = FXCollections.observableArrayList();
+    private ObservableList<Label> labels = FXCollections.observableArrayList();
 
     public void initialize() {
         //set limit on textFields
         fname.setMaxLength(5);
         lname.setMaxLength(50);
         username.setMaxLength(50);
+        emailTextField.setMaxLength(50);
+
+        buttons.add(add);
     }
 
     public void registerUser() throws Exception {
-        Parent userFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userFunctionality.fxml"));
-        Scene userFunctionalityScene = new Scene(userFunctionality, 250, 200);
+        Parent login = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userLogin.fxml"));
+        Scene rootScene = new Scene(login, 250, 300);
 
         //None of the fields can be empty
         if (!username.getText().isEmpty() || !password.getText().isEmpty() || !confirmPassword.getText().isEmpty() || !fname.getText().isEmpty() || !lname.getText().isEmpty() || !emailTextField.getText().isEmpty()) {
             //password must equal password
             if (password.getText().equals(confirmPassword.getText())) {
                 UserDAO.registerUser(username.getText(), password.getText(), fname.getText(), lname.getText());
-                Main.pstage.setScene(userFunctionalityScene);
+                Main.pstage.setScene(rootScene);
             } else {
                 errorAlert.setTitle("Password Fail");
                 errorAlert.setHeaderText("Passwords do not match");
@@ -72,31 +80,46 @@ public class RegisterUserController {
     }
 
     public void addEmail() {
-        Label email = new Label(emailTextField.getText());
-        double textFieldLocationY = emailTextField.getLayoutY();
-        double textFieldLocationX = emailTextField.getLayoutX();
-        email.setStyle("-fx-layoutY: " + textFieldLocationY);
-        email.setStyle("-fx-locationX: " + textFieldLocationX);
+        email.setStyle("-fx-layoutY: " + emailTextField.getLayoutY());
+        email.setStyle("-fx-locationX: " + emailTextField.getLayoutX());
 
-        remove = new Button("remove");
         int num = getCounter();
-        String numStr = "" + num;
-        remove.setId(numStr);
-        num++;
-        setCounter(num);
-        remove.setOnAction(e -> removeEmail());
 
-        double addLocationY = add.getLayoutY();
-        double addLocationX = add.getLayoutX();
-        email.setStyle("-fx-layoutY: " + addLocationY);
-        email.setStyle("-fx-locationX: " + addLocationX);
+        if (num < 3) {
+            //adjust the remove button
+            remove = new Button("Remove");
+            email = new Label(emailTextField.getText());
+            String numStr = "" + num;
 
-        anchorPane.getChildren().addAll(email, remove);
+            remove.setId(numStr);
+            email.setId(numStr);
+
+            remove.setStyle("-fx-pref-width: " + 100);
+            num++;
+            setCounter(num);
+            remove.setOnAction(e -> removeEmail());
+            remove.setLayoutX(add.getLayoutX());
+            remove.setLayoutY(add.getLayoutY());
+            add.setLayoutY(add.getLayoutY() + 33);
+
+            //adjust new label / field
+            emailTextField.setLayoutY(add.getLayoutY());
+            email.setLayoutY(remove.getLayoutY() + 3);
+            email.setLayoutX(emailTextField.getLayoutX());
+            emailTextField.setText("");
+            anchorPane.getChildren().addAll(email, remove);
+            buttons.add(remove);
+            labels.add(email);
+        }
     }
 
+    //TODO: remove the email button
     public void removeEmail() {
-        remove.getId();
-        //TODO: add remove email functions
+        if (getCounter() >= 0) {
+            anchorPane.getChildren().remove(buttons.remove(getCounter()));
+            anchorPane.getChildren().remove(labels.remove(getCounter()-1));
+            setCounter(getCounter()-1);
+        }
     }
 
     public int getCounter() {
