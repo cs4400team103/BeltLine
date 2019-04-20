@@ -10,6 +10,9 @@ public class ManagerDailyDetail {
     @FXML
     Button back;
 
+    public void initialize() {
+
+    }
     //get info for the table
 
     public void back() throws Exception {
