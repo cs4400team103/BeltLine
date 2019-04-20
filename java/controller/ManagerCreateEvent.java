@@ -60,6 +60,7 @@ public class ManagerCreateEvent {
     }
 
     public void createEvent() throws SQLException {
+
         //get username and see what site they manage if any
         // manager must oversee sight
         //ename and start date are unique
