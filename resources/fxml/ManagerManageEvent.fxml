@@ -24,11 +24,11 @@
                 text="Filter" onAction="#filter"/>
         <TableView layoutX="39.0" layoutY="280.0" prefHeight="206.0" prefWidth="518.0">
             <columns>
-                <TableColumn editable="false" prefWidth="111.99999618530273" sortable="false" text="Name"/>
-                <TableColumn editable="false" prefWidth="75.60000610351562" text="Staff Count"/>
-                <TableColumn editable="false" prefWidth="111.20008850097656" text="Duration (Days)"/>
-                <TableColumn minWidth="0.0" prefWidth="91.60003662109375" text="Total Visits"/>
-                <TableColumn prefWidth="130.0" text="Total Revenue ($)"/>
+                <TableColumn fx:id="name" editable="false" prefWidth="111.99999618530273" sortable="false" text="Name"/>
+                <TableColumn fx:id="staffCount" editable="false" prefWidth="75.60000610351562" text="Staff Count"/>
+                <TableColumn fx:id="duration" editable="false" prefWidth="111.20008850097656" text="Duration (Days)"/>
+                <TableColumn fx:id="visits" minWidth="0.0" prefWidth="91.60003662109375" text="Total Visits"/>
+                <TableColumn fx:id="revenue" prefWidth="130.0" text="Total Revenue ($)"/>
             </columns>
         </TableView>
         <Button fx:id="back" layoutX="265.0" layoutY="512.0" mnemonicParsing="false" prefWidth="70.0" text="Back"

@@ -18,7 +18,7 @@
         </Label>
         <Button fx:id="back" layoutX="279.0" layoutY="444.0" mnemonicParsing="false" prefWidth="70.0" text="Back"
                 onAction="#back"/>
-        <TableView layoutX="26.0" layoutY="74.0" prefHeight="355.0" prefWidth="576.0">
+        <TableView fx:id="table" layoutX="26.0" layoutY="74.0" prefHeight="355.0" prefWidth="576.0">
             <columns>
                 <TableColumn fx:id="eventName" prefWidth="141.19997787475586" text="Event Name"/>
                 <TableColumn fx:id="staffName" prefWidth="147.20005798339844" text="Staff Names"/>
