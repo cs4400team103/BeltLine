@@ -28,13 +28,13 @@ public class ManagerManageEvent {
         //filter
     }
 
-    public void viewEdit()throws Exception {
+    public void viewEdit() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerViewEditEvent.fxml"));
         Scene rootScene = new Scene(root, 500, 850);
         Main.pstage.setScene(rootScene);
     }
 
-    public void delete () throws Exception {
+    public void delete() throws Exception {
         //delete
     }
 
