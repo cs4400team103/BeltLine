@@ -11,7 +11,7 @@ public class RegisterNavigationController {
 
     public void userOnly() throws Exception {
         Parent registerUser = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterUser.fxml"));
-        Scene registerUserScene = new Scene(registerUser, 600, 450);
+        Scene registerUserScene = new Scene(registerUser, 600, 400);
         Main.pstage.setScene(registerUserScene);
     }
 

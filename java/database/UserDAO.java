@@ -24,9 +24,9 @@ public class UserDAO {
      * UserLoginController a User
      */
     //TODO: Make sure that string is email and not username! thanks :-)
-    public static boolean loginUser(String username, String password) throws SQLException, ClassNotFoundException {
+    public static boolean loginUser(String email, String password) throws SQLException, ClassNotFoundException {
         String query =
-                "select * from user where username = '" + username + "' and password = '" + password + "';";
+                "select * from user where username = '" + email + "' and password = '" + password + "';";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
             return (rs != null);
