@@ -3,6 +3,7 @@ package BeltLineApplication.java.controller;
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.limiter.TextFieldLimit;
+import BeltLineApplication.java.model.Transit;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,18 +21,21 @@ public class AdministratorEditTransitController {
     private TextFieldLimit price;
     @FXML
     private ListView<String> connectedSites;
+    private static Transit transit;
 
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     public void initialize() throws SQLException, ClassNotFoundException {
+        Transit item = getTransit();
+
         //set Transport Type style
         transportType.setStyle("-fx-font-weight: bold");
         transportType.setStyle("-fx-font-style: italic");
 
         //set the text
-        transportType.setText(TransitDAO.getTransportType());
-        route.setText(TransitDAO.getRouteText());
-        price.setText(Double.toString(TransitDAO.getPriceText()));
+        transportType.setText(item.getType());
+        route.setText(item.getRoute());
+        price.setText(Double.toString(item.getPrice()));
 
         ObservableList<String> list = TransitDAO.getConnectedSites();
         connectedSites.setItems(list);
@@ -44,6 +48,14 @@ public class AdministratorEditTransitController {
         //adjust max length
         route.setMaxLength(100);
         price.setMaxLength(9);
+    }
+
+    public static void setTransit(Transit item) {
+        transit = item;
+    }
+
+    public static Transit getTransit() {
+        return transit;
     }
 
     public void update() {
