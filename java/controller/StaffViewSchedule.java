@@ -16,7 +16,9 @@ public class StaffViewSchedule {
     Button viewEvent;
 
     public void filter() {
-        //filter
+        //filter, event name, description keyword, start date, end date
+
+
     }
 
     public void back() throws Exception {
@@ -27,6 +29,7 @@ public class StaffViewSchedule {
     }
 
     public void viewEvent() throws Exception {
+        //if they have chosen a button go to that event
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/StaffEventDetail.fxml"));
         Scene rootScene = new Scene(root, 600, 400);
         Main.pstage.setScene(rootScene);

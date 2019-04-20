@@ -48,10 +48,15 @@ public class ManagerCreateEvent {
 
 
     public void back() throws Exception {
-        //also manager visitor
-        Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
-        Scene rootScene = new Scene(root, 350, 250);
-        Main.pstage.setScene(rootScene);
+        if (UserLoginController.getUserType().equals("ManagerVisitor")) {
+            Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerVisitorFunctionality.fxml"));
+            Scene rootScene = new Scene(root, 324, 305);
+            Main.pstage.setScene(rootScene);
+        } else {
+            Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
+            Scene rootScene = new Scene(root, 350, 250);
+            Main.pstage.setScene(rootScene);
+        }
     }
 
     public void createEvent() throws SQLException {
