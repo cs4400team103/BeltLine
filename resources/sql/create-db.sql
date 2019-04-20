@@ -4,7 +4,7 @@ use BeltLine;
 CREATE TABLE if NOT EXISTS User
 (
     Username  varchar(50) NOT NULL,
-    Password  varchar(50) NOT NULL,
+    Password  VARBINARY(50) NOT NULL,
     Status    varchar(15) NOT NULL,
     FirstName varchar(50) NOT NULL,
     LastName  varchar(50) NOT NULL,

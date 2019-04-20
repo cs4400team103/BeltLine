@@ -9,6 +9,7 @@ public class UserDAO {
      * Register a User
      */
     public static void registerUser(String username, String password, String fname, String lname) throws SQLException {
+        //password = hash(password);
         String query =
                 "INSERT INTO user" +
                         "(Username, Password, Status, FirstName, LastName)" +
@@ -20,6 +21,24 @@ public class UserDAO {
             System.out.println("Error with Register User Query" + e);
         }
     }
+
+//    public static String hash(String password) {
+//        String pass = password;
+//        String query = "DECLARE @pswd NVARCHAR(50) = '" + password + "'; \n" +
+//                "DECLARE @salt VARBINARY(4) = CRYPT_GEN_RANDOM(4);\n" +
+//                "DECLARE @hash VARBINARY(50); \n" +
+//                "SET @hash = 0x0200 + @salt + HASHBYTES('SHA2_512', CAST(@pswd AS VARBINARY(MAX)) + @salt); \n" +
+//                "SELECT @hash AS Password;";
+//        try {
+//            ResultSet rs = Connector.dbExecuteQuery(query);
+//            while (rs.next()) {
+//                pass = rs.getString(0);
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Error with hash User Query" + e);
+//        }
+//        return pass;
+//    }
 
     /**
      * UserLoginController a User

@@ -3,6 +3,7 @@ package BeltLineApplication.java.controller;
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.EmailDAO;
 import BeltLineApplication.java.database.UserDAO;
+import BeltLineApplication.java.limiter.PasswordFieldLimit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,9 +25,9 @@ public class RegisterUserController {
     @FXML
     private TextFieldLimit username;
     @FXML
-    private PasswordField password;
+    private PasswordFieldLimit password;
     @FXML
-    private PasswordField confirmPassword;
+    private PasswordFieldLimit confirmPassword;
     @FXML
     private TextFieldLimit emailTextField;
     @FXML
@@ -40,10 +41,13 @@ public class RegisterUserController {
 
     public void initialize() {
         //set limit on textFields
-        fname.setMaxLength(5);
+        fname.setMaxLength(50);
         lname.setMaxLength(50);
         username.setMaxLength(50);
         emailTextField.setMaxLength(50);
+
+        password.setMaxLength(50);
+        confirmPassword.setMaxLength(50);
 
         buttons.add(add);
     }

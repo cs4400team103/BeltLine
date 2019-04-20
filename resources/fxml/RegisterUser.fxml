@@ -7,6 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import BeltLineApplication.java.limiter.TextFieldLimit?>
+<?import BeltLineApplication.java.limiter.PasswordFieldLimit?>
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.RegisterUserController">
    <children>
       <Label layoutX="233.0" layoutY="14.0" text="Register User">
@@ -22,8 +23,8 @@
       <Label layoutX="53.0" layoutY="177.0" text="Password" />
       <Label layoutX="302.0" layoutY="177.0" text="Confirm Password" />
       <TextFieldLimit fx:id="username" layoutX="124.0" layoutY="122.0" />
-      <PasswordField fx:id="password" layoutX="124.0" layoutY="173.0" />
-      <PasswordField fx:id="confirmPassword" layoutX="412.0" layoutY="173.0" />
+      <PasswordFieldLimit fx:id="password" layoutX="124.0" layoutY="173.0" />
+      <PasswordFieldLimit fx:id="confirmPassword" layoutX="412.0" layoutY="173.0" />
       <Label layoutX="53.0" layoutY="227.0" text="Email" />
       <Button fx:id="back" layoutX="124.0" layoutY="355.0" minWidth="100.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Button fx:id="register" layoutX="412.0" layoutY="355.0" minWidth="100.0" mnemonicParsing="false" onAction="#registerUser" text="Register" />

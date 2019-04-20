@@ -1,10 +1,7 @@
 package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
-import BeltLineApplication.java.database.EmployeeDAO;
-import BeltLineApplication.java.database.ManagerDAO;
-import BeltLineApplication.java.database.StaffDAO;
-import BeltLineApplication.java.database.UserDAO;
+import BeltLineApplication.java.database.*;
 import BeltLineApplication.java.limiter.PasswordFieldLimit;
 import BeltLineApplication.java.limiter.TextFieldLimit;
 import javafx.collections.FXCollections;
@@ -78,6 +75,11 @@ public class RegisterEmployeeOnlyController {
                 //Employee will be a user and an employee
                 UserDAO.registerUser(username.getText(), password.getText(), fname.getText(), lname.getText());
                 EmployeeDAO.registerEmployee(username.getText(), phone.getText(), address.getText(), city.getText(), state.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(zipcode.getText()));
+                if (!labels.isEmpty()) {
+                    for (int i=0; i<labels.size(); i++) {
+                        EmailDAO.registerEmail(username.getText(), labels.get(i).getText());
+                    }
+                }
 
                 //if user is created as manager, add to manager table and go to next scene
                 if (userType.getSelectionModel().getSelectedItem().equals("Manager") || userType.getSelectionModel().isEmpty()) {

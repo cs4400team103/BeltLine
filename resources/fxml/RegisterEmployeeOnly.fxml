@@ -38,7 +38,7 @@
         <TextFieldLimit fx:id="address" layoutX="412.0" layoutY="221.0"/>
         <Label layoutX="53.0" layoutY="306.0" text="Email"/>
         <Label layoutX="300.0" layoutY="126.0" text="User Type"/>
-        <Button fx:id="back" layoutX="124.0" layoutY="429.0" minWidth="100.0" mnemonicParsing="false" text="Back"/>
+        <Button fx:id="back" layoutX="124.0" layoutY="429.0" minWidth="100.0" mnemonicParsing="false" text="Back" onAction="#back"/>
         <Button fx:id="register" layoutX="412.0" layoutY="429.0" minWidth="100.0" mnemonicParsing="false"
                 text="Register" onAction="#registerEmployee"/>
         <ChoiceBox fx:id="userType" layoutX="411.0" layoutY="122.0" prefWidth="150.0" value="Staff">

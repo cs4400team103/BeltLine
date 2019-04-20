@@ -3,12 +3,10 @@ package BeltLineApplication.java.database;
 import java.sql.SQLException;
 
 public class VisitorDAO extends UserDAO {
-    public static void registerVisitor(String username,String password, String fname, String lname)throws SQLException {
-
-        registerUser(username, password, fname, lname);
-
+    public static void registerVisitor(String username)throws SQLException {
         String query =
                 "INSERT INTO visitor" +
+                        "(Username)" +
                         "VALUES ('" + username + "');";
         try {
             Connector.dbExecuteUpdate(query);
