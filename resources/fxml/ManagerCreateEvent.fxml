@@ -26,7 +26,7 @@
         <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="150.0" layoutY="191.0" prefHeight="111.0"
                     prefWidth="292.0" AnchorPane.rightAnchor="59.0">
             <content>
-                <ListView id="assignStaff" prefHeight="111" prefWidth="275"/>
+                <ListView fx:id="assignStaff" prefHeight="111" prefWidth="275"/>
                 <ScrollBar orientation="VERTICAL" translateX="277.0"/>
             </content>
         </ScrollPane>

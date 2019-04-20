@@ -10,6 +10,8 @@ public class StaffEventDetail {
     @FXML
     Button back;
 
+    //populate all info
+
     public void back() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/StaffViewSchedule.fxml"));
         Scene rootScene = new Scene(root, 600, 600);
