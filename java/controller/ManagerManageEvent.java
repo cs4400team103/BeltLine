@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 
 public class ManagerManageEvent {
     @FXML
@@ -17,6 +18,17 @@ public class ManagerManageEvent {
     Button delete;
     @FXML
     Button back;
+    @FXML
+    TableColumn name;
+    @FXML
+    TableColumn staffCount;
+    @FXML
+    TableColumn duration;
+    @FXML
+    TableColumn visits;
+    @FXML
+    TableColumn revenue;
+
 
     public void create() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerCreateEvent.fxml"));

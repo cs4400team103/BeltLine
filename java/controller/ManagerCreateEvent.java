@@ -2,6 +2,7 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.EventDAO;
+import BeltLineApplication.java.database.SiteDAO;
 import BeltLineApplication.java.limiter.TextFieldLimit;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,30 +60,27 @@ public class ManagerCreateEvent {
         }
     }
 
-    public void createEvent() throws SQLException {
-
-        //get username and see what site they manage if any
-        // manager must oversee sight
+    public void createEvent() throws SQLException, ClassNotFoundException {
         //ename and start date are unique
         //two events with same name cannot overlap dates
         //assign staff is staff who are not working other events at the time
-        if (isFull() && (Double.parseDouble(price.getText()) >= 0) && (Integer.parseInt(capacity.getText()) > 0) && (Integer.parseInt(minSR.getText()) > 0)) {
-            try {
-                EventDAO.createEvent(name.getText(), startDate.getText(),"site", endDate.getText(), Double.parseDouble(price.getText()), Integer.parseInt(capacity.getText()) , description.getText(), Integer.parseInt(minSR.getText()));
+        if (SiteDAO.checkSiteExist(UserLoginController.getUsername())){
+            if (isFull() && (Double.parseDouble(price.getText()) >= 0) && (Integer.parseInt(capacity.getText()) > 0) && (Integer.parseInt(minSR.getText()) > 0)) {
+                try {
+                    EventDAO.createEvent(name.getText(), startDate.getText(),SiteDAO.getSite(UserLoginController.getUsername()), endDate.getText(), Double.parseDouble(price.getText()), Integer.parseInt(capacity.getText()) , description.getText(), Integer.parseInt(minSR.getText()));
+                }
+                catch (SQLException e) {
+                    System.out.println("Error with creating a new event: " + e);
+                } finally {
+                    alert.setTitle("Created Event");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Success! Event has been created successfully!");
+                }
+            } else {
+                    alert.setTitle("Empty/Incorrect Field");
+                    alert.setHeaderText(null);
+                    alert.setContentText("One or more fields are empty/incorrect");
             }
-            catch (SQLException e) {
-                System.out.println("Error with creating a new event: " + e);
-            } finally {
-            alert.setTitle("Created Event");
-            alert.setHeaderText(null);
-            alert.setContentText("Success! Event has been created successfully!");
-            }
-        } else {
-            alert.setTitle("Empty/Incorrect Field");
-            alert.setHeaderText(null);
-            alert.setContentText("One or more fields are empty/incorrect");
-
         }
     }
-
 }
