@@ -41,6 +41,11 @@ public class AdministratorManageTransitController {
     private TableColumn<Transit, Integer> transitLoggedCol;
     private String userType;
 
+    /**
+     * initializes first
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void initialize() throws SQLException, ClassNotFoundException {
         ObservableList<Transit> trans = TransitDAO.populateTransit();
         transitTable.setItems(trans);
@@ -63,26 +68,35 @@ public class AdministratorManageTransitController {
         });
     }
 
+    /**
+     * filters the list
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void filter() throws SQLException, ClassNotFoundException {
         ObservableList<Transit> list = TransitDAO.filter(route.getText(), Double.parseDouble(minRange.getText()), Double.parseDouble(maxRange.getText()), containSite.getSelectionModel().getSelectedItem().toString(), transportType.getSelectionModel().getSelectedItem().toString());
         transitTable.setItems(list);
     }
 
+    /**
+     * goes back depending on user type
+     * @throws Exception
+     */
     public void back() throws Exception {
-        //TODO: how to implement if user is a administrator only or administrator visitor
-        Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
-        Scene rootScene = new Scene(administratorFunctionality, 350, 250);
-        Main.pstage.setScene(rootScene);
+        if (UserLoginController.getUserType().equals("Administrator")) {
+            Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
+            Scene rootScene = new Scene(administratorFunctionality, 350, 250);
+            Main.pstage.setScene(rootScene);
+        } else {
+            Parent administratorVisitorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorVisitorFunctionality.fxml"));
+            Scene rootScene = new Scene(administratorVisitorFunctionality, 350, 250);
+            Main.pstage.setScene(rootScene);
+        }
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
+    /**
+     * deletes an existing row if selected
+     */
     public void delete() {
         //make sure this exists first
         if (transitTable.getSelectionModel().getSelectedCells().get(0) != null) {
@@ -95,6 +109,10 @@ public class AdministratorManageTransitController {
         }
     }
 
+    /**
+     * edit a row if selected
+     * @throws Exception
+     */
     public void edit() throws Exception {
         //make sure the table exists first
         if (transitTable.getSelectionModel().getSelectedCells().get(0) != null) {

@@ -31,6 +31,15 @@ public class UserLoginController {
     private Button register;
 
     private Alert errorAlert = new Alert(AlertType.ERROR);
+    private static String userType;
+
+    public static void setUserType(String user) {
+        userType = user;
+    }
+
+    public static String getUserType() {
+        return userType;
+    }
 
     public void login() throws Exception {
 
@@ -39,6 +48,7 @@ public class UserLoginController {
             String username = EmailDAO.getUsername(email.getText());
 
             String userType = UserDAO.isUser(username);
+            setUserType(userType);
 
             if (UserDAO.loginUser(emailText.getText(), passwordText.getText())) {
                 if (userType.equals("Manager")) {
