@@ -1,14 +1,10 @@
 package BeltLineApplication.java.controller;
 
-import BeltLineApplication.java.database.ManagerDAO;
 import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.limiter.TextFieldLimit;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.SQLException;
 
@@ -20,28 +16,49 @@ public class AdministratorCreateTransitController {
     @FXML
     private ChoiceBox<String> type;
     @FXML
-    private ComboBox<String> connectedSites;
+    private ListView<String> connectedSites;
 
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private Alert error = new Alert(Alert.AlertType.ERROR);
 
-    public void initialize() {
+    public void initialize() throws SQLException, ClassNotFoundException {
+        //initialize lists with strings
         ObservableList<String> list = TransitDAO.getConnectedSites();
-        type.setItems(list);
+        ObservableList<String> typeList = TransitDAO.getType();
 
+        //add items from list to connectedsites
+        connectedSites.setItems(list);
+
+        //makes sure you can select multiple sites
+        connectedSites.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        type.setItems(typeList);
+
+        //adjust max length
         route.setMaxLength(100);
         price.setMaxLength(9);
     }
 
-    //TODO: Fix choicebox stuff;
     public void create() throws SQLException {
-        if (!route.getText().isEmpty() ||  !price.getText().isEmpty() || !type.getSelectionModel().isEmpty()) {
+        if (!route.getText().isEmpty() ||  !price.getText().isEmpty() || !type.getSelectionModel().isEmpty() || connectedSites.getSelectionModel().getSelectedItems().size() < 2 || Double.parseDouble(price.getText()) < 0) {
             try {
-                TransitDAO.createTransit(route.getText(), type.getSelectionModel().getSelectedItem().toString(), Double.parseDouble(price.getText()));
+                if (TransitDAO.checkRouteType(route.getText(), type.getSelectionModel().getSelectedItem())) {
+                    error.setTitle("Route and Type");
+                    error.setHeaderText("This combination of Route and Type have already been selected.");
+                    error.setContentText("Please add another combination of Route and Type.");
+                    return;
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Issue with checkRouteType" + e);
+            }
+            try {
+                TransitDAO.createTransit(route.getText(), type.getSelectionModel().getSelectedItem(), Double.parseDouble(price.getText()));
             }
             catch(SQLException e) {
-                System.out.println("Issue with SQL");
+                System.out.println("Issue with SQL on Administrator Create Transit" + e);
             }
             try {
+                //goes through connectedSite and adds it to the connected table
                 String connectedSite;
                 while (connectedSites.getSelectionModel().selectedIndexProperty() != null) {
                     connectedSite = connectedSites.getSelectionModel().selectedIndexProperty().toString();
@@ -53,7 +70,7 @@ public class AdministratorCreateTransitController {
             }
             alert.setTitle("Created Transport");
             alert.setHeaderText(null);
-            alert.setContentText("Success! Transport has been created successfully!");
+            alert.setContentText("Success! Transit has been created successfully!");
         }
     }
 }

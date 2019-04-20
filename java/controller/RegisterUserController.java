@@ -36,7 +36,7 @@ public class RegisterUserController {
 
     public void initialize() {
         //set limit on textFields
-        fname.setMaxLength(50);
+        fname.setMaxLength(5);
         lname.setMaxLength(50);
         username.setMaxLength(50);
     }

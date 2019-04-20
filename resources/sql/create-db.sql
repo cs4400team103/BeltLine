@@ -1,7 +1,3 @@
--- noinspection SqlDialectInspectionForFile
-
--- noinspection SqlNoDataSourceInspectionForFile
-
 CREATE DATABASE if NOT EXISTS BeltLine;
 use BeltLine;
 
@@ -171,9 +167,18 @@ CREATE TABLE if NOT EXISTS VisitSite
         ON DELETE CASCADE
 );
 
-
-
-
-
-
-
+CREATE TABLE if NOT EXISTS VisitEvent
+(
+    Username      varchar(50) NOT NULL,
+    EName         varchar(50) NOT NULL,
+    StartDate     datetime    NOT NULL,
+    SName         varchar(50) NOT NULL,
+    VisitEventDate datetime    NOT NULL,
+    PRIMARY KEY (Username, EName, StartDate, SName, VisitEventDate),
+    FOREIGN KEY (Username) REFERENCES User (Username)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (EName, StartDate, SName) REFERENCES Event (EName, StartDate, SName)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);

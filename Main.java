@@ -33,6 +33,9 @@ public class Main extends Application {
         launch(args);
     }
 
+    public static void initialize() {
+        //TODO: run sql + insert
+    }
 
     private static void insertSQL() throws SQLException {
         try {

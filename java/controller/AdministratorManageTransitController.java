@@ -1,12 +1,18 @@
 package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
+import BeltLineApplication.java.database.TransitDAO;
+import BeltLineApplication.java.limiter.TextFieldLimit;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
+import java.sql.SQLException;
 
 public class AdministratorManageTransitController {
     @FXML
@@ -14,16 +20,39 @@ public class AdministratorManageTransitController {
     @FXML
     private ChoiceBox containSite;
     @FXML
-    private TextField route;
+    private TextFieldLimit route;
     @FXML
-    private TextField minRange;
+    private TextFieldLimit minRange;
     @FXML
-    private TextField maxRange;
+    private TextFieldLimit maxRange;
+    @FXML
+    private TableView<Object> transitTable;
+    @FXML
+    private TableColumn routeCol;
+    @FXML
+    private TableColumn transportTypeCol;
+    @FXML
+    private TableColumn priceCol;
+    @FXML
+    private TableColumn connectedSitesCol;
+    @FXML
+    private TableColumn transitLoggedCol;
 
+    public void initialize() throws SQLException, ClassNotFoundException {
+        ObservableList<Object> trans = TransitDAO.getTransitRow();
+        transitTable.setItems(trans);
 
+        //connectedSitesCol.setStyle("-fx-cell-size: 50px");
+        route.setMaxLength(50);
+        minRange.setMaxLength(3);
+        maxRange.setMaxLength(3);
+
+    }
 
     public void filter() {
-        //filter table
+        if (!transportType.getSelectionModel().isEmpty() || !containSite.getSelectionModel().isEmpty() || !route.getText().isEmpty()) {
+
+        }
     }
 
     public void back() throws Exception {
