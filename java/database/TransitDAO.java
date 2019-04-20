@@ -1,8 +1,8 @@
 package BeltLineApplication.java.database;
 
+import BeltLineApplication.java.model.Transit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -164,5 +164,22 @@ public class TransitDAO {
         } catch (Exception e) {
             System.out.println("Error with update transit query" + e);
         }
+    }
+
+    public static ObservableList<Object> getTransitRow() throws SQLException, ClassNotFoundException {
+        String query = "";
+        try {
+            Connector.dbExecuteQuery(query);
+        } catch (Exception e) {
+            System.out.println("Error with update transit query" + e);
+        }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+
+        int i = 1;
+        ObservableList<Object> row = FXCollections.observableArrayList();
+        while (i < rs.getMetaData().getColumnCount() && rs.next()) {
+            row.add(rs.getString(i));
+        }
+        return row;
     }
 }

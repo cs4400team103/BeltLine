@@ -34,7 +34,7 @@ public class Main extends Application {
     }
 
     public static void initialize() {
-        //run all sql here that needs to be in the database;
+        //TODO: run sql + insert
     }
 
     private static void insertSQL() throws SQLException {
