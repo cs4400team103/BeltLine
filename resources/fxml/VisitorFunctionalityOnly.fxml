@@ -5,31 +5,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorFunctionalityOnly">
-=======
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorFunctionalityOnlyController">
->>>>>>> c6270e2e9b13010830d5cee90932c2585a61b39e
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorFunctionalityOnly">
     <children>
         <Label layoutX="24.0" layoutY="14.0" text="Visitor Functionality" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="14.0">
             <font>
                 <Font size="23.0" />
             </font>
         </Label>
-<<<<<<< HEAD
-        <Button id="exploreEvent" fx:id="exploreEvent" layoutX="54.0" layoutY="69.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#exploreEvent" text="Explore Event" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="69.0" />
-        <Button id="back" fx:id="back" layoutX="54.0" layoutY="278.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#back" text="Back" />
-        <Button id="takeTransit" fx:id="takeTransit" layoutX="55.0" layoutY="195.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" text="Take Transit" onAction="#takeTransit"/>
-        <Button id="viewTransitHistory" fx:id="viewTransitHistory" layoutX="54.0" layoutY="238.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" text="View Transit History" onAction="#viewTransitHistory" />
-        <Button id="exploreSIte" fx:id="exploreSite" layoutX="54.0" layoutY="113.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" text="Explore Site" onAction="#exploreSite" />
-        <Button id="viewVisitHistory" fx:id="viewVisitHistory" layoutX="54.0" layoutY="153.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" text="View Visit History" onAction="#viewVisitHistory" />
-=======
-        <Button fx:id="exploreEvent" layoutX="54.0" layoutY="69.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#exploreEvent" text="Explore Event" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="69.0" />
-        <Button fx:id="exploreSite" layoutX="54.0" layoutY="113.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#exploreSite" text="Explore Site" />
-        <Button fx:id="viewTransitHistory" layoutX="54.0" layoutY="238.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#viewTransitHistory" text="View Transit History" />
-        <Button fx:id="takeTransit" layoutX="55.0" layoutY="195.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#takeTransit" text="Take Transit" />
-        <Button fx:id="viewVisitHistory" layoutX="54.0" layoutY="153.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#viewVisitHistory" text="View Visit History" />
-        <Button fx:id="back" layoutX="54.0" layoutY="278.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#back" text="Back" />
->>>>>>> c6270e2e9b13010830d5cee90932c2585a61b39e
+        <Button id="exploreEvent" fx:id="exploreEvent" layoutX="54.0" layoutY="70.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#exploreEvent" text="Explore Event" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="69.0" />
+        <Button id="back" fx:id="back" layoutX="54.0" layoutY="270.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#back" text="Back" />
+        <Button id="takeTransit" fx:id="takeTransit" layoutX="55.0" layoutY="190.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#takeTransit" text="Take Transit" />
+        <Button id="viewTransitHistory" fx:id="viewTransitHistory" layoutX="54.0" layoutY="230.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#viewTransitHistory" text="View Transit History" />
+        <Button id="exploreSIte" fx:id="exploreSite" layoutX="54.0" layoutY="110.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#exploreSite" text="Explore Site" />
+        <Button id="viewVisitHistory" fx:id="viewVisitHistory" layoutX="54.0" layoutY="150.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#viewVisitHistory" text="View Visit History" />
     </children>
 </AnchorPane>

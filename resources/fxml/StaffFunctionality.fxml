@@ -5,27 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0"
-            prefWidth="237.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="BeltLineApplication.java.controller.StaffFunctionality">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.StaffFunctionality">
     <children>
-        <Label layoutX="28.0" layoutY="14.0" text="Staff Functionality" AnchorPane.leftAnchor="28.0"
-               AnchorPane.topAnchor="14.0">
+        <Label layoutX="27.0" layoutY="14.0" text="Staff Functionality" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="14.0">
             <font>
-                <Font size="23.0"/>
+                <Font size="23.0" />
             </font>
         </Label>
-        <Button fx:id="manageProfile" layoutX="48.0" layoutY="70.0" minHeight="25.0" minWidth="140.0"
-                mnemonicParsing="false" text="Manage Profile" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="70.0"
-                onAction="#manageProfile"/>
-        <Button fx:id="viewSchedule" layoutX="48.0" layoutY="110.0" minHeight="25.0" minWidth="140.0"
-                mnemonicParsing="false" text="View Schedule" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="110.0"
-                onAction="#viewSchedule"/>
-        <Button fx:id="takeTransit" layoutX="48.0" layoutY="149.0" minHeight="25.0" minWidth="140.0"
-                mnemonicParsing="false" text="Take Transit" onAction="#takeTransit"/>
-        <Button fx:id="viewTransitHistory" layoutX="48.0" layoutY="186.0" minHeight="25.0" minWidth="140.0"
-                mnemonicParsing="false" text="View Transit History" onAction="#viewTransitHistory"/>
-        <Button fx:id="back" layoutX="48.0" layoutY="223.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false"
-                text="Back" onAction="#back"/>
+        <Button fx:id="manageProfile" layoutX="48.0" layoutY="70.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#manageProfile" text="Manage Profile" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="70.0" />
+        <Button fx:id="viewSchedule" layoutX="48.0" layoutY="110.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#viewSchedule" text="View Schedule" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="110.0" />
+        <Button fx:id="takeTransit" layoutX="48.0" layoutY="150.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#takeTransit" text="Take Transit" />
+        <Button fx:id="viewTransitHistory" layoutX="48.0" layoutY="190.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#viewTransitHistory" text="View Transit History" />
+        <Button fx:id="back" layoutX="48.0" layoutY="230.0" minHeight="25.0" minWidth="140.0" mnemonicParsing="false" onAction="#back" text="Back" />
     </children>
 </AnchorPane>

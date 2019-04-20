@@ -62,37 +62,37 @@ public class UserLoginController {
             if (UserDAO.loginUser(emailText.getText(), passwordText.getText())) {
                 if (userType.equals("Manager")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
-                    Scene rootScene = new Scene(root, 250, 200);
+                    Scene rootScene = new Scene(root, 350, 235);
                     //go to next page
                     Main.pstage.setScene(rootScene);
                 } else if (userType.equals("ManagerVisitor")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerVisitorFunctionality.fxml"));
-                    Scene rootScene = new Scene(root, 250, 200);
+                    Scene rootScene = new Scene(root, 350, 385);
                     //go to next page
                     Main.pstage.setScene(rootScene);
                 } else if (userType.equals("Staff")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/StaffFunctionality.fxml"));
-                    Scene rootScene = new Scene(root, 250, 200);
+                    Scene rootScene = new Scene(root, 235, 275);
                     //go to next page
                     Main.pstage.setScene(rootScene);
                 } else if (userType.equals("StaffVisitor")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/StaffVisitorFunctionality.fxml"));
-                    Scene rootScene = new Scene(root, 250, 200);
+                    Scene rootScene = new Scene(root, 350, 325);
                     //go to next page
                     Main.pstage.setScene(rootScene);
                 } else if (userType.equals("Administrator")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionality.fxml"));
-                    Scene rootScene = new Scene(root, 250, 200);
+                    Scene rootScene = new Scene(root, 350, 235);
                     //go to next page
                     Main.pstage.setScene(rootScene);
                 } else if (userType.equals("AdministratorVisitor")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionality.fxml"));
-                    Scene rootScene = new Scene(root, 250, 200);
+                    Scene rootScene = new Scene(root, 350, 275);
                     //go to next page
                     Main.pstage.setScene(rootScene);
                 }  else if (userType.equals("Visitor")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/VisitorFunctionality.fxml"));
-                    Scene rootScene = new Scene(root, 250, 200);
+                    Scene rootScene = new Scene(root, 250, 320);
                     //go to next page
                     Main.pstage.setScene(rootScene);
                 } else {
