@@ -32,6 +32,7 @@ public class UserLoginController {
 
     private Alert errorAlert = new Alert(AlertType.ERROR);
     private static String userType;
+    private static String username;
 
     public static void setUserType(String user) {
         userType = user;
@@ -41,11 +42,19 @@ public class UserLoginController {
         return userType;
     }
 
+    public static void setUsername(String user) {
+        username = user;
+    }
+    public static String getUsername() {
+        return username;
+    }
+
     public void login() throws Exception {
 
         if (!emailText.getText().isEmpty() || !passwordText.getText().isEmpty()) {
             //fist get username from email.
             String username = EmailDAO.getUsername(email.getText());
+            setUsername(username);
 
             String userType = UserDAO.isUser(username);
             setUserType(userType);
