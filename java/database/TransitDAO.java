@@ -145,13 +145,12 @@ public class TransitDAO {
                 + "'" + route + "' type = '" + type + "') as 'Exists?';";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
-            while(rs.next()) {
+            while (rs.next()) {
                 String num = rs.getString(0);
                 if (Integer.parseInt(num) == 1) {
                     return true;
                 }
             }
-
         } catch (Exception e) {
             System.out.println("Error with getting transport type on Administrator Create Transit" + e);
         }
