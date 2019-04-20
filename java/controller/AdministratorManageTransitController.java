@@ -3,6 +3,8 @@ package BeltLineApplication.java.controller;
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.limiter.TextFieldLimit;
+import BeltLineApplication.java.model.Transit;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-
 import java.sql.SQLException;
 
 public class AdministratorManageTransitController {
@@ -26,33 +28,44 @@ public class AdministratorManageTransitController {
     @FXML
     private TextFieldLimit maxRange;
     @FXML
-    private TableView<Object> transitTable;
+    private TableView<Transit> transitTable;
     @FXML
-    private TableColumn routeCol;
+    private TableColumn<Transit, String> routeCol;
     @FXML
-    private TableColumn transportTypeCol;
+    private TableColumn<Transit, String> transportTypeCol;
     @FXML
-    private TableColumn priceCol;
+    private TableColumn<Transit, Double> priceCol;
     @FXML
-    private TableColumn connectedSitesCol;
+    private TableColumn<Transit, Integer> connectedSitesCol;
     @FXML
-    private TableColumn transitLoggedCol;
+    private TableColumn<Transit, Integer> transitLoggedCol;
+    private String userType;
 
     public void initialize() throws SQLException, ClassNotFoundException {
-        ObservableList<Object> trans = TransitDAO.getTransitRow();
+        ObservableList<Transit> trans = TransitDAO.populateTransit();
         transitTable.setItems(trans);
 
-        //connectedSitesCol.setStyle("-fx-cell-size: 50px");
+        //might need to add health at th
         route.setMaxLength(50);
-        minRange.setMaxLength(3);
-        maxRange.setMaxLength(3);
+        minRange.setMaxLength(5);
+        maxRange.setMaxLength(5);
 
+        //will allow you to select a row without a radiobutton function
+        Platform.runLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                transitTable.requestFocus();
+                transitTable.getSelectionModel().select(0);
+                transitTable.scrollTo(0);
+            }
+        });
     }
 
-    public void filter() {
-        if (!transportType.getSelectionModel().isEmpty() || !containSite.getSelectionModel().isEmpty() || !route.getText().isEmpty()) {
-
-        }
+    public void filter() throws SQLException, ClassNotFoundException {
+        ObservableList<Transit> list = TransitDAO.filter(route.getText(), Double.parseDouble(minRange.getText()), Double.parseDouble(maxRange.getText()), containSite.getSelectionModel().getSelectedItem().toString(), transportType.getSelectionModel().getSelectedItem().toString());
+        transitTable.setItems(list);
     }
 
     public void back() throws Exception {
@@ -62,19 +75,46 @@ public class AdministratorManageTransitController {
         Main.pstage.setScene(rootScene);
     }
 
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     public void delete() {
-        //TODO: delete row from database
+        //make sure this exists first
+        if (transitTable.getSelectionModel().getSelectedCells().get(0) != null) {
+            //get selected row
+            TablePosition pos = transitTable.getSelectionModel().getSelectedCells().get(0);
+            int row = pos.getRow();
+
+            Transit item = transitTable.getItems().get(row);
+            TransitDAO.delete(item);
+        }
     }
 
     public void edit() throws Exception {
-        Parent administratorEditSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorEditTransit.fxml"));
-        Scene rootScene = new Scene(administratorEditSite, 405, 245);
-        Main.pstage.setScene(rootScene);
+        //make sure the table exists first
+        if (transitTable.getSelectionModel().getSelectedCells().get(0) != null) {
+            //get selected row
+            TablePosition pos = transitTable.getSelectionModel().getSelectedCells().get(0);
+            int row = pos.getRow();
 
-        //TODO: get selected value, get selected value items and transport them into the edit site page
-        // with text.setText("");...
+            Transit item = transitTable.getItems().get(row);
+            AdministratorEditTransitController.setTransit(item);
+
+            Parent administratorEditSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorEditTransit.fxml"));
+            Scene rootScene = new Scene(administratorEditSite, 405, 245);
+            Main.pstage.setScene(rootScene);
+        }
     }
 
+    /**
+     * allows user to create a new site
+     * @throws Exception
+     */
     public void create() throws Exception {
         Parent administratorCreateSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorCreateTransit.fxml"));
         Scene rootScene = new Scene(administratorCreateSite, 600, 450);

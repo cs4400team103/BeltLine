@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ManagerDAO {
+
     public static ObservableList<String> getManagerList() throws SQLException, ClassNotFoundException {
         ObservableList<String> list =  FXCollections.observableArrayList();
         String query =

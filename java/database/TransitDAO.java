@@ -3,52 +3,53 @@ package BeltLineApplication.java.database;
 import BeltLineApplication.java.model.Transit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.PasswordField;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TransitDAO {
-    private static String transportType;
-    private static String routeText;
-    private static double priceText;
+    /**
+     * @param route
+     * @param minRange
+     * @param maxRange
+     * @param containSite
+     * @param transportType
+     * @return ObservableList<Object>
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ObservableList<Transit> filter(String route, Double minRange, Double maxRange, String containSite, String transportType) throws SQLException, ClassNotFoundException {
+        //get minRange and maxRange values
+        if (maxRange == 0.0) {
+            maxRange = 999.99;
+        }
 
-    //getters
-    public static String getTransportType() {
-        return transportType;
-    }
-    public static String getRouteText() {
-        return routeText;
-    }
-    public static double getPriceText() {
-        return priceText;
-    }
+        String price = "price BETWEEN " + minRange + " AND " + maxRange;
 
-    //setters
-    public static void setTransportType(String transportType) {
-        TransitDAO.transportType = transportType;
-    }
-    public static void setRouteText(String routeText) {
-        TransitDAO.routeText = routeText;
-    }
-    public static void setPriceText(double priceText) {
-        TransitDAO.priceText = priceText;
-    }
+        //create where statements for each variable
+        if (!route.isEmpty()) {
+            route = "route = '" + route + "'";
+        }
+        if (!containSite.isEmpty()) {
+            containSite = "site = '" + containSite + "'";
+        }
+        if (!transportType.isEmpty()) {
+            transportType = "type = '" + transportType + "'";
+        }
 
-    //not done
-    public static ResultSet filter(String site, String type, Double Price) throws SQLException, ClassNotFoundException {
         String query =
                 "select * from transit where ;";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
-            return null;
         } catch (SQLException e) {
             System.out.println("Something is wrong with your SQL: " + e);
             throw e;
         }
-    }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+        ObservableList<Transit> row = getTransitList(rs);
 
-    //not done
-    public static ResultSet filter(String site, String type) throws SQLException {
-        return null;
+        return row;
     }
 
     /**
@@ -143,7 +144,14 @@ public class TransitDAO {
         String query = "Select exists (select route, type from Transit where route = "
                 + "'" + route + "' type = '" + type + "') as 'Exists?';";
         try {
-            Connector.dbExecuteUpdate(query);
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            while(rs.next()) {
+                String num = rs.getString(0);
+                if (Integer.parseInt(num) == 1) {
+                    return true;
+                }
+            }
+
         } catch (Exception e) {
             System.out.println("Error with getting transport type on Administrator Create Transit" + e);
         }
@@ -151,7 +159,7 @@ public class TransitDAO {
     }
 
     /**
-     * updates transit TODO: FINISH
+     * updates transit
      *
      * @param route
      * @param price
@@ -166,20 +174,69 @@ public class TransitDAO {
         }
     }
 
-    public static ObservableList<Object> getTransitRow() throws SQLException, ClassNotFoundException {
+    /**
+     * deletes a transit object from the database
+     * @param transit
+     */
+    public static void delete(Transit transit) {
+        String delete = "Delete from transit WHERE Type = '" + transit.getType()
+                + "' and ROUTE = '" + transit.getRoute()
+                + "' and Price = '" + transit.getPrice() + "';";
+        try {
+            Connector.dbExecuteUpdate(delete);
+        } catch (Exception e) {
+            System.out.println("Error with delete transit query" + e);
+        }
+    }
+
+    /**
+     * returns a transit list
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ObservableList<Transit> populateTransit() throws SQLException, ClassNotFoundException {
         String query = "";
         try {
-            Connector.dbExecuteQuery(query);
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            ObservableList<Transit> transit = getTransitList(rs);
+            return transit;
         } catch (Exception e) {
             System.out.println("Error with update transit query" + e);
         }
-        ResultSet rs = Connector.dbExecuteQuery(query);
+        return null;
+    }
 
-        int i = 1;
-        ObservableList<Object> row = FXCollections.observableArrayList();
-        while (i < rs.getMetaData().getColumnCount() && rs.next()) {
-            row.add(rs.getString(i));
+    private Transit getTransit(ResultSet rs) throws SQLException {
+        Transit transit = null;
+        if (rs.next()) {
+            transit = new Transit();
+            transit.setType(rs.getString("Type"));
+            transit.setRoute(rs.getString("Route"));
+            transit.setPrice(rs.getDouble("Price"));
+            transit.setNumberOfConnectedSites(rs.getInt("# of Connected Sites"));
+            transit.setNumberOfTransitLogged(rs.getInt("# of Transit Logged"));
         }
-        return row;
+        return transit;
+    }
+
+    /**
+     * returns the list of transit based on the result set
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
+    private static ObservableList<Transit> getTransitList(ResultSet rs) throws SQLException {
+        ObservableList<Transit> trans = FXCollections.observableArrayList();
+        if (rs.next()) {
+            Transit transit = new Transit();
+            transit.setType(rs.getString("Type"));
+            transit.setRoute(rs.getString("Route"));
+            transit.setPrice(rs.getDouble("Price"));
+            transit.setNumberOfConnectedSites(rs.getInt("# of Connected Sites"));
+            transit.setNumberOfTransitLogged(rs.getInt("# of Transit Logged"));
+            trans.add(transit);
+        }
+        return trans;
     }
 }
