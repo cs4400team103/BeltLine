@@ -19,7 +19,9 @@ public class ManagerManageEvent {
     Button back;
 
     public void create() throws Exception {
-        //create
+        Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerCreateEvent.fxml"));
+        Scene rootScene = new Scene(root, 500, 550);
+        Main.pstage.setScene(rootScene);
     }
 
     public void filter() {

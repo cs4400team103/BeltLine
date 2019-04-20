@@ -10,6 +10,8 @@ public class ManagerDailyDetail {
     @FXML
     Button back;
 
+    //get info for the table
+
     public void back() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerSiteReport.fxml"));
         Scene rootScene = new Scene(root, 550, 500);
