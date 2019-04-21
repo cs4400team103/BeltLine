@@ -11,6 +11,7 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
+<?import BeltLineApplication.java.limiter.TextFieldLimit?>
 <AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.AdministratorManageUserController">
     <children>
@@ -41,7 +42,7 @@
             </items>
         </ChoiceBox>
         <Button fx:id="filter" onAction="#filter" layoutX="39.0" layoutY="122.0" mnemonicParsing="false" prefWidth="100.0" text="Filter"/>
-        <TextField fx:id="username" layoutX="101.0" layoutY="69.0" prefHeight="25.0" prefWidth="110.0"/>
+        <TextFieldLimit fx:id="username" layoutX="101.0" layoutY="69.0" prefHeight="25.0" prefWidth="110.0"/>
         <TableView fx:id="manageUserTable" layoutX="39.0" layoutY="160.0" prefHeight="206.0" prefWidth="520.0">
             <columns>
                 <TableColumn fx:id="usernameCol" editable="false" prefWidth="107.9999771118164" sortable="false"

@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 
 /**
  * Completed
- * @author Yaroslava 
+ * @author Yaroslava
  */
 public class AdministratorVisitorFunctionalityController {
     public void manageProfile() throws Exception {

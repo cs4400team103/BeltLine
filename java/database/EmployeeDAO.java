@@ -7,6 +7,7 @@ public class EmployeeDAO extends UserDAO {
      * Register a Employee
      */
     public static void registerEmployee(String username, String phone, String address, String city, String state, int zipcode) throws SQLException {
+        //TODO: change employeeID to random....
         String query =
                 "INSERT INTO employee" +
                         "(Username, EmployeeID, Phone, Address, City, State, Zipcode)" +

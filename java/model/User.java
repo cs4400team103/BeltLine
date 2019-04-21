@@ -7,6 +7,8 @@ public class User {
     private String status;
     private String fname;
     private String lname;
+    private int emailCount;
+    private String userType;
 
     public String getUsername() {
         return username;
@@ -27,7 +29,8 @@ public class User {
     public String getLname() {
         return lname;
     }
-
+    public int getEmailCount() { return emailCount; }
+    public String getUserType() { return userType; }
     public void setUsername(String username) {
         this.username = username;
     }
@@ -46,5 +49,10 @@ public class User {
 
     public void setLname(String lname) {
         this.lname = lname;
+    }
+    public void setEmailCount(int emailCount) { this.emailCount = emailCount; }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }
