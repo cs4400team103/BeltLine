@@ -61,6 +61,32 @@ public class UserDAO {
     }
 
     /**
+     * approves user
+     * @param username
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static boolean isApproved(String username) throws SQLException, ClassNotFoundException {
+        String query = "Select Status From User Where Username = '" + username + "';";
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            String status = "";
+            if (rs.next()) {
+                status = rs.getString("Status");
+            }
+
+            if (status.equals("Approved")) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Something is wrong with your SQL: " + e);
+            throw e;
+        }
+        return false;
+    }
+
+    /**
      * @param rs
      * @return
      * @throws SQLException

@@ -165,7 +165,7 @@ public class TransitDAO {
      * @throws ClassNotFoundException
      */
     public static ObservableList<String> getType() throws SQLException, ClassNotFoundException {
-        String query = "select Type from Transit);";
+        String query = "select Type from Transit;";
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
             Connector.dbExecuteUpdate(query);
