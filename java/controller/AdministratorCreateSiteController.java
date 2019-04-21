@@ -9,6 +9,10 @@ import BeltLineApplication.java.limiter.TextFieldLimit;
 
 import java.sql.SQLException;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class AdministratorCreateSiteController {
     @FXML
     private ChoiceBox<String> managerChoiceCombo;

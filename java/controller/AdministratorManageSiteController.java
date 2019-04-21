@@ -2,9 +2,7 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.SiteDAO;
-import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.model.Site;
-import BeltLineApplication.java.model.Transit;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,9 +13,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-
 import java.sql.SQLException;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class AdministratorManageSiteController {
     @FXML
     private TableView<Site> site;

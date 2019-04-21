@@ -13,6 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class RegisterEmployeeOnlyController {
 
     @FXML

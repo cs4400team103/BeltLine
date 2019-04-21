@@ -16,6 +16,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class RegisterVisitorController {
 
     @FXML

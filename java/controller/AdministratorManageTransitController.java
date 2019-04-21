@@ -16,6 +16,10 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import java.sql.SQLException;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class AdministratorManageTransitController {
     @FXML
     private ChoiceBox transportType;

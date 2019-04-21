@@ -12,9 +12,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-
 import java.sql.SQLException;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class AdministratorEditSiteController {
     @FXML
     private TextField name;

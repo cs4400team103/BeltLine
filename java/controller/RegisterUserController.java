@@ -15,6 +15,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import BeltLineApplication.java.limiter.TextFieldLimit;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class RegisterUserController {
     @FXML
     private AnchorPane anchorPane;

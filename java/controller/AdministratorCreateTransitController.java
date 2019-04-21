@@ -5,9 +5,12 @@ import BeltLineApplication.java.limiter.TextFieldLimit;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.sql.SQLException;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class AdministratorCreateTransitController {
     @FXML
     private TextFieldLimit route;
