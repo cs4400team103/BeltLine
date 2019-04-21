@@ -70,7 +70,7 @@ public class StaffViewSchedule {
         Main.pstage.setScene(rootScene);
     }
 
-    public static void viewEvent() throws Exception {
+    public void viewEvent() throws Exception {
         //if they have chosen a button go to that event
         if(schedule.getSelectionModel() != null) {
             TablePosition pos = schedule.getSelectionModel().getSelectedCells().get(0);

@@ -30,7 +30,7 @@
         <TextField fx:id="fName" layoutX="104.0" layoutY="69.0" />
         <TextField fx:id="lName" layoutX="406.0" layoutY="69.0" />
         <Label layoutX="39.0" layoutY="113.0" text="Start Date" />
-        <TextField fx:id="startDate" layoutX="104.0" layoutY="109.0" />
+        <TextField fx:id="sDate" layoutX="104.0" layoutY="109.0" />
         <TextField fx:id="eDate" layoutX="406.0" layoutY="109.0" />
         <Label layoutX="202.0" layoutY="152.0" text="Site" />
         <ChoiceBox fx:id="sites" layoutX="230.0" layoutY="148.0" prefWidth="150.0" />
