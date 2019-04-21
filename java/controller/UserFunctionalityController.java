@@ -35,7 +35,7 @@ public class UserFunctionalityController {
      */
     public void viewTransitHistory() throws Exception {
         Parent viewTransitHistory = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/UserTransitHistory.fxml"));
-        Scene userViewTransitHistoryScene = new Scene(viewTransitHistory, 600, 450);
+        Scene userViewTransitHistoryScene = new Scene(viewTransitHistory, 600, 405);
         Main.pstage.setScene(userViewTransitHistoryScene);
     }
 
