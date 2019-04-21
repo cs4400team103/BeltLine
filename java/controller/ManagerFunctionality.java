@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 
 import javax.swing.plaf.basic.BasicButtonUI;
 
+/**
+ * Completed
+ * @author Julia
+ */
 public class ManagerFunctionality {
     @FXML
     Button manageProfile;
