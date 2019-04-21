@@ -83,11 +83,10 @@ public class UserLoginController {
             String username = EmailDAO.getUsername(email.getText());
             setUsername(username);
 
+            String userType = UserDAO.isUser(getUsername());
+            setUserType(userType);
             if (UserDAO.isApproved(username)) {
-
-                String userType = UserDAO.isUser(username);
-                setUserType(userType);
-
+                System.out.println("I am in");
                 //login user
                 if (UserDAO.loginUser(emailText.getText(), passwordText.getText())) {
                     if (userType.equals("Manager")) {
@@ -139,10 +138,15 @@ public class UserLoginController {
                 }
             } else {
                 errorAlert.setTitle("User UserLoginController");
-                errorAlert.setHeaderText("Email and password must be filled");
-                errorAlert.setContentText("Please try again or if this is your first time, register");
+                errorAlert.setHeaderText("Not an approved user");
+                errorAlert.setContentText("Please wait until you are approved.");
                 errorAlert.showAndWait();
             }
+        } else {
+            errorAlert.setTitle("User UserLoginController");
+            errorAlert.setHeaderText("Email and password must be filled");
+            errorAlert.setContentText("Please try again or if this is your first time, register");
+            errorAlert.showAndWait();
         }
     }
 

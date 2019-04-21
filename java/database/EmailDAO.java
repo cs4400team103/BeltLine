@@ -10,8 +10,9 @@ import java.sql.SQLException;
 
 public class EmailDAO {
     public static String getUsername(String email) {
+        System.out.println("READ MEEEE!");
         String username ="";
-        String query = "SELECT username where email = '" + email + "';";
+        String query = "SELECT Username From Email where email = '" + email + "';";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
 

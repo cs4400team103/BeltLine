@@ -1,5 +1,6 @@
 package BeltLineApplication.java.database;
 
+import BeltLineApplication.java.model.Administrator;
 import BeltLineApplication.java.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,6 +63,7 @@ public class UserDAO {
 
     /**
      * approves user
+     *
      * @param username
      * @return
      * @throws SQLException
@@ -71,19 +73,16 @@ public class UserDAO {
         String query = "Select Status From User Where Username = '" + username + "';";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
-            String status = "";
+            String status = "Approved";
             if (rs.next()) {
                 status = rs.getString("Status");
+                System.out.println("I am almost approved");
             }
-
-            if (status.equals("Approved")) {
-                return true;
-            }
+            return (status.equals("Approved"));
         } catch (SQLException e) {
             System.out.println("Something is wrong with your SQL: " + e);
             throw e;
         }
-        return false;
     }
 
     /**
@@ -114,55 +113,43 @@ public class UserDAO {
         String visitor = "Visitor";
         String user = "User";
 
-        String query = "SELECT exists (SELECT username from ";
-        String where = " WHERE username = '" + username + "';";
+        String query;
+        String where = " WHERE username = '" + username + "';\n";
 
         //if manager
         try {
-            query = query + mang + where;
+            query = "SELECT username from " + mang + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            while (rs.next()) {
-                String num = rs.getString(0);
-                if (Integer.parseInt(num) == 1) {
-                    try {
-                        query = query + visitor + where;
-                        ResultSet second = Connector.dbExecuteQuery(query);
-                        while (second.next()) {
-                            String numSec = rs.getString(0);
-                            if (Integer.parseInt(numSec) == 1) {
-                                return mangVisitor;
-                            }
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Error with getting admin visitor type " + e);
+            if (rs != null) {
+                try {
+                    query = "SELECT username from " + visitor + where;
+                    ResultSet second = Connector.dbExecuteQuery(query);
+                    if (second != null) {
+                        return mangVisitor;
                     }
+                } catch (Exception e) {
+                    System.out.println("Error with getting admin visitor type " + e);
                 }
-                return mang;
             }
+            return mang;
         } catch (Exception e) {
             System.out.println("Error with getting manager type " + e);
         }
 
         //if admin
         try {
-            query = query + admin + where;
+            query = "SELECT username from " + admin + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            while (rs.next()) {
-                String num = rs.getString(0);
-                if (Integer.parseInt(num) == 1) {
-                    try {
-                        query = query + visitor + where;
-                        ResultSet second = Connector.dbExecuteQuery(query);
-                        while (second.next()) {
-                            String numSec = rs.getString(0);
-                            if (Integer.parseInt(numSec) == 1) {
-                                return adminVisitor;
-                            }
-                            return admin;
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Error with getting admin visitor type " + e);
+            if (rs != null) {
+                try {
+                    query = "SELECT username from " + visitor + where;
+                    ResultSet second = Connector.dbExecuteQuery(query);
+                    if (second != null) {
+                        return adminVisitor;
                     }
+                    return admin;
+                } catch (Exception e) {
+                    System.out.println("Error with getting admin visitor type " + e);
                 }
             }
         } catch (Exception e) {
@@ -171,24 +158,18 @@ public class UserDAO {
 
         //if staff
         try {
-            query = query + staff + where;
+            query = "SELECT username from " + staff + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            while (rs.next()) {
-                String num = rs.getString(0);
-                if (Integer.parseInt(num) == 1) {
-                    try {
-                        query = query + visitor + where;
-                        ResultSet second = Connector.dbExecuteQuery(query);
-                        while (second.next()) {
-                            String numSec = rs.getString(0);
-                            if (Integer.parseInt(numSec) == 1) {
-                                return staffVisitor;
-                            }
-                            return staff;
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Error with getting staff visitor type " + e);
+            if (rs != null) {
+                try {
+                    query = "SELECT username from " + visitor + where;
+                    ResultSet second = Connector.dbExecuteQuery(query);
+                    if (rs != null) {
+                        return staffVisitor;
                     }
+                    return staff;
+                } catch (Exception e) {
+                    System.out.println("Error with getting staff visitor type " + e);
                 }
             }
         } catch (Exception e) {
@@ -197,13 +178,10 @@ public class UserDAO {
 
         //if visitor
         try {
-            query = query + visitor + where;
+            query = "SELECT username from " + visitor + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            while (rs.next()) {
-                String num = rs.getString(0);
-                if (Integer.parseInt(num) == 1) {
-                    return visitor;
-                }
+            if (rs != null) {
+                return visitor;
             }
         } catch (Exception e) {
             System.out.println("Error with getting visitor type " + e);
@@ -212,7 +190,7 @@ public class UserDAO {
         return user;
     }
 
-    public static ObservableList<User> filter(String username, String  type, String status) throws SQLException, ClassNotFoundException {
+    public static ObservableList<User> filter(String username, String type, String status) throws SQLException, ClassNotFoundException {
         String query = "Select User.Username, Count(Email) as 'Email Count', UserType as 'Type', Status \n" +
                 "from User join Email on User.Username = Email.Username\n" +
                 "where  Username = \"" + username + "\" and UserType = \"" + type +

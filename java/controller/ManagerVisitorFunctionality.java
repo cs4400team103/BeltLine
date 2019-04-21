@@ -34,7 +34,7 @@ public class ManagerVisitorFunctionality {
 
     public void manageProfile() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/EmployeeManageProfile.fxml"));
-        Scene rootScene = new Scene(root, 600, 400);
+        Scene rootScene = new Scene(root, 400, 300);
         Main.pstage.setScene(rootScene);
     }
 

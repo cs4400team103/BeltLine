@@ -2,8 +2,6 @@ package BeltLineApplication.java.database;
 
 import BeltLineApplication.java.controller.UserLoginController;
 import BeltLineApplication.java.model.Employee;
-import javafx.collections.ObservableList;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -49,10 +47,19 @@ public class EmployeeDAO extends UserDAO {
             Employee emp = getEmployeeManager(rs);
             return emp;
         } else {
-            String query = "SELECT * FROM Employee join User on Employee.Username = User.Username" +
-                    "WHERE Username = '" + UserLoginController.getUsername() +"';";
+            String query = "SELECT * FROM Employee join User on Employee.Username = User.Username " +
+                    "WHERE Employee.Username = '" + UserLoginController.getUsername() +"';";
             ResultSet rs = Connector.dbExecuteQuery(query);
             Employee emp = getEmployee(rs);
+            emp.setUsername(rs.getString(0));
+            emp.setEmployeeID(rs.getInt(1));
+            emp.setPhone(rs.getString(2));
+            emp.setAddress(rs.getString(3));
+            emp.setCity(rs.getString(4));
+            emp.setState(rs.getString(5));
+            emp.setZipcode(rs.getInt(6));
+            emp.setFname(rs.getString("FirstName"));
+            emp.setLname(rs.getString("LastName"));
             return emp;
         }
     }
