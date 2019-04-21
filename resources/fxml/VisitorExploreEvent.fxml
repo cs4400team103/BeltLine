@@ -13,10 +13,6 @@
 
 <AnchorPane prefHeight="650.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorExploreEvent">
-    =======
-    <AnchorPane prefHeight="645.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1"
-                xmlns:fx="http://javafx.com/fxml/1">
-        >>>>>>> c6270e2e9b13010830d5cee90932c2585a61b39e
         <children>
             <Label layoutX="316.0" layoutY="14.0" text="Explore Event">
                 <font>
