@@ -1,7 +1,9 @@
 package BeltLineApplication.java.database;
 
 import BeltLineApplication.java.controller.UserLoginController;
+import BeltLineApplication.java.model.Take;
 import BeltLineApplication.java.model.Transit;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
@@ -258,6 +260,65 @@ public class TransitDAO {
         return null;
     }
 
+    /**
+     * list of take objects
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ObservableList<Take> populateTransitList() throws SQLException, ClassNotFoundException {
+        String query = "select Take.Date, Take.Route, Take.Type, Transit.Price \n" +
+                "from Take\n" +
+                "join Transit on Take.Route = Transit.Route and Take.Type = Transit.Type\n" +
+                "join Connect on Take.Route = Connect.Route and Take.Type = Connect.Type;\n";
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            ObservableList<Take> transit = getTransitTake(rs);
+            return transit;
+        } catch (Exception e) {
+            System.out.println("Error with update transit query" + e);
+        }
+        return null;
+    }
+
+    /**
+     * filter take
+     * @param startDate
+     * @param endDate
+     * @param route
+     * @param type
+     * @param site
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws ParseException
+     */
+    public static ObservableList<Take> filterTake(String startDate, String endDate, String route, String type, String site) throws SQLException, ClassNotFoundException, ParseException {
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+
+        //parse dates
+        java.util.Date jDate = sd.parse(startDate);
+        java.sql.Date sDate = new java.sql.Date(jDate.getTime());
+
+        //parse end dates
+        java.util.Date jDateF = sd.parse(endDate);
+        java.sql.Date eDate = new java.sql.Date(jDateF.getTime());
+        String query = "select Take.Date, Take.Route,  Take.Type, Transit.Price \n" +
+                "from Take\n" +
+                "join Transit on Take.Route = Transit.Route and Take.Type = Transit.Type\n" +
+                "join Connect on Take.Route = Connect.Route and Take.Type = Connect.Type\n" +
+                "where Take.Date between '" + sDate + "' and '" + eDate + "' and Take.Type = '" + type +"' \n" +
+                "and Take.Route = '" + route + "' and Connect.SName = '" + site + "' and Take.Username = '" + UserLoginController.getUsername() + "';\n";
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            ObservableList<Take> transit = getTransitTake(rs);
+            return transit;
+        } catch (Exception e) {
+            System.out.println("Error with update transit query" + e);
+        }
+        return null;
+    }
+
     private Transit getTransit(ResultSet rs) throws SQLException {
         Transit transit = null;
         if (rs.next()) {
@@ -289,6 +350,19 @@ public class TransitDAO {
             if (ifAdmin) {
                 transit.setNumberOfTransitLogged(rs.getInt("# of Transit Logged"));
             }
+            trans.add(transit);
+        }
+        return trans;
+    }
+
+    private static ObservableList<Take> getTransitTake(ResultSet rs) throws SQLException {
+        ObservableList<Take> trans = FXCollections.observableArrayList();
+        if (rs.next()) {
+            Take transit = new Take();
+            transit.setDate(rs.getString("Date"));
+            transit.setRoute(rs.getString("Route"));
+            transit.setType(rs.getString("Type"));
+            transit.setPrice(rs.getDouble("Price"));
             trans.add(transit);
         }
         return trans;

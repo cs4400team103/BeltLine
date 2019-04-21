@@ -19,14 +19,14 @@
             </font>
         </Label>
         <Label layoutX="45.0" layoutY="73.0" text="Contain Site" />
-        <ChoiceBox fx:id="containSite" layoutX="142.0" layoutY="69.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="containsSite" layoutX="142.0" layoutY="69.0" prefWidth="150.0" />
         <Label layoutX="327.0" layoutY="73.0" text="Transport Type" />
         <ChoiceBox fx:id="transportType" layoutX="436.0" layoutY="69.0" prefWidth="125.0" />
         <Button fx:id="filter" layoutX="449.0" layoutY="358.0" mnemonicParsing="false" prefWidth="100.0" text="Filter" />
         <Label layoutX="46.0" layoutY="126.0" text="Route" />
         <TextFieldLimit fx:id="route" layoutX="94.0" layoutY="122.0" prefHeight="25.0" prefWidth="45.0" />
         <Label layoutX="182.0" layoutY="126.0" text="Start Date" />
-        <TableView layoutX="43.0" layoutY="172.0" prefHeight="169.0" prefWidth="519.0">
+        <TableView fx:id="transitTable" layoutX="43.0" layoutY="172.0" prefHeight="169.0" prefWidth="519.0">
             <columns>
                 <TableColumn fx:id="dateCol" editable="false" prefWidth="107.9999771118164" sortable="false" text="Date" />
                 <TableColumn fx:id="routeCol" editable="false" prefWidth="139.3333282470703" text="Route" />
