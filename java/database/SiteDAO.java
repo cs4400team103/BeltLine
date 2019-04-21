@@ -4,6 +4,7 @@ package BeltLineApplication.java.database;
 import BeltLineApplication.java.controller.UserLoginController;
 import BeltLineApplication.java.model.Site;
 import BeltLineApplication.java.model.Transit;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,12 +14,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
+ * Site DAO is the class that is in between the connector and the controller
  * @author Yaroslava
  * @author Julia
  */
 public class SiteDAO {
     /**
-     * Create Site
+     * creates a site
+     * @param sname
+     * @param address
+     * @param zipcode
+     * @param openEveryday
+     * @param managerUsername
+     * @throws SQLException
      */
     public static void createSite(String sname, String address, int zipcode, Boolean openEveryday, String managerUsername) throws SQLException {
         String query =
@@ -33,6 +41,14 @@ public class SiteDAO {
         }
     }
 
+    /**
+     *
+     * @param sname
+     * @param address
+     * @param zipcode
+     * @param openEverday
+     * @param managerUsername
+     */
     public static void updateSite(String sname, String address, int zipcode, Boolean openEverday, String managerUsername) {
         String query = "UPDATE";
 
@@ -43,6 +59,11 @@ public class SiteDAO {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public static boolean checkSiteExist(String username) {
         String query = "Select exists (select ManagerUsername from Site where ManagerUsername = "
                 + "'" + username + "') as 'Exists?';";
@@ -60,6 +81,13 @@ public class SiteDAO {
         return false;
     }
 
+    /**
+     *
+     * @param manager
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static String getSite(String manager) throws SQLException , ClassNotFoundException {
         String query = "Select SName from Site where ManagerUsername = "
                 + "'" + manager + "';";
@@ -74,6 +102,11 @@ public class SiteDAO {
         return null;
     }
 
+    /**
+     *
+     * @param date
+     * @throws ParseException
+     */
     public static void visitSite(String date) throws ParseException {
         //actually get sname
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,6 +121,12 @@ public class SiteDAO {
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static ObservableList<String> getManagerList() throws SQLException, ClassNotFoundException {
         String query = "select ManagerUsername from site;";
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -104,6 +143,15 @@ public class SiteDAO {
         return list;
     }
 
+    /**
+     *
+     * @param site
+     * @param manager
+     * @param openEverday
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static ObservableList<Site> filter(String site, String manager, String openEverday) throws SQLException, ClassNotFoundException{
         //create where statements for each variable
         if (!site.isEmpty()) {
@@ -179,7 +227,6 @@ public class SiteDAO {
             System.out.println("Error with delete transit query" + e);
         }
     }
-
 
 
 //    public static ObservableList<String> populateSiteVisitor() throws SQLException, ClassNotFoundException {
