@@ -12,6 +12,10 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * @author Yaroslava
+ * @author Julia
+ */
 public class SiteDAO {
     /**
      * Create Site
@@ -19,6 +23,7 @@ public class SiteDAO {
     public static void createSite(String sname, String address, int zipcode, Boolean openEveryday, String managerUsername) throws SQLException {
         String query =
                 "INSERT INTO site" +
+                        "(SName, Address, Zipcode, OpenEverday, managerUsername)" +
                         "VALUES ('" + sname + "','" + address + "','" + zipcode + "','" + openEveryday + "', '" +
                         managerUsername + "');";
         try {
