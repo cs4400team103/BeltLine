@@ -19,8 +19,11 @@ public class Site {
         return this.zipCode;
     }
 
-    public int getOpenEveryday() {
-        return this.openEveryday;
+    public String getOpenEveryday() {
+        if (this.openEveryday == 1){
+            return "yes";
+        }
+        return "no";
     }
 
     public String getManagerUsername() {

@@ -1,6 +1,8 @@
 package BeltLineApplication.java.database;
 
 import BeltLineApplication.java.controller.UserLoginController;
+import BeltLineApplication.java.model.Event;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -166,7 +168,7 @@ public class EventDAO {
                         "join AssignTo on Event.EName = AssignTo.EName and Event.StartDate = AssignTo.StartDate and Event.SName = AssignTo.SiteName\n" +
                         w + a + b + c + d + e + f + g + h + i + j + date + eName + dKey + sDate + eDate + ";";
         try {
-            ResultSet rs = Connector.dbExecuteQuery(query);
+            Connector.dbExecuteQuery(query);
         } catch (SQLException s) {
             System.out.println("Something is wrong with your SQL schedule: " + s);
         }
@@ -182,4 +184,146 @@ public class EventDAO {
         }
         return list;
     }
+
+    public static ObservableList<Event> exploreEvent() throws SQLException, ClassNotFoundException {
+        ObservableList<Event> event = FXCollections.observableArrayList();
+
+        String query = "select EventName as 'Event Name', SiteName as 'Site Name', TicketPrice as 'Ticket Price',\n" +
+                "(Capacity - TotalVisits) as 'Ticket Remaining', TotalVisits as 'Total Visits', MyVisits as 'My Visits'\n" +
+                "from (\n" +
+                "select Event.EName as 'EventName', Event.SName as 'SiteName', Event.Price as 'TicketPrice', Event.Capacity as 'Capacity',\n" +
+                "count(distinct VisitEvent.SName, VisitEvent.Username, VisitEvent.VisitEventDate) as 'TotalVisits',\n" +
+                "count(distinct a.veSName, a.veEDate) as 'MyVisits'\n" +
+                "from Event\n" +
+                "join VisitEvent on Event.Ename = VisitEvent.EName and Event.SName = VisitEvent.SName\n" +
+                "left join (select Username, VisitEvent.EName as 'veEName', VisitEvent.SName as 'veSName', VisitEvent.VisitEventDate as 'veEDate'\n" +
+                "        from VisitEvent where Username = 'mary.smith') a on VisitEvent.SName = a.veSName and VisitEvent.EName = a.veEName\n" +
+                "group by Event.EName, Event.SName, Price, Capacity\n" +
+                "having totalvisits between 'low' and 'high', myvisits ‘<> or == 0’, (Capacity - TotalVisits) ‘<> or == 0’\n" +
+                ") \n";
+            //"where Event.Ename like '%event name%'  and Event.Description like \"%keyword%\" and Event.Sname = 'sname' and Event.StartDate > 'start' and Event.EndDate < 'End' \n" +
+                //"and Event.Price between 'low' and 'high' \n"
+        try {
+            Connector.dbExecuteQuery(query);
+        } catch (Exception e) {
+            System.out.println("error with explore event table query");
+        }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+        while (rs.next()) {
+            Event e = new Event();
+            e.setEname(rs.getString(1));
+            e.setSname(rs.getString(2));
+            e.setPrice(rs.getDouble(3));
+            e.setRemaining(rs.getInt(4));
+            e.setTotalVisits(rs.getInt(5));
+            e.setMyVisits(rs.getInt(6));
+            event.add(e);
+
+        }
+        return event;
+
+    }
+
+    public static ObservableList<Event> filterEvents(String name, String dKey, String sDate, String eDate, double priceLow, double priceHigh, int visitsLow, int visitsHigh, boolean includeSoldOut, boolean includeVisited, String site) throws SQLException, ClassNotFoundException, ParseException{
+        ObservableList<Event> event = FXCollections.observableArrayList();
+        String query = "";
+        if(!name.isEmpty() || !dKey.isEmpty() || !sDate.isEmpty()|| !eDate.isEmpty() ||(priceHigh != 0.0) || (visitsHigh != 0) || !includeSoldOut || !includeVisited || !site.isEmpty()) {
+                SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date jDate = sd.parse(sDate);
+                java.sql.Date sqlDate = new java.sql.Date(jDate.getTime());
+                SimpleDateFormat ed = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date jeDate = ed.parse(eDate);
+                java.sql.Date sqleDate = new java.sql.Date(jeDate.getTime());
+                String date = "";
+                String so = "";
+                String iv = "";
+
+                if (!name.isEmpty()) {
+                    name = " and Event.EName like '%" + name + "%'";
+                }
+                if (!dKey.isEmpty()) {
+                    dKey = " and Event.Description like '%" +dKey + "%'";
+                }
+                if (priceHigh == 0.0) {
+                    priceHigh = 10000000.0;
+                }
+                if (visitsHigh == 0) {
+                    visitsHigh = 100000000;
+                }
+                if (!site.isEmpty()) {
+                   site = "and Event.Sname = '" + site + "'";
+
+                }
+                if (!sDate.isEmpty() && !eDate.isEmpty()) {
+                    date = " and Event.StartDate >= '" + sqlDate + "' and Event.EndDate <= '" + sqleDate + "'";
+                }
+                if (!sDate.isEmpty()) {
+                    date = " and Event.StartDate >= '" + sqlDate + "'";
+                }
+                if (!eDate.isEmpty()) {
+                    date = "Event.EndDate <= '" + sqleDate + "'";
+                }
+                if (!includeSoldOut) {
+                    so = ", (Capacity - TotalVisits) <> 0";
+                }
+                if (!includeVisited){
+                    iv = ", myvisits ‘<> 0";
+                }
+
+
+
+
+            query = "select EventName as 'Event Name', SiteName as 'Site Name', TicketPrice as 'Ticket Price',\n" +
+                    "(Capacity - TotalVisits) as 'Ticket Remaining', TotalVisits as 'Total Visits', MyVisits as 'My Visits'\n" +
+                    "from (\n" +
+                    "select Event.EName as 'EventName', Event.SName as 'SiteName', Event.Price as 'TicketPrice', Event.Capacity as 'Capacity',\n" +
+                    "count(distinct VisitEvent.SName, VisitEvent.Username, VisitEvent.VisitEventDate) as 'TotalVisits',\n" +
+                    "count(distinct a.veSName, a.veEDate) as 'MyVisits'\n" +
+                    "from Event\n" +
+                    "join VisitEvent on Event.Ename = VisitEvent.EName and Event.SName = VisitEvent.SName\n" +
+                    "left join (select Username, VisitEvent.EName as 'veEName', VisitEvent.SName as 'veSName', VisitEvent.VisitEventDate as 'veEDate'\n" +
+                    "        from VisitEvent where Username =" + UserLoginController.getUsername() + ") a on VisitEvent.SName = a.veSName and VisitEvent.EName = a.veEName\n" +
+                    "where Event.Price between " + priceLow + " and " + priceHigh + name + dKey + site + date +
+                    "group by Event.EName, Event.SName, Price, Capacity\n" +
+                    "having totalvisits between " + visitsLow +" and " + visitsHigh + so + iv + ";";
+
+        }
+        try {
+            Connector.dbExecuteQuery(query);
+        } catch (Exception e) {
+            System.out.println("error with filter explore event table query");
+        }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+        while (rs.next()) {
+            Event e = new Event();
+            e.setEname(rs.getString(1));
+            e.setSname(rs.getString(2));
+            e.setPrice(rs.getDouble(3));
+            e.setRemaining(rs.getInt(4));
+            e.setTotalVisits(rs.getInt(5));
+            e.setMyVisits(rs.getInt(6));
+            event.add(e);
+
+        }
+        return event;
+
+    }
+    public static void logEventVisit(String username, String ename, String sname, String sdate, String logDate) throws ParseException {
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date jDate = sd.parse(sdate);
+        java.sql.Date sqlDate = new java.sql.Date(jDate.getTime());
+
+        SimpleDateFormat ld = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date jlDate = ld.parse(logDate);
+        java.sql.Date sqllDate = new java.sql.Date(jlDate.getTime());
+
+        String query = "Insert into VisitEvent ('Username', 'Ename', 'Sname', 'StartDate', 'VisitEventDate')" +
+                "values ( " + UserLoginController.getUsername() + ", "  + ename + ", " + sname + ", " + sqlDate + ", " + sqllDate + ");";
+        try{
+            Connector.dbExecuteQuery(query);
+        } catch (Exception e){
+            System.out.println("error with log event visit query");
+        }
+    }
+
 }
