@@ -50,12 +50,18 @@ public class SiteDAO {
      * @param managerUsername
      */
     public static void updateSite(String sname, String address, int zipcode, Boolean openEverday, String managerUsername) {
-        String query = "UPDATE ";
+        String open;
+        if (openEverday) {
+            open = "Y";
+        } else {
+            open = "N";
+        }
+        String query = "Update Site Set SiteName = '" + sname + "', SiteZipcode = " + zipcode + "', SiteAddress = '" + address + "', OpenEveryday = '" + open + "', ManagerUsername = '" + managerUsername + "';";
 
         try {
             Connector.dbExecuteUpdate(query);
         } catch (Exception e) {
-            System.out.println("Error with create site query" + e);
+            System.out.println("Error with update site query" + e);
         }
     }
 
@@ -142,7 +148,7 @@ public class SiteDAO {
      * @throws ClassNotFoundException
      */
     public static ObservableList<String> getManagerList() throws SQLException, ClassNotFoundException {
-        String query = "select ManagerUsername from site;";
+        String query = "select concat(FirstName, '" + "' LastName) from User JOIN Site ON Site.ManagerUsername = User.Username;";
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
             Connector.dbExecuteUpdate(query);

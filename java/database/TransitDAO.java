@@ -72,21 +72,20 @@ public class TransitDAO {
      * @throws ClassNotFoundException
      */
     public static ObservableList<Transit> filter(String site, String type, double minRange, double maxRange, Boolean ifAdmin) throws SQLException, ClassNotFoundException {
-        //create where statements for each variable
-        if (!site.isEmpty()) {
-            site = " Connect.SName = '" + site + "'";
-        }
-        if (!type.isEmpty()) {
-            type = " type = '" + type + "'";
-        }
-
         if (maxRange == 0.0) {
             maxRange = 999.99;
         }
 
-        String query = "SELECT * from Transit " +
-                "Join Connect ON Transit.Route = Connect.Route " + "" +
-                "WHERE " + site + type + "' and Transit.Price BETWEEN " + minRange + " AND " + maxRange +  ";";
+        String query = "Select Transit.Route, Transit.Type, Price, c.NumConnectedSites as 'Number of Connected Sites'\n" +
+                "from Transit \n" +
+                "join Connect on Transit.Type = Connect.Type\n" +
+                "join (select transit.route, transit.type, count(*) as 'NumConnectedSites' from Transit join Connect\n" +
+                "on Transit.Type = Connect.Type\n" +
+                "group by transit.route, transit.type) as c on c.route = transit.route\n" +
+                "where (" + site + " = '' or SName = '" + site + "') and \n" +
+                "(Transit.Price > " + minRange + " or " + minRange + " = '' ) and \n" +
+                "(Transit.Price < " + maxRange + " or \" + maxRange + \" = '')  and \n" +
+                "(Connect.Type =  '" + type + "'  or\" + type + \"= '');\n";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
         } catch (SQLException e) {
@@ -110,6 +109,7 @@ public class TransitDAO {
     public static void createTransit(String type, String route, double price) throws SQLException {
         String query =
                 "INSERT INTO transit" +
+                        "(Type, Route, Price)" +
                         "VALUES ('" + type + "','" + route + "','" + price + "');";
         try {
             Connector.dbExecuteUpdate(query);
@@ -212,7 +212,8 @@ public class TransitDAO {
      */
     public static void updateTransit(String type, String route, double price) {
         String updateTransit =
-                "update" + "');";
+                "update transit\n" +
+                        "set Price = '" + price + "', Route = '" + route + "';";
         try {
             Connector.dbExecuteUpdate(updateTransit);
         } catch (Exception e) {
