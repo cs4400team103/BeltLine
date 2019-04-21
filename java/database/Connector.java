@@ -58,12 +58,13 @@ public class Connector {
 
         try {
             connect();
+            System.out.println("Select Statement: " + query);
             statement = con.createStatement();
             rs = statement.executeQuery(query);
 
             crs = RowSetProvider.newFactory().createCachedRowSet();
             crs.populate(rs);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Your error: " + e);
             throw e;
         } finally {

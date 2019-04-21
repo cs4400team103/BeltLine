@@ -96,7 +96,7 @@ public class UserTakeTransitController {
             //go to next page
             Main.pstage.setScene(rootScene);
         } else if (userType.equals("Administrator")) {
-            Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionality.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
             Scene rootScene = new Scene(root, 350, 235);
             //go to next page
             Main.pstage.setScene(rootScene);

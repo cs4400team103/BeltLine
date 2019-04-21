@@ -73,16 +73,16 @@ public class UserDAO {
         String query = "Select Status From User Where Username = '" + username + "';";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
-            String status = "";
-            if (rs.next()) {
-                status = rs.getString(0);
-                System.out.println("I am almost approved");
-            }
-            return (status.equalsIgnoreCase("Approved"));
-        } catch (SQLException e) {
+           if (rs != null) {
+               rs.next();
+               String status = rs.getString("Status");
+               return (status.equalsIgnoreCase("Approved"));
+           }
+        } catch (Exception e) {
             System.out.println("Something is wrong with your SQL: " + e);
             throw e;
         }
+        return false;
     }
 
     /**
@@ -120,11 +120,11 @@ public class UserDAO {
         try {
             query = "SELECT username from " + mang + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            if (rs != null) {
+            if (rs.next()) {
                 try {
                     query = "SELECT username from " + visitor + where;
                     ResultSet second = Connector.dbExecuteQuery(query);
-                    if (second != null) {
+                    if (second.next()) {
                         return mangVisitor;
                     }
                     return mang;
@@ -140,11 +140,11 @@ public class UserDAO {
         try {
             query = "SELECT username from " + admin + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            if (rs != null) {
+            if (rs.next()) {
                 try {
                     query = "SELECT username from " + visitor + where;
                     ResultSet second = Connector.dbExecuteQuery(query);
-                    if (second != null) {
+                    if (second.next()) {
                         return adminVisitor;
                     }
                     return admin;
@@ -160,11 +160,11 @@ public class UserDAO {
         try {
             query = "SELECT username from " + staff + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            if (rs != null) {
+            if (rs.next()) {
                 try {
                     query = "SELECT username from " + visitor + where;
                     ResultSet second = Connector.dbExecuteQuery(query);
-                    if (rs != null) {
+                    if (second.next()) {
                         return staffVisitor;
                     }
                     return staff;
@@ -180,7 +180,7 @@ public class UserDAO {
         try {
             query = "SELECT username from " + visitor + where;
             ResultSet rs = Connector.dbExecuteQuery(query);
-            if (rs != null) {
+            if (rs.next()) {
                 return visitor;
             }
         } catch (Exception e) {

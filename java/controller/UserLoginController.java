@@ -80,11 +80,12 @@ public class UserLoginController {
         if (!emailText.getText().isEmpty() || !passwordText.getText().isEmpty()) {
 
             //fist get username from email.
-            String username = EmailDAO.getUsername(email.getText());
+            String username = EmailDAO.getUsername(emailText.getText());
             setUsername(username);
 
-            String userType = UserDAO.isUser(getUsername());
+            String userType = UserDAO.isUser(username);
             setUserType(userType);
+
             if (UserDAO.isApproved(username)) {
                 //login user
                 if (UserDAO.loginUser(emailText.getText(), passwordText.getText())) {
@@ -111,7 +112,7 @@ public class UserLoginController {
                         Main.pstage.setScene(rootScene);
                         return;
                     } else if (userType.equals("Administrator")) {
-                        Parent Administrator = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionality.fxml"));
+                        Parent Administrator = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
                         Scene rootScene = new Scene(Administrator, 350, 235);
                         //go to next page
                         Main.pstage.setScene(rootScene);

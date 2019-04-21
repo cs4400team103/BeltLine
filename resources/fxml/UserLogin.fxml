@@ -15,8 +15,8 @@
          </font>
       </Label>
       <Label fx:id="email" contentDisplay="TOP" text="Email" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="75.0" />
-      <TextField fx:id="emailText" promptText="email" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="73.0" />
-      <PasswordField fx:id="passwordText" promptText="password" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="120.0" />
+      <TextField fx:id="emailText" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="73.0" />
+      <PasswordField fx:id="passwordText" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="120.0" />
       <Label text="Password" fx:id="password" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="123.0" />
       <Button fx:id="login" minWidth="70.0" mnemonicParsing="false" text="Login" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="170.0" onAction="#login" />
       <Button fx:id="register" layoutX="189.0" layoutY="170.0" minWidth="70.0" mnemonicParsing="false" text="Register" AnchorPane.leftAnchor="189.0" AnchorPane.topAnchor="170.0" onAction="#register" />

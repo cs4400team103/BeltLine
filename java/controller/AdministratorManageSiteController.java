@@ -15,6 +15,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.sql.SQLException;
 
 /**
@@ -44,7 +46,10 @@ public class AdministratorManageSiteController {
      */
     public void initialize() throws SQLException, ClassNotFoundException {
         ObservableList<Site> sit = SiteDAO.populateSite();
-        site.setItems(sit);
+        for(int i = 0; i < sit.size(); i++) {
+            nameCol.setCellValueFactory(new PropertyValueFactory<>(sit.get(i).getSname()));
+            managerCol.setCellValueFactory(new PropertyValueFactory<>(sit.get(i).getManagerUsername()));
+        }
 
         ObservableList<String> siteComb = SiteDAO.getSites();
         sites.setItems(siteComb);
@@ -70,7 +75,10 @@ public class AdministratorManageSiteController {
      */
     public void filter() throws SQLException, ClassNotFoundException {
         ObservableList<Site> list = SiteDAO.filter(sites.getSelectionModel().getSelectedItem().toString(), manager.getSelectionModel().getSelectedItem().toString(), openEveryday.getSelectionModel().getSelectedItem().toString());
-        site.setItems(list);
+        for(int i = 0; i < list.size(); i++) {
+            nameCol.setCellValueFactory(new PropertyValueFactory<>(list.get(i).getSname()));
+            managerCol.setCellValueFactory(new PropertyValueFactory<>(list.get(i).getManagerUsername()));
+        }
     }
 
     /**

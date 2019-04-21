@@ -15,6 +15,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.sql.SQLException;
 
 /**
@@ -53,7 +55,13 @@ public class AdministratorManageTransitController {
      */
     public void initialize() throws SQLException, ClassNotFoundException {
         ObservableList<Transit> trans = TransitDAO.populateTransit(true);
-        transitTable.setItems(trans);
+        for (int i = 0; i < trans.size(); i++) {
+            routeCol.setCellValueFactory(new PropertyValueFactory<>(trans.get(i).getRoute()));
+            transportTypeCol.setCellValueFactory(new PropertyValueFactory<>(trans.get(i).getType()));
+            //priceCol.setCellFactory(new PropertyValueFactory<>(trans.get(i).getPrice()));
+            //connectedSitesCol.setCellValueFactory(new PropertyValueFactory<>(trans.get(i).getNumberOfConnectedSites()));
+            //transitLoggedCol.setCellValueFactory(new PropertyValueFactory<>(trans.get(i).getNumberOfTransitLogged()));
+        }
 
         ObservableList<String> site = SiteDAO.getSites();
         containSite.setItems(site);

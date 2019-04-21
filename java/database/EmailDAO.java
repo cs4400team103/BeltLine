@@ -16,7 +16,7 @@ public class EmailDAO {
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
 
-            while(rs.next()) {
+            if (rs.next()) {
                 username = rs.getString("Username");
             }
             return username;

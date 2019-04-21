@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 public class AdministratorFunctionalityOnlyController {
     public void manageProfile() throws Exception {
         Parent administratorManageProfile = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/EmployeeManageProfile.fxml"));
-        Scene rootScene = new Scene(administratorManageProfile, 650, 400);
+        Scene rootScene = new Scene(administratorManageProfile, 750, 400);
         Main.pstage.setScene(rootScene);
     }
 
