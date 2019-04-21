@@ -71,14 +71,21 @@ public class AdministratorEditSiteController {
     }
 
     /**
-     * updates the site
+     * update site
      */
     public void update() {
         //make sure none of them are empty
         if (!name.getText().isEmpty() || !address.getText().isEmpty() || !zipcode.getText().isEmpty() || !manager.getSelectionModel().isEmpty()) {
             //try to update the site
+            String managerUsername = "";
             try {
-                SiteDAO.updateSite(name.getText(), address.getText(), Integer.parseInt(zipcode.getText()), openEveryday.isSelected(), manager.getSelectionModel().getSelectedItem().toString());
+                managerUsername = SiteDAO.getManagerUsername(manager.getSelectionModel().getSelectedItem());
+            } catch (Exception e) {
+                System.out.println("Issue with SQL" + e);
+                throw e;
+            }
+            try {
+                SiteDAO.updateSite(name.getText(), address.getText(), Integer.parseInt(zipcode.getText()), openEveryday.isSelected(), managerUsername);
             } catch (Exception e) {
                 System.out.println("Issue with SQL" + e);
                 throw e;
