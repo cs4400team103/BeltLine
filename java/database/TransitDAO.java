@@ -29,17 +29,17 @@ public class TransitDAO {
 
         //create where statements for each variable
         if (!route.isEmpty()) {
-            route = "route = '" + route + "'";
+            route = " route = '" + route + "'";
         }
         if (!containSite.isEmpty()) {
-            containSite = "site = '" + containSite + "'";
+            containSite = " site = '" + containSite + "'";
         }
         if (!transportType.isEmpty()) {
-            transportType = "type = '" + transportType + "'";
+            transportType = " type = '" + transportType + "'";
         }
 
         String query =
-                "select * from transit where ;";
+                "select * from transit where " + route + containSite + transportType + ";";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
         } catch (SQLException e) {
@@ -95,7 +95,7 @@ public class TransitDAO {
      * @return connected sites list
      */
     public static ObservableList<String> getConnectedSites() throws SQLException, ClassNotFoundException {
-        String query = "select SName from site);";
+        String query = "select SName from site;";
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
             Connector.dbExecuteUpdate(query);

@@ -1,36 +1,125 @@
 package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
+import BeltLineApplication.java.database.SiteDAO;
+import BeltLineApplication.java.model.Site;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
+import java.sql.SQLException;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class AdministratorManageSiteController {
+    @FXML
+    private TableView<Site> site;
+    @FXML
+    private ChoiceBox manager;
+    @FXML
+    private ChoiceBox openEveryday;
+    @FXML
+    private ChoiceBox sites;
+    @FXML
+    private TableColumn<Site, String> nameCol;
+    @FXML
+    private TableColumn<Site, String> managerCol;
+    @FXML
+    private TableColumn<Site, String> openEverydayCol;
 
-    public void filter() {
-        //filter table
+    /**
+     * initializes the first data
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void initialize() throws SQLException, ClassNotFoundException {
+        ObservableList<Site> sit = SiteDAO.populateSite();
+        site.setItems(sit);
+
+        //will allow you to select a row without a radiobutton function
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                site.requestFocus();
+                site.getSelectionModel().select(0);
+                site.scrollTo(0);
+            }
+        });
     }
 
+    /**
+     * filters liset
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void filter() throws SQLException, ClassNotFoundException {
+        ObservableList<Site> list = SiteDAO.filter(sites.getSelectionModel().getSelectedItem().toString(), manager.getSelectionModel().getSelectedItem().toString(), openEveryday.getSelectionModel().getSelectedItem().toString());
+        site.setItems(list);
+    }
+
+    /**
+     * goes to the back page based on user type
+     * @throws Exception
+     */
     public void back() throws Exception {
-        Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
-        Scene rootScene = new Scene(administratorFunctionality, 350, 250);
-        Main.pstage.setScene(rootScene);
+        if (UserLoginController.getUserType().equals("Administrator")) {
+            Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
+            Scene rootScene = new Scene(administratorFunctionality, 350, 250);
+            Main.pstage.setScene(rootScene);
+        } else {
+            Parent administratorVisitorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorVisitorFunctionality.fxml"));
+            Scene rootScene = new Scene(administratorVisitorFunctionality, 350, 250);
+            Main.pstage.setScene(rootScene);
+        }
     }
 
+    /**
+     * goes to delete page
+     */
     public void delete() {
-        //TODO: delete row from database
+        //make sure this exists first
+        if (site.getSelectionModel().getSelectedCells().get(0) != null) {
+            //get selected row
+            TablePosition pos = site.getSelectionModel().getSelectedCells().get(0);
+            int row = pos.getRow();
+
+            Site item = site.getItems().get(row);
+            SiteDAO.delete(item);
+        }
     }
 
+    /**
+     * goes to edit page
+     * @throws Exception
+     */
     public void edit() throws Exception {
-        Parent administratorEditSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorEditSite.fxml"));
-        Scene rootScene = new Scene(administratorEditSite, 405, 245);
-        Main.pstage.setScene(rootScene);
+        //make sure the table exists first
+        if (site.getSelectionModel().getSelectedCells().get(0) != null) {
+            //get selected row
+            TablePosition pos = site.getSelectionModel().getSelectedCells().get(0);
+            int row = pos.getRow();
 
-        //TODO: get selected value, get selected value items and transport them into the edit site page
-        // with text.setText("");...
+            Site item = site.getItems().get(row);
+            AdministratorEditSiteController.setSite(item);
+
+            Parent administratorEditSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorEditSite.fxml"));
+            Scene rootScene = new Scene(administratorEditSite, 405, 245);
+            Main.pstage.setScene(rootScene);
+        }
     }
 
+    /**
+     * goes to create page
+     * @throws Exception
+     */
     public void create() throws Exception {
         Parent administratorCreateSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorCreateSite.fxml"));
         Scene rootScene = new Scene(administratorCreateSite, 600, 450);

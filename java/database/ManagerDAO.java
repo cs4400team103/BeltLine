@@ -29,6 +29,7 @@ public class ManagerDAO {
     public static void registerManager(String username) {
         String query =
                 "INSERT INTO manager" +
+                        "(Username)" +
                         "VALUES ('" + username + "');";
         try {
             Connector.dbExecuteUpdate(query);

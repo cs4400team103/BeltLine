@@ -7,6 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class RegisterNavigationController {
 
     public void userOnly() throws Exception {
@@ -17,7 +21,7 @@ public class RegisterNavigationController {
 
     public void visitorOnly() throws Exception {
         Parent registerVisitor = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterVisitorOnly.fxml"));
-        Scene registerVisitorScene = new Scene(registerVisitor, 600, 450);
+        Scene registerVisitorScene = new Scene(registerVisitor, 600, 400);
         Main.pstage.setScene(registerVisitorScene);
     }
 
@@ -29,7 +33,7 @@ public class RegisterNavigationController {
 
     public void employeeVisitor() throws Exception {
         Parent registerEmployeeVisitor = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterEmployeeVisitor.fxml"));
-        Scene registerEmployeeVisitorScene = new Scene(registerEmployeeVisitor, 600, 500);
+        Scene registerEmployeeVisitorScene = new Scene(registerEmployeeVisitor, 600, 550);
         Main.pstage.setScene(registerEmployeeVisitorScene);
     }
 

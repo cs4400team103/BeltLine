@@ -4,6 +4,7 @@ public class StaffDAO {
     public static void registerStaff(String username) {
         String query =
                 "INSERT INTO staff" +
+                        "(Username)" +
                         "VALUES ('" + username + "');";
         try {
             Connector.dbExecuteUpdate(query);

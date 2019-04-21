@@ -5,6 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * Completed
+ * @author Yaroslava 
+ */
 public class AdministratorVisitorFunctionalityController {
     public void manageProfile() throws Exception {
         Parent administratorManageProfile = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/EmployeeManageProfile.fxml"));

@@ -12,6 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import java.sql.SQLException;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class AdministratorEditTransitController {
     @FXML
     private Label transportType;

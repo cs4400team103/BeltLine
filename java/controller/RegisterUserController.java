@@ -1,7 +1,9 @@
 package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
+import BeltLineApplication.java.database.EmailDAO;
 import BeltLineApplication.java.database.UserDAO;
+import BeltLineApplication.java.limiter.PasswordFieldLimit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,8 +15,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import BeltLineApplication.java.limiter.TextFieldLimit;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class RegisterUserController {
-
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -24,15 +29,14 @@ public class RegisterUserController {
     @FXML
     private TextFieldLimit username;
     @FXML
-    private PasswordField password;
+    private PasswordFieldLimit password;
     @FXML
-    private PasswordField confirmPassword;
+    private PasswordFieldLimit confirmPassword;
     @FXML
     private TextFieldLimit emailTextField;
     @FXML
     private Button add;
     private int counter;
-
     private Alert errorAlert = new Alert(AlertType.ERROR);
     private Button remove = new Button("remove");
     private Label email = new Label();
@@ -41,23 +45,35 @@ public class RegisterUserController {
 
     public void initialize() {
         //set limit on textFields
-        fname.setMaxLength(5);
+        fname.setMaxLength(50);
         lname.setMaxLength(50);
         username.setMaxLength(50);
         emailTextField.setMaxLength(50);
 
+        password.setMaxLength(50);
+        confirmPassword.setMaxLength(50);
+
         buttons.add(add);
     }
 
+    /**
+     * registers user
+     * @throws Exception
+     */
     public void registerUser() throws Exception {
         Parent login = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/userLogin.fxml"));
-        Scene rootScene = new Scene(login, 250, 300);
+        Scene rootScene = new Scene(login, 280, 215);
 
         //None of the fields can be empty
-        if (!username.getText().isEmpty() || !password.getText().isEmpty() || !confirmPassword.getText().isEmpty() || !fname.getText().isEmpty() || !lname.getText().isEmpty() || !emailTextField.getText().isEmpty()) {
+        if (!username.getText().isEmpty() || !password.getText().isEmpty() || !confirmPassword.getText().isEmpty() || !fname.getText().isEmpty() || !lname.getText().isEmpty() || !labels.isEmpty()) {
             //password must equal password
-            if (password.getText().equals(confirmPassword.getText())) {
+            if (password.getText().equals(confirmPassword.getText()) && password.getText().length() > 7) {
                 UserDAO.registerUser(username.getText(), password.getText(), fname.getText(), lname.getText());
+                if (!labels.isEmpty()) {
+                    for (int i=0; i<labels.size(); i++) {
+                        EmailDAO.registerEmail(username.getText(), labels.get(i).getText());
+                    }
+                 }
                 Main.pstage.setScene(rootScene);
             } else {
                 errorAlert.setTitle("Password Fail");
@@ -73,12 +89,19 @@ public class RegisterUserController {
         }
     }
 
+    /**
+     * goes back to login page
+     * @throws Exception
+     */
     public void back() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/RegisterNavigation.fxml"));
         Scene rootScene = new Scene(root, 250, 300);
         Main.pstage.setScene(rootScene);
     }
 
+    /**
+     * add email / set to label
+     */
     public void addEmail() {
         email.setStyle("-fx-layoutY: " + emailTextField.getLayoutY());
         email.setStyle("-fx-locationX: " + emailTextField.getLayoutX());
@@ -113,7 +136,9 @@ public class RegisterUserController {
         }
     }
 
-    //TODO: remove the email button
+    /**
+     * removes email from the email list
+     */
     public void removeEmail() {
         if (getCounter() >= 0) {
             anchorPane.getChildren().remove(buttons.remove(getCounter()));
@@ -122,10 +147,18 @@ public class RegisterUserController {
         }
     }
 
+    /**
+     * counter for the emails
+     * @return
+     */
     public int getCounter() {
         return this.counter;
     }
 
+    /**
+     * setter for the counter
+     * @param c
+     */
     public void setCounter(int c) {
         this.counter = c;
     }
