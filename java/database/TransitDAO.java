@@ -228,7 +228,7 @@ public class TransitDAO {
      */
     public static void delete(Transit transit) {
         String delete = "Delete from transit WHERE Type = '" + transit.getType()
-                + "' and ROUTE = '" + transit.getRoute()
+                + "' and Route = '" + transit.getRoute()
                 + "' and Price = '" + transit.getPrice() + "';";
         try {
             Connector.dbExecuteUpdate(delete);
