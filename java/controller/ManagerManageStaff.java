@@ -30,29 +30,35 @@ public class ManagerManageStaff {
     @FXML
     TextField lName;
     @FXML
-    TextField startDate;
+    TextField sDate;
     @FXML
     TextField eDate;
 
-    public void sitePopulate() throws SQLException, ClassNotFoundException {
+    public void initialize() throws SQLException, ClassNotFoundException {
         ObservableList<String> list = SiteDAO.getSites();
         sites.setItems(list);
+        sites.getSelectionModel();
 
         ObservableList<Staff> staff = StaffDAO.manageStaff();
         staffTable.setItems(staff);
+
     }
 
-    public void filter() {
-//        ObservableList<Staff> list = StaffDAO.filterStaff(route.getText(), Double.parseDouble(minRange.getText()), Double.parseDouble(maxRange.getText()), containSite.getSelectionModel().getSelectedItem().toString(), transportType.getSelectionModel().getSelectedItem().toString());
-//        transitTable.setItems(list);
-        //filter
-        //first name last name start date end date
+    public void filter() throws SQLException, ClassNotFoundException {
+       ObservableList<Staff> list = StaffDAO.filterStaff(fName.getText(), lName.getText(), sDate.getText(), eDate.getText(), sites.getSelectionModel().toString());
+       staffTable.setItems(list);
+
     }
 
     public void back() throws Exception {
-        //back to hybrid visitor as well
-        Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
-        Scene rootScene = new Scene(root, 350, 250);
-        Main.pstage.setScene(rootScene);
+        if (UserLoginController.getUserType().equals("ManagerVisitor")){
+            Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerVisitorFunctionality.fxml"));
+            Scene rootScene = new Scene(root, 325, 280);
+            Main.pstage.setScene(rootScene);
+        } else {
+            Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
+            Scene rootScene = new Scene(root, 350, 250);
+            Main.pstage.setScene(rootScene);
+        }
     }
 }
