@@ -2,7 +2,6 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.SiteDAO;
-import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.model.Site;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+
+import java.sql.SQLException;
 
 public class AdministratorEditSiteController {
     @FXML
@@ -28,7 +29,7 @@ public class AdministratorEditSiteController {
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
     private static Site site;
 
-    public void initialize() {
+    public void initialize() throws SQLException, ClassNotFoundException {
         Site item = getSite();
 
         //start here...
@@ -40,20 +41,35 @@ public class AdministratorEditSiteController {
 
     }
 
+    /**
+     * get site object
+     * @return
+     */
     public static Site getSite() {
         return site;
     }
 
+    /**
+     * set site
+     * @param s
+     */
     public static void setSite(Site s) {
         site = s;
     }
 
+    /**
+     * goes to the manage site page
+     * @throws Exception
+     */
     public void back() throws Exception {
         Parent administratorManageSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorManageSite.fxml"));
         Scene rootScene = new Scene(administratorManageSite, 350, 250);
         Main.pstage.setScene(rootScene);
     }
 
+    /**
+     * updates the site
+     */
     public void update() {
         //make sure none of them are empty
         if (!name.getText().isEmpty() || !address.getText().isEmpty() || !zipcode.getText().isEmpty() || !manager.getSelectionModel().isEmpty()) {
