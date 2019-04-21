@@ -7,6 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+/**
+ * Completed
+ * @author Julia
+ */
 public class StaffVisitorFunctionality {
     @FXML
     Button manageProfile;

@@ -50,13 +50,33 @@ public class SiteDAO {
      * @param managerUsername
      */
     public static void updateSite(String sname, String address, int zipcode, Boolean openEverday, String managerUsername) {
-        String query = "UPDATE";
+        String open;
+        if (openEverday) {
+            open = "Y";
+        } else {
+            open = "N";
+        }
+        String query = "Update Site Set SiteName = '" + sname + "', SiteZipcode = " + zipcode + "', SiteAddress = '" + address + "', OpenEveryday = '" + open + "', ManagerUsername = '" + managerUsername + "';";
 
         try {
             Connector.dbExecuteUpdate(query);
         } catch (Exception e) {
+            System.out.println("Error with update site query" + e);
+        }
+    }
+
+    public static String getManagerUsername(String manager) {
+        String query = "Select managerUsername from Site JOIN Join on User.username = Site.managerUsername WHERE " + manager + " = concat(User.FirstName, \'\', User.LastName)";
+        String managerUsername = "";
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            while(rs.next()) {
+                managerUsername = rs.getString("ManagerUsername");
+            }
+        } catch (Exception e) {
             System.out.println("Error with create site query" + e);
         }
+        return managerUsername;
     }
 
     /**
@@ -128,7 +148,7 @@ public class SiteDAO {
      * @throws ClassNotFoundException
      */
     public static ObservableList<String> getManagerList() throws SQLException, ClassNotFoundException {
-        String query = "select ManagerUsername from site;";
+        String query = "select concat(FirstName, '" + "' LastName) from User JOIN Site ON Site.ManagerUsername = User.Username;";
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
             Connector.dbExecuteUpdate(query);
@@ -216,7 +236,6 @@ public class SiteDAO {
         return null;
     }
 
-    //TODO: fix openEveryday stuff either yes or digits..
     public static void delete(Site site) {
         String delete = "Delete from site WHERE SName = '" + site.getSname()
                 + "' and ManagerUsername = '" + site.getManagerUsername()
@@ -228,18 +247,6 @@ public class SiteDAO {
         }
     }
 
-
-//    public static ObservableList<String> populateSiteVisitor() throws SQLException, ClassNotFoundException {
-//        String query = ""; //check in with query
-//        try {
-//            ResultSet rs = Connector.dbExecuteQuery(query);
-//            ObservableList<String> siteInfo = getTransitList(rs);
-//            return null;
-//        } catch (Exception e) {
-//            System.out.println("Error with populate explore site query" + e);
-//        }
-//        return null;
-//    }
 
     public static ObservableList<String> getSites() throws SQLException, ClassNotFoundException {
         String query = "select SName from site;";

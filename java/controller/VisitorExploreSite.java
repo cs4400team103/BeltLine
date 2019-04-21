@@ -29,19 +29,19 @@ public class VisitorExploreSite {
 
     public void back() throws Exception {
         //need to add back to all employee hybrid users
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VisitorFunctionalityOnly.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Resources/fxml/VisitorFunctionalityOnly.fxml"));
         Scene rootScene = new Scene(root, 250, 350);
         Main.pstage.setScene(rootScene);
     }
 
     public void siteDetail() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VisitorSiteDetail.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Resources/fxml/VisitorSiteDetail.fxml"));
         Scene rootScene = new Scene(root, 550, 250);
         Main.pstage.setScene(rootScene);
     }
 
     public void transitDetail() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VisitorTransitDetail.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Resources/fxml/VisitorTransitDetail.fxml"));
         Scene rootScene = new Scene(root, 550, 450);
         Main.pstage.setScene(rootScene);
     }
