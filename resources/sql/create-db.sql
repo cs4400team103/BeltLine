@@ -88,9 +88,9 @@ CREATE TABLE if NOT EXISTS Site
 CREATE TABLE if NOT EXISTS Event
 (
     EName       varchar(50)   NOT NULL,
-    StartDate   datetime      NOT NULL,
+    StartDate   date          NOT NULL,
     SName       varchar(50)   NOT NULL,
-    EndDate     datetime      NOT NULL,
+    EndDate     date          NOT NULL,
     Price       Decimal(6, 2) NOT NULL,
     Capacity    int,
     Description text          NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE if NOT EXISTS AssignTo
 (
     StaffUsername varchar(50) NOT NULL,
     EName         varchar(50) NOT NULL,
-    StartDate     datetime    NOT NULL,
+    StartDate     date        NOT NULL,
     SiteName      varchar(50) NOT NULL,
     PRIMARY KEY (EName, StaffUsername, StartDate, SiteName),
     FOREIGN KEY (EName, StartDate, SiteName) REFERENCES Event (EName, StartDate, SName)
@@ -143,7 +143,7 @@ Create TABLE if NOT EXISTS Take
     Username varchar(50) NOT NULL,
     Route    varchar(50) NOT NULL,
     Type     varchar(50) NOT NULL,
-    Date     datetime    NOT NULL,
+    Date     date        NOT NULL,
     PRIMARY KEY (Username, Date, Type, Route),
     FOREIGN KEY (Type, Route) REFERENCES Transit (Type, Route)
         ON DELETE CASCADE
@@ -157,7 +157,7 @@ CREATE TABLE if NOT EXISTS VisitSite
 (
     Username      varchar(50) NOT NULL,
     SName         varchar(50) NOT NULL,
-    VisitSiteDate datetime    NOT NULL,
+    VisitSiteDate date        NOT NULL,
     PRIMARY KEY (Username, SName, VisitSiteDate),
     FOREIGN KEY (Username) REFERENCES User (Username)
         ON UPDATE CASCADE
@@ -171,9 +171,9 @@ CREATE TABLE if NOT EXISTS VisitEvent
 (
     Username       varchar(50) NOT NULL,
     EName          varchar(50) NOT NULL,
-    StartDate      datetime    NOT NULL,
+    StartDate      date        NOT NULL,
     SName          varchar(50) NOT NULL,
-    VisitEventDate datetime    NOT NULL,
+    VisitEventDate date        NOT NULL,
     PRIMARY KEY (Username, EName, StartDate, SName, VisitEventDate),
     FOREIGN KEY (Username) REFERENCES User (Username)
         ON UPDATE CASCADE

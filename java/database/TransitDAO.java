@@ -29,13 +29,13 @@ public class TransitDAO {
 
         //create where statements for each variable
         if (!route.isEmpty()) {
-            route = "route = '" + route + "'";
+            route = " route = '" + route + "'";
         }
         if (!containSite.isEmpty()) {
-            containSite = "site = '" + containSite + "'";
+            containSite = " site = '" + containSite + "'";
         }
         if (!transportType.isEmpty()) {
-            transportType = "type = '" + transportType + "'";
+            transportType = " type = '" + transportType + "'";
         }
 
         String query =

@@ -2,6 +2,10 @@
 package BeltLineApplication.java.database;
 
 import BeltLineApplication.java.controller.UserLoginController;
+import BeltLineApplication.java.model.Site;
+import BeltLineApplication.java.model.Transit;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,5 +81,49 @@ public class SiteDAO {
         } catch (Exception e) {
             System.out.println("Error with SQL");
         }
+    }
+
+    public static ObservableList<Site> filter(String site, String manager, String openEverday) throws SQLException, ClassNotFoundException{
+        //create where statements for each variable
+        if (!site.isEmpty()) {
+            site = " site = '" + site + "'";
+        }
+        if (!manager.isEmpty()) {
+            manager = " manager = '" + manager + "'";
+        }
+        if (!openEverday.isEmpty()) {
+            openEverday = " openEverday = '" + openEverday + "'";
+        }
+
+        String query =
+                "select site, manager, openEverday from site where ;" + site + manager + openEverday;
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Something is wrong with your SQL: " + e);
+            throw e;
+        }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+        ObservableList<Site> row = getSiteList(rs);
+
+        return row;
+    }
+
+    /**
+     * returns the list of transit based on the result set
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
+    private static ObservableList<Site> getSiteList(ResultSet rs) throws SQLException {
+        ObservableList<Site> list = FXCollections.observableArrayList();
+        if (rs.next()) {
+            Site s = new Site();
+            s.setSname(rs.getString("SName"));
+            s.setManagerUsername(rs.getString("ManagerUsername"));
+            s.setOpenEveryday(rs.getInt("OpenEveryday"));
+            list.add(s);
+        }
+        return list;
     }
 }
