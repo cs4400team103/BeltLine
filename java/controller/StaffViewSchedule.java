@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import java.sql.SQLException;
+
 public class StaffViewSchedule {
     @FXML
     Button filter;
@@ -14,6 +16,10 @@ public class StaffViewSchedule {
     Button back;
     @FXML
     Button viewEvent;
+
+    public void initialize() throws SQLException, ClassNotFoundException {
+
+    }
 
     public void filter() {
         //filter, event name, description keyword, start date, end date

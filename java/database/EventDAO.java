@@ -1,5 +1,10 @@
 package BeltLineApplication.java.database;
 
+import BeltLineApplication.java.controller.UserLoginController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,8 +55,26 @@ public class EventDAO {
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date jDate = sd.parse(date);
         java.sql.Date sqlDate = new java.sql.Date(jDate.getTime());
-        String query = "Insert into";
+        String query = "INSERT INTO VisitEvent ('Username', 'Ename', 'Sname', 'StartDate', 'VisitEventData')"
+                + "VALUES (" + UserLoginController.getUsername() + ", " + ");";
     }
 
+    public static ObservableList<String> getStaff() throws SQLException, ClassNotFoundException {
+        String query = "SELECT FirstName, LastName" +
+                "FROM User WHERE;"; //staff is not assigned to another event during this time
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with getting staff" + e);
+        }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+        while (rs.next()) {
+            String fName = rs.getString("FirstName");
+            String lName = rs.getString("LastName");
+            list.add(fName + " " + lName);
+        }
+        return list;
+    }
 
 }

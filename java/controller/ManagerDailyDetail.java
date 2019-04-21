@@ -23,7 +23,7 @@ public class ManagerDailyDetail {
 
 
     public void initialize() {
-        
+        //eventName.setCellValueFactory();
     }
     //get info for the table
 
