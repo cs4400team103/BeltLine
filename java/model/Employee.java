@@ -1,5 +1,7 @@
 package BeltLineApplication.java.model;
 
+import javafx.collections.ObservableList;
+
 public class Employee extends User {
     private int employeeID;
     private String phone;
@@ -7,6 +9,8 @@ public class Employee extends User {
     private String city;
     private String state;
     private int zipCode;
+    private String sname;
+    private ObservableList<String> email;
 
     public int getEmployeeID() {
         return this.employeeID;
@@ -26,6 +30,14 @@ public class Employee extends User {
 
     public String getState() {
         return this.state;
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 
     public int getZipCode() {

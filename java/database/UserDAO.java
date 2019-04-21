@@ -1,6 +1,9 @@
 package BeltLineApplication.java.database;
 
 import BeltLineApplication.java.model.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -62,17 +65,17 @@ public class UserDAO {
      * @return
      * @throws SQLException
      */
-    private static User getUser(ResultSet rs) throws SQLException {
-        User user = null;
+    private static ObservableList<User> getUsers(ResultSet rs) throws SQLException {
+        ObservableList<User> list = FXCollections.observableArrayList();
         if (rs.next()) {
-            user = new User();
+            User user = new User();
             user.setUsername(rs.getString("Username"));
-            user.setPassword(rs.getString("Password"));
+            user.setEmailCount(rs.getInt("Email Count"));
+            user.setUserType(rs.getString("User Type"));
             user.setStatus(rs.getString("Status"));
-            user.setFname(rs.getString("Fname"));
-            user.setLname(rs.getString("Lname"));
+            list.add(user);
         }
-        return user;
+        return list;
     }
 
     public static String isUser(String username) throws SQLException, ClassNotFoundException {
@@ -181,5 +184,53 @@ public class UserDAO {
         }
 
         return user;
+    }
+
+    public static ObservableList<User> filter(String username, String  type, String status) throws SQLException, ClassNotFoundException {
+        String query = "Select User.Username, Count(Email) as 'Email Count', UserType as 'Type', Status \n" +
+                "from User join Email on User.Username = Email.Username\n" +
+                "where  Username = \"" + username + "\" and UserType = \"" + type +
+                "\" and Status = \"" + status + "\"\n" +
+                "group by Email.username;\n";
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            ObservableList<User> user = getUsers(rs);
+            return user;
+        } catch (Exception e) {
+            System.out.println("Error with update transit query" + e);
+        }
+        return null;
+    }
+
+    public static ObservableList<User> populateUser() throws SQLException, ClassNotFoundException {
+        String query = "Select User.Username, Count(Email) as 'Email Count', UserType as 'Type', Status \n" +
+                "from User join Email on User.Username = Email.Username\n" +
+                "group by Email.username;\n";
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            ObservableList<User> user = getUsers(rs);
+            return user;
+        } catch (Exception e) {
+            System.out.println("Error with update transit query" + e);
+        }
+        return null;
+    }
+
+    public static void approve(String username) {
+        String query = "UPDATE User SET Status = \"Approved\" Where Username = '" + username + "';";
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with user approve Query" + e);
+        }
+    }
+
+    public static void decline(String username) {
+        String query = "UPDATE User SET Status = \"Declined\" Where Username = '" + username + "';";
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with user decline Query" + e);
+        }
     }
 }
