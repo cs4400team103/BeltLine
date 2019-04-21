@@ -9,6 +9,9 @@ public class Event {
     private int capacity;
     private String description;
     private int minStaffReq;
+    private int remaining;
+    private int totalVisits;
+    private int myVisits;
 
     public String getEname() {
         return this.ename;
@@ -73,4 +76,16 @@ public class Event {
     public void setMinStaffReq(int minStaffReq) {
         this.minStaffReq = minStaffReq;
     }
+
+    public int getRemaining(){return this.remaining;}
+
+    public void setRemaining(int remaining) {this.remaining = remaining;}
+
+    public void setMyVisits(int myVisits) { this.myVisits = myVisits; }
+
+    public int getMyVisits() { return myVisits; }
+
+    public void setTotalVisits(int totalVisits) { this.totalVisits = totalVisits; }
+
+    public int getTotalVisits() { return totalVisits; }
 }
