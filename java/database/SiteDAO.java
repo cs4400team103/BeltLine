@@ -83,6 +83,22 @@ public class SiteDAO {
         }
     }
 
+    public static ObservableList<String> getManagerList() throws SQLException, ClassNotFoundException {
+        String query = "select ManagerUsername from site;";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with getting managerUsername from ManagerList get List" + e);
+        }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+        while (rs.next()) {
+            String username = rs.getString("ManagerUsername");
+            list.add(username);
+        }
+        return list;
+    }
+
     public static ObservableList<Site> filter(String site, String manager, String openEverday) throws SQLException, ClassNotFoundException{
         //create where statements for each variable
         if (!site.isEmpty()) {
@@ -96,7 +112,7 @@ public class SiteDAO {
         }
 
         String query =
-                "select site, manager, openEverday from site where ;" + site + manager + openEverday;
+                "select site, manager, openEverday from site where " + site + manager + openEverday + ";";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
         } catch (SQLException e) {
@@ -134,7 +150,9 @@ public class SiteDAO {
      * @throws ClassNotFoundException
      */
     public static ObservableList<Site> populateSite() throws SQLException, ClassNotFoundException {
-        String query = "";
+        String query = "Select Site.SName, concat(User.FirstName,\" \", User.LastName) as 'Manager', Site.OpenEveryday\n" +
+                "from Site join User on Site.ManagerUsername = User.Username\n" +
+                "where Site.OpenEveryday = 'OpenEveryday' and Site.SName = 'sname' and concat(User.FirstName,\" \", User.LastName) = 'manager name' ;\n";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
             ObservableList<Site> s = getSiteList(rs);

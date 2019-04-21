@@ -34,6 +34,11 @@ public class AdministratorManageSiteController {
     @FXML
     private TableColumn<Site, String> openEverydayCol;
 
+    /**
+     * initializes the first data
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void initialize() throws SQLException, ClassNotFoundException {
         ObservableList<Site> sit = SiteDAO.populateSite();
         site.setItems(sit);
@@ -49,11 +54,20 @@ public class AdministratorManageSiteController {
         });
     }
 
+    /**
+     * filters liset
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void filter() throws SQLException, ClassNotFoundException {
         ObservableList<Site> list = SiteDAO.filter(sites.getSelectionModel().getSelectedItem().toString(), manager.getSelectionModel().getSelectedItem().toString(), openEveryday.getSelectionModel().getSelectedItem().toString());
         site.setItems(list);
     }
 
+    /**
+     * goes to the back page based on user type
+     * @throws Exception
+     */
     public void back() throws Exception {
         if (UserLoginController.getUserType().equals("Administrator")) {
             Parent administratorFunctionality = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorFunctionalityOnly.fxml"));
@@ -66,6 +80,9 @@ public class AdministratorManageSiteController {
         }
     }
 
+    /**
+     * goes to delete page
+     */
     public void delete() {
         //make sure this exists first
         if (site.getSelectionModel().getSelectedCells().get(0) != null) {
@@ -78,6 +95,10 @@ public class AdministratorManageSiteController {
         }
     }
 
+    /**
+     * goes to edit page
+     * @throws Exception
+     */
     public void edit() throws Exception {
         //make sure the table exists first
         if (site.getSelectionModel().getSelectedCells().get(0) != null) {
@@ -94,6 +115,10 @@ public class AdministratorManageSiteController {
         }
     }
 
+    /**
+     * goes to create page
+     * @throws Exception
+     */
     public void create() throws Exception {
         Parent administratorCreateSite = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/AdministratorCreateSite.fxml"));
         Scene rootScene = new Scene(administratorCreateSite, 600, 450);

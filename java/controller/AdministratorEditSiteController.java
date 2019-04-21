@@ -2,7 +2,9 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.SiteDAO;
+import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.model.Site;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,19 +22,22 @@ public class AdministratorEditSiteController {
     @FXML
     private TextField address;
     @FXML
-    private ChoiceBox manager;
+    private ChoiceBox<String> manager;
     @FXML
     private CheckBox openEveryday;
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
     private static Site site;
 
     public void initialize() {
-    Site item = getSite();
+        Site item = getSite();
 
-    //start here...
-    name.setText(item.getSname());
-    //manager.sitem.getSname());
-    name.setText(item.getSname());
+        //start here...
+        name.setText(item.getSname());
+        ObservableList<String> list = SiteDAO.getManagerList();
+        manager.setItems(list);
+        manager.setValue(item.getManagerUsername());
+        openEveryday.setSelected(item.toString().equals("Y"));
+
     }
 
     public static Site getSite() {
