@@ -179,4 +179,34 @@ public class SiteDAO {
             System.out.println("Error with delete transit query" + e);
         }
     }
+
+
+
+//    public static ObservableList<String> populateSiteVisitor() throws SQLException, ClassNotFoundException {
+//        String query = ""; //check in with query
+//        try {
+//            ResultSet rs = Connector.dbExecuteQuery(query);
+//            ObservableList<String> siteInfo = getTransitList(rs);
+//            return null;
+//        } catch (Exception e) {
+//            System.out.println("Error with populate explore site query" + e);
+//        }
+//        return null;
+//    }
+
+    public static ObservableList<String> getSites() throws SQLException, ClassNotFoundException {
+        String query = "select SName from site;";
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            Connector.dbExecuteUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error with site names" + e);
+        }
+        ResultSet rs = Connector.dbExecuteQuery(query);
+        while (rs.next()) {
+            String sites = rs.getString(1);
+            list.add(sites);
+        }
+        return list;
+    }
 }
