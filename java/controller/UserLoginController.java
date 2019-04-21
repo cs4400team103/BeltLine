@@ -14,6 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 
+/**
+ * Completed
+ * @author Yaroslava
+ */
 public class UserLoginController {
 
     @FXML
@@ -33,22 +37,46 @@ public class UserLoginController {
     private static String userType;
     private static String username;
 
+    /**
+     * set user type
+     * @param user
+     */
     public static void setUserType(String user) {
         userType = user;
     }
 
+    /**
+     * get user type
+     * @return
+     */
     public static String getUserType() {
         return userType;
     }
 
+    /**
+     * set username
+     * not stored in the database, only for front end
+     * @param user
+     */
     public static void setUsername(String user) {
         username = user;
     }
+
+    /**
+     * get username
+     * not stored in the database, only for front end
+     * @return
+     */
     public static String getUsername() {
         return username;
     }
 
+    /**
+     * login into the app
+     * @throws Exception
+     */
     public void login() throws Exception {
+        // if email and/or password is empty, do not login
         if (!emailText.getText().isEmpty() || !passwordText.getText().isEmpty()) {
             //fist get username from email.
             String username = EmailDAO.getUsername(email.getText());
@@ -57,6 +85,7 @@ public class UserLoginController {
             String userType = UserDAO.isUser(username);
             setUserType(userType);
 
+            //login user
             if (UserDAO.loginUser(emailText.getText(), passwordText.getText())) {
                 if (userType.equals("Manager")) {
                     Parent root = FXMLLoader.load(getClass().getResource("/BeltLineApplication/resources/fxml/ManagerFunctionality.fxml"));
