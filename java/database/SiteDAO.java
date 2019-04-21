@@ -126,4 +126,34 @@ public class SiteDAO {
         }
         return list;
     }
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ObservableList<Site> populateSite() throws SQLException, ClassNotFoundException {
+        String query = "";
+        try {
+            ResultSet rs = Connector.dbExecuteQuery(query);
+            ObservableList<Site> s = getSiteList(rs);
+            return s;
+        } catch (Exception e) {
+            System.out.println("Error with update site query" + e);
+        }
+        return null;
+    }
+
+    //TODO: fix openEveryday stuff either yes or digits..
+    public static void delete(Site site) {
+        String delete = "Delete from site WHERE SName = '" + site.getSname()
+                + "' and ManagerUsername = '" + site.getManagerUsername()
+                + "' and OpenEverday = '" + site.getOpenEveryday() + "';";
+        try {
+            Connector.dbExecuteUpdate(delete);
+        } catch (Exception e) {
+            System.out.println("Error with delete transit query" + e);
+        }
+    }
 }

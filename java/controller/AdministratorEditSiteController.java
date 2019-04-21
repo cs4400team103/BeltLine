@@ -2,6 +2,7 @@ package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
 import BeltLineApplication.java.database.SiteDAO;
+import BeltLineApplication.java.model.Site;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,9 +24,23 @@ public class AdministratorEditSiteController {
     @FXML
     private CheckBox openEveryday;
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private static Site site;
 
     public void initialize() {
+    Site item = getSite();
 
+    //start here...
+    name.setText(item.getSname());
+    //manager.sitem.getSname());
+    name.setText(item.getSname());
+    }
+
+    public static Site getSite() {
+        return site;
+    }
+
+    public static void setSite(Site s) {
+        site = s;
     }
 
     public void back() throws Exception {

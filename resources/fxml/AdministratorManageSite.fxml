@@ -22,9 +22,9 @@
         <Button fx:id="filter" layoutX="40.0" layoutY="111.0" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="100.0" text="Filter" />
         <TableView fx:id="site" layoutX="40.0" layoutY="154.0" prefHeight="225.0" prefWidth="520.0">
             <columns>
-                <TableColumn editable="false" prefWidth="219.9999771118164" text="Name" />
-                <TableColumn editable="false" prefWidth="178.800048828125" text="Manager" />
-                <TableColumn editable="false" prefWidth="121.19992065429688" text="Open Everyday" />
+                <TableColumn fx:id="nameCol" editable="false" prefWidth="219.9999771118164" text="Name" />
+                <TableColumn fx:id="managerCol" editable="false" prefWidth="178.800048828125" text="Manager" />
+                <TableColumn fx:id="openEverydayCol" editable="false" prefWidth="121.19992065429688" text="Open Everyday" />
             </columns>
         </TableView>
         <Button fx:id="back" layoutX="265.0" layoutY="403.0" mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Back" />
