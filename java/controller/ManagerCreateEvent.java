@@ -4,14 +4,13 @@ import BeltLineApplication.Main;
 import BeltLineApplication.java.database.EventDAO;
 import BeltLineApplication.java.database.SiteDAO;
 import BeltLineApplication.java.limiter.TextFieldLimit;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+
 import java.sql.SQLException;
 
 public class ManagerCreateEvent {
@@ -34,14 +33,16 @@ public class ManagerCreateEvent {
     @FXML
     TextArea description;
     @FXML
-    ListView assignStaff;
+    ListView<String> assignStaff;
 
     private Alert alert = new Alert(Alert.AlertType.ERROR);
 
 
 
-    public void initialize(){
-
+    public void initialize() throws SQLException, ClassNotFoundException{
+        ObservableList<String> list = EventDAO.getStaff();
+        assignStaff.setItems(list);
+        assignStaff.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
     private boolean isFull() {
         return (!name.getText().isEmpty() && !price.getText().isEmpty() && !startDate.getText().isEmpty() && !endDate.getText().isEmpty() && !capacity.getText().isEmpty() && !minSR.getText().isEmpty() && !description.getText().isEmpty());
