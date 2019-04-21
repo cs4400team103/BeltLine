@@ -73,12 +73,12 @@ public class UserDAO {
         String query = "Select Status From User Where Username = '" + username + "';";
         try {
             ResultSet rs = Connector.dbExecuteQuery(query);
-            String status = "Approved";
+            String status = "";
             if (rs.next()) {
-                status = rs.getString("Status");
+                status = rs.getString(0);
                 System.out.println("I am almost approved");
             }
-            return (status.equals("Approved"));
+            return (status.equalsIgnoreCase("Approved"));
         } catch (SQLException e) {
             System.out.println("Something is wrong with your SQL: " + e);
             throw e;
@@ -127,11 +127,11 @@ public class UserDAO {
                     if (second != null) {
                         return mangVisitor;
                     }
+                    return mang;
                 } catch (Exception e) {
                     System.out.println("Error with getting admin visitor type " + e);
                 }
             }
-            return mang;
         } catch (Exception e) {
             System.out.println("Error with getting manager type " + e);
         }
