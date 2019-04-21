@@ -1,6 +1,7 @@
 package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
+import BeltLineApplication.java.database.SiteDAO;
 import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.limiter.TextFieldLimit;
 import BeltLineApplication.java.model.Transit;
@@ -22,9 +23,9 @@ import java.sql.SQLException;
  */
 public class AdministratorManageTransitController {
     @FXML
-    private ChoiceBox transportType;
+    private ChoiceBox<String> transportType;
     @FXML
-    private ChoiceBox containSite;
+    private ChoiceBox<String> containSite;
     @FXML
     private TextFieldLimit route;
     @FXML
@@ -51,8 +52,14 @@ public class AdministratorManageTransitController {
      * @throws ClassNotFoundException
      */
     public void initialize() throws SQLException, ClassNotFoundException {
-        ObservableList<Transit> trans = TransitDAO.populateTransit();
+        ObservableList<Transit> trans = TransitDAO.populateTransit(true);
         transitTable.setItems(trans);
+
+        ObservableList<String> site = SiteDAO.getSites();
+        containSite.setItems(site);
+        ObservableList<String> type = TransitDAO.getType();
+        transportType.setItems(type);
+
 
         //might need to add health at th
         route.setMaxLength(50);
@@ -78,7 +85,7 @@ public class AdministratorManageTransitController {
      * @throws ClassNotFoundException
      */
     public void filter() throws SQLException, ClassNotFoundException {
-        ObservableList<Transit> list = TransitDAO.filter(route.getText(), Double.parseDouble(minRange.getText()), Double.parseDouble(maxRange.getText()), containSite.getSelectionModel().getSelectedItem().toString(), transportType.getSelectionModel().getSelectedItem().toString());
+        ObservableList<Transit> list = TransitDAO.filter(route.getText(), Double.parseDouble(minRange.getText()), Double.parseDouble(maxRange.getText()), containSite.getSelectionModel().getSelectedItem().toString(), transportType.getSelectionModel().getSelectedItem().toString(), true);
         transitTable.setItems(list);
     }
 

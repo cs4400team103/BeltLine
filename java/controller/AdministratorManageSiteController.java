@@ -1,9 +1,11 @@
 package BeltLineApplication.java.controller;
 
 import BeltLineApplication.Main;
+import BeltLineApplication.java.database.ManagerDAO;
 import BeltLineApplication.java.database.SiteDAO;
 import BeltLineApplication.java.model.Site;
 import javafx.application.Platform;
+import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,11 +25,11 @@ public class AdministratorManageSiteController {
     @FXML
     private TableView<Site> site;
     @FXML
-    private ChoiceBox manager;
+    private ChoiceBox<String> manager;
     @FXML
     private ChoiceBox openEveryday;
     @FXML
-    private ChoiceBox sites;
+    private ChoiceBox<String> sites;
     @FXML
     private TableColumn<Site, String> nameCol;
     @FXML
@@ -43,6 +45,12 @@ public class AdministratorManageSiteController {
     public void initialize() throws SQLException, ClassNotFoundException {
         ObservableList<Site> sit = SiteDAO.populateSite();
         site.setItems(sit);
+
+        ObservableList<String> siteComb = SiteDAO.getSites();
+        sites.setItems(siteComb);
+
+        ObservableList<String> mang = ManagerDAO.getManagerList();
+        manager.setItems(mang);
 
         //will allow you to select a row without a radiobutton function
         Platform.runLater(new Runnable() {
