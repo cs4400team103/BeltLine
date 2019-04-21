@@ -20,6 +20,9 @@ public class VisitorExploreSite {
     @FXML
     CheckBox includeVisited;
 
+    public static void initialize() {
+
+    }
     public void filter() throws Exception{
         //filter
     }

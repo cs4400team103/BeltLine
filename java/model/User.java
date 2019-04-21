@@ -7,6 +7,7 @@ public class User {
     private String status;
     private String fname;
     private String lname;
+    private String name;
 
     public String getUsername() {
         return username;
@@ -47,4 +48,8 @@ public class User {
     public void setLname(String lname) {
         this.lname = lname;
     }
+
+    public void setName(String name){this.name = name;}
+
+    public String getName() { return name; }
 }
