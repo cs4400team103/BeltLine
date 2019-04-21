@@ -70,7 +70,7 @@ public class VisitorExploreEvent {
         Scene rootScene = new Scene(root, 600, 450);
         Main.pstage.setScene(rootScene);
         VisitorEventDetail controller = loader.getController();
-        controller.initial(eventTable.getSelectionModel().getSelectedItem());
+        controller.initialize(eventTable.getSelectionModel().getSelectedItem());
     }
 
     public void back() throws Exception {

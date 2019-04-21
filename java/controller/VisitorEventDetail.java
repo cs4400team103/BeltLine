@@ -34,7 +34,7 @@ public class VisitorEventDetail {
     TextField lV;
     private Event selectedEvent;
 
-    public void initial(Event e){
+    public void initialize(Event e){
         selectedEvent = e;
         event.setText(selectedEvent.getEname());
         site.setText(selectedEvent.getSname());

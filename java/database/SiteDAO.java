@@ -264,4 +264,18 @@ public class SiteDAO {
         return list;
     }
 
+    public static void logSiteVisit(String username, String sname, String logDate) throws ParseException {
+        SimpleDateFormat ld = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date jlDate = ld.parse(logDate);
+        java.sql.Date sqllDate = new java.sql.Date(jlDate.getTime());
+
+        String query = "Insert into VisitSite ('Username', 'Sname', 'VisitEventDate')" +
+                "values ( " + username + ", " + sname + ", " + sqllDate + ");";
+        try{
+            Connector.dbExecuteQuery(query);
+        } catch (Exception e){
+            System.out.println("error with log site visit query");
+        }
+    }
+
 }

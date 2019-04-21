@@ -8,23 +8,22 @@
 
 <!--A comment to attempt to commit-->
 
-<AnchorPane prefHeight="250.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="BeltLineApplication.java.controller.VisitorSiteDetailController">
+<AnchorPane prefHeight="250.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BeltLineApplication.java.controller.VisitorSiteDetail">
     <children>
         <Label layoutX="223.0" layoutY="14.0" text="Site Detail">
             <font>
-                <Font size="23.0"/>
+                <Font size="23.0" />
             </font>
         </Label>
-        <Label layoutX="39.0" layoutY="73.0" text="Site"/>
-        <Button fx:id="back" layoutX="239.0" layoutY="209.0" mnemonicParsing="false" onAction="#back" prefWidth="70.0"
-                text="Back"/>
-        <Label layoutX="366.0" layoutY="73.0" text="Open Everyday"/>
-        <Label layoutX="39.0" layoutY="113.0" text="Address"/>
-        <Button fx:id="logVisit" layoutX="366.0" layoutY="151.0" mnemonicParsing="false" onAction="#logVisit"
-                prefHeight="25.0" prefWidth="80.0" text="Log Visit"/>
-        <Label layoutX="160.0" layoutY="155.0" text="Visit Date"/>
-        <TextField id="visitDate" layoutX="220.0" layoutY="151.0" prefHeight="25.0" prefWidth="131.0"/>
+        <Label layoutX="39.0" layoutY="73.0" text="Site" />
+        <Button fx:id="back" layoutX="239.0" layoutY="209.0" mnemonicParsing="false" onAction="#back" prefWidth="70.0" text="Back" />
+        <Label layoutX="366.0" layoutY="73.0" text="Open Everyday" />
+        <Label layoutX="39.0" layoutY="113.0" text="Address" />
+        <Button fx:id="logVisit" layoutX="366.0" layoutY="151.0" mnemonicParsing="false" onAction="#logVisit" prefHeight="25.0" prefWidth="80.0" text="Log Visit" />
+        <Label layoutX="160.0" layoutY="155.0" text="Visit Date" />
+        <TextField fx:id="visitDate" layoutX="220.0" layoutY="151.0" prefHeight="25.0" prefWidth="131.0" />
+      <Label fx:id="st" layoutX="82.0" layoutY="73.0" text="Label" />
+      <Label fx:id="open" layoutX="461.0" layoutY="73.0" text="Label" />
+      <Label fx:id="addy" layoutX="96.0" layoutY="113.0" text="Label" />
     </children>
 </AnchorPane>

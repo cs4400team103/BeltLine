@@ -318,7 +318,7 @@ public class EventDAO {
         java.sql.Date sqllDate = new java.sql.Date(jlDate.getTime());
 
         String query = "Insert into VisitEvent ('Username', 'Ename', 'Sname', 'StartDate', 'VisitEventDate')" +
-                "values ( " + UserLoginController.getUsername() + ", "  + ename + ", " + sname + ", " + sdate + ", " + logDate + ");";
+                "values ( " + UserLoginController.getUsername() + ", "  + ename + ", " + sname + ", " + sqlDate + ", " + sqllDate + ");";
         try{
             Connector.dbExecuteQuery(query);
         } catch (Exception e){
