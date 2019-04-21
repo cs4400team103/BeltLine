@@ -47,6 +47,7 @@ public class EmployeeManageProfileController {
     @FXML
     private TextFieldLimit emailTextField;
 
+    //button for email stuff
     private Button remove = new Button("remove");
     private Label email = new Label();
     private ObservableList<Button> buttons = FXCollections.observableArrayList();

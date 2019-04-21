@@ -4,7 +4,7 @@ import BeltLineApplication.Main;
 import BeltLineApplication.java.database.SiteDAO;
 import BeltLineApplication.java.database.TransitDAO;
 import BeltLineApplication.java.limiter.TextFieldLimit;
-import BeltLineApplication.java.model.Take;
+import BeltLineApplication.java.model.Transit;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -21,35 +22,31 @@ import java.text.ParseException;
  * Completed
  * @author Yaroslava
  */
-public class UserTransitHistoryController {
+public class UserTakeTransitController {
+    @FXML
+    private TableView<Transit> transitTable;
+    @FXML
+    private TextFieldLimit minRange;
+    @FXML
+    private TextFieldLimit maxRange;
+    @FXML
+    private ChoiceBox<String> containSite;
     @FXML
     private ChoiceBox<String> transportType;
     @FXML
-    private ChoiceBox<String> containsSite;
-    @FXML
-    private TextFieldLimit route;
-    @FXML
-    private DatePicker startDate;
-    @FXML
-    private DatePicker endDate;
-    @FXML
-    private TableView<Take> transitTable;
+    private DatePicker transitDate;
 
-    /**
-     * initialize
-     * @throws SQLException because it populates
-     * @throws ClassNotFoundException because it populates
-     */
     public void initialize() throws SQLException, ClassNotFoundException {
-        ObservableList<Take> trans = TransitDAO.populateTransitList();
+        ObservableList<Transit> trans = TransitDAO.populateTransit(false);
         transitTable.setItems(trans);
 
         ObservableList<String> site = SiteDAO.getSites();
-        containsSite.setItems(site);
+        containSite.setItems(site);
         ObservableList<String> type = TransitDAO.getType();
         transportType.setItems(type);
 
-        route.setMaxLength(50);
+        minRange.setMaxLength(3);
+        maxRange.setMaxLength(3);
 
         //will allow you to select a row without a radiobutton function
         Platform.runLater(new Runnable() {
@@ -63,18 +60,18 @@ public class UserTransitHistoryController {
     }
 
     /**
-     * filters the table
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     * @throws ParseException
+     * filters the list
+     *
+     * @throws SQLException an sql stuff
+     * @throws ClassNotFoundException if not found
      */
-    public void filter() throws SQLException, ClassNotFoundException, ParseException {
-        ObservableList<Take> list = TransitDAO.filterTake(startDate.toString(), endDate.toString(), route.getText(), transportType.getSelectionModel().getSelectedItem(), containsSite.getSelectionModel().getSelectedItem());
+    public void filter() throws SQLException, ClassNotFoundException {
+        ObservableList<Transit> list = TransitDAO.filter(containSite.getSelectionModel().getSelectedItem(), transportType.getSelectionModel().getSelectedItem(), Double.parseDouble(minRange.getText()), Double.parseDouble(maxRange.getText()), false);
         transitTable.setItems(list);
     }
 
     /**
-     * goes back
+     * back to pages depending on user
      */
     public void back() throws Exception {
         String userType = UserLoginController.getUserType();
@@ -121,4 +118,30 @@ public class UserTransitHistoryController {
         }
     }
 
+    /**
+     *
+     */
+    public void logTransit() throws ParseException {
+        //check if it is null
+        if (transitDate != null) {
+            TransitDAO.logTransit(getRoute(), transportType.getSelectionModel().getSelectedItem(), transitDate.toString());
+        }
+    }
+
+    /**
+     * get a route
+     * @return String
+     */
+    public String getRoute() {
+        //make sure this exists first
+        if (transitTable.getSelectionModel().getSelectedCells().get(0) != null) {
+            //get selected row
+            TablePosition pos = transitTable.getSelectionModel().getSelectedCells().get(0);
+            int row = pos.getRow();
+
+            String route = transitTable.getItems().get(row).getRoute();
+            return route;
+        }
+        return "";
+    }
 }

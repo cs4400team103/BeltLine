@@ -99,7 +99,7 @@ public class AdministratorManageUserController {
 
     /**
      * declines the user
-     * @throws Exception
+     * @throws Exception throws exception
      */
     public void decline() throws Exception {
         if (manageUserTable.getSelectionModel().getSelectedCells().get(0) != null) {
