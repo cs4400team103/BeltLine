@@ -35,11 +35,11 @@
         <Label layoutX="421.0" layoutY="291.0" text="--" />
         <TextField layoutX="442.0" layoutY="287.0" prefHeight="25.0" prefWidth="32.0" />
         <Button fx:id="filter" layoutX="507.0" layoutY="287.0" mnemonicParsing="false" onAction="#filter" prefWidth="70.0" text="Filter" />
-        <TableView layoutX="78.0" layoutY="336.0" prefHeight="200.0" prefWidth="444.0">
+        <TableView layoutX="25.0" layoutY="336.0" prefHeight="200.0" prefWidth="550.0">
             <columns>
-                <TableColumn prefWidth="173.99999618530273" text="Date" />
-                <TableColumn prefWidth="100.39997863769531" text="Daily Visits" />
-                <TableColumn prefWidth="168.800048828125" text="Daily Revenue ($)" />
+                <TableColumn prefWidth="183.33" text="Date" />
+                <TableColumn prefWidth="183.33" text="Daily Visits" />
+                <TableColumn prefWidth="183.33" text="Daily Revenue ($)" />
             </columns>
         </TableView>
             <TextArea layoutX="300.0" layoutY="155.0" maxHeight="600.0" maxWidth="374.0" minHeight="100.0" minWidth="275.0" prefHeight="126.0" prefWidth="275.0" AnchorPane.bottomAnchor="319.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="155.0" />
