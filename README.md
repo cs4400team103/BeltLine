@@ -10,4 +10,9 @@ This is a semester long project in class CS4400.
 # Setup
 # Running the Project
 # UI
-# ER Diagrams
+# ER Diagram
+![Er Diagram for the Beltline Project](resources/img/EER.PNG)
+# Schema
+! [Schema for Beltline Project](resources/img/Schema1.PNG)
+! [Schema for Beltline Project](resources/img/Schema2.PNG)
+! [Schema for Beltline Project](resources/img/Schema3.PNG)
